@@ -1,0 +1,252 @@
+*, *::after, *::before{
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;
+}
+
+.headerContainer{
+    display: flex;
+    width: 100%;
+}
+.img{
+    flex: 1;
+    width: 50%;
+}
+.loginPage {
+    flex: 1;
+}
+.loginHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 55px;
+    width: 100%;
+}
+.logo{
+    display: flex;
+    align-items:center;
+    justify-content: start;
+    flex: 2;
+}
+.logoText{
+    font-size: 30px;
+    font-weight: 600;
+}
+.logoImg {
+    margin-right: 3%;
+}
+.loginForm{
+    padding: 20px 90px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    font-family: 'Rubik', sans-serif;
+    margin-bottom: 20px;
+}
+
+.btn-signUp{
+    display: flex;
+    flex: 1;
+    width: 100%;
+    background-color: #FFBA33;
+    border-radius: 50px;
+    height: 75px;
+    align-items: center;
+    justify-content: center;
+    color: #6A4029;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-signUp:active{
+    background-color: #fcc75d;
+}
+.loginText{
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 35px;
+    line-height: 41px;
+    color: #6A4029;
+    font-family: 'Rubik', sans-serif;
+}
+
+.forgotPassword {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    text-decoration-line: underline;
+    cursor: pointer;
+    color: #6A4029;
+}
+.forgotPassword:active{
+    color: #a07259;
+}
+
+.inputLabel{
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 20px;
+}
+
+.input{
+    padding: 30px 25px;
+    font-size: 20px;
+    font-weight: 400;
+    border-style: none;
+    border-radius: 20px;
+    border: 1px solid #666;
+    margin-bottom: 20px;
+}
+
+.btn-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+    background-color: #FFBA33;
+    height: 75px;
+    box-shadow: 0px 6px 20px rgba(255, 186, 51, 0.4);
+    border-radius: 20px;
+    width: 100%;
+    cursor: pointer;
+    color: #6A4029;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.btn-login-google{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+    background-color: #FFFFFF;
+    height: 75px;
+    box-shadow: 0px 6px 20px rgba(196, 196, 196, 0.67);
+    border-radius: 20px;
+    width: 100%;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 20px;
+}
+.btn-login-google > p{
+    margin-left: 14px;
+}
+.btn-login-google:active{
+    background-color: #f7e4e4;
+}
+.btn-login:active{
+    background-color: #fcc75d;
+}
+.memberCardContainer{
+    position: relative;
+}
+.member-card{
+    padding: 70px;
+    width: 70%;
+    height: 233px;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1;
+    position: absolute;
+    top: -100px;
+    right: 15%;
+    border-radius: 10px;
+}
+
+.getMembertext{
+    display: flex;
+    flex-direction: column;
+    margin-right: 50;
+}
+.getMemberNow{
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 45px;
+}
+.letsJoin{
+    margin-top: 20px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 30px;
+}
+
+.btn-member{
+    display: flex;
+    width: 20%;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFBA33;
+    font-family: 'Rubik' , sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.btn-member:active{
+    background-color:#fcc75d;
+}
+.footer{
+    padding-top: 25vh;
+}
+
+@media screen and (max-width : 768px) {
+    .img{
+        display: none;
+    }
+    .getMembertext{
+        margin: 0;
+    }
+    .getMemberNow{
+        font-size: 20px;
+    }
+    .letsJoin{
+        font-size: 16px;
+        margin: 0;
+    }
+    .member-card{
+        position: relative;
+        top: 0;
+        left : 0;
+        width: 100%;
+        height: 200px;
+    }
+    .footer{
+        padding-top: 20px;
+    }
+}
+
+@media screen and (max-width : 425px) {
+    .member-card{
+        flex-direction: column;
+        height: 350px;
+    }
+    .btn-member{
+        width: 50%;
+    }
+    .loginForm{
+        padding: 20px;
+        margin: 0;
+    }
+    .loginText{
+        margin: 0;
+    }
+    .logoImg{
+        margin: 0;
+    }
+    .btn-login-google>p{
+        margin-bottom: 0;
+    }
+}

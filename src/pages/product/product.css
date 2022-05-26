@@ -1,0 +1,87 @@
+.leftProduct{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    row-gap: 60px;
+    padding: 150px;
+}
+
+.imgProduct{
+    position: relative;
+}
+.img{
+    border-radius: 50%;
+}
+.trashBox{
+    position: absolute;
+    top: 250px;
+    left: 65%;
+    background-color:#6A4029;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 19px;
+}
+.delivery{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    background: #FFFFFF;
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.03);
+    border-radius: 20px;
+    padding: 27px 30px;
+    width: 100%;
+    row-gap: 30px;
+}
+.deliveryMethod{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.dineIn{
+    background: #F4F4F8;
+    border: 1px solid rgba(186, 186, 186, 0.35);
+    border-radius: 10px;
+    padding: 6px 9px;
+    margin-right: 30px;
+    cursor: pointer;
+}
+.dineIn:active{
+    background-color: #6A4029;
+    color: #F4F4F8;
+}
+.setTime {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+.now{
+    margin-right: 30px;
+}
+.inputSetTime{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%; 
+}
+.inputTime{
+    background: #F4F4F8;
+    border: 1px solid rgba(186, 186, 186, 0.35);
+    border-radius: 10px;
+    padding: 6px 9px;
+}
+.setTimeText{
+    margin-right: 20px;
+}
+.rightProduct{
+    background-color: #FF3213;
+}
+
+.choose{
+    background-color: #FF8876;
+}
