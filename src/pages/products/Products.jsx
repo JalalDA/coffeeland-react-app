@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import './products.css'
 import axios from 'axios'
+import Header from '../../components/header/Header'
+import Sidebar from '../../components/sidebar/Sidebar'
+import Footer from '../../components/footer/Footer'
 
 export default class Products extends Component {
     constructor(){
@@ -14,7 +17,7 @@ export default class Products extends Component {
             const result = await axios.get(
                 'http://localhost:8000/product/all?limit=12'
             )
-            console.log(result.data.data)
+            console.log(result)
             this.setState({
                 product : result.data.data
             })
@@ -24,8 +27,12 @@ export default class Products extends Component {
     }
 render() {
     return (
-        <div className="col-lg-8 content">
-        <div className="d-flex justify-content-around productHeader">
+        <>
+            <Header/>
+            <div className="row">
+                <Sidebar/>
+            <div className="col-lg-8 content">
+            <div className="d-flex justify-content-around productHeader">
             <div className="headerItem">Favorit Product</div>
             <div className="headerItem">Coffee</div>
             <div className="headerItem">Non Coffee</div>
@@ -41,10 +48,13 @@ render() {
                             <div className="productName" key={product.name}>{product.name}</div>
                             <div className="price" key={product.id}>{product.price}</div>
                         </div>
-                    </div>    
-                )}
-        </div>
-    </div>
+                        </div>    
+                    )}
+                </div>
+            </div>
+            </div>
+            <Footer/>
+        </>
     )
   }
 }

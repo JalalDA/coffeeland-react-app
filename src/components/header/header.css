@@ -36,14 +36,19 @@
     align-items: center;
     justify-content: center;
 }
+.link{
+    color: #4F5665;
+}
 .navigasi > li{
     margin: 20px;
     font-size: 16px;
     font-weight: 500;
     color: #4F5665;
     cursor: pointer;
+    text-decoration: none;
+
 }
-.navigasi>li:hover{
+.link:hover{
     font-size: 16px;
     font-weight: 700;
     color: #6a4029;

@@ -3,6 +3,7 @@ import './login.css'
 import loginImg from '../../assets/img/loginImg.png'
 import logo from '../../assets/img/logo.png'
 import googleLogo from '../../assets/img/googleLogo.png'
+import Footer from '../../components/footer/Footer'
 
 const Login = () => {
   return (
@@ -47,6 +48,7 @@ const Login = () => {
               </div>
             </div>
         </div>
+        <Footer/>
     </>
   )
 }

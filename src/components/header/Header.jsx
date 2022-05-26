@@ -4,6 +4,7 @@ import logo from '../../assets/img/logo.png'
 import search from '../../assets/img/search.png'
 import profile from '../../assets/img/pp.png'
 import chat from '../../assets/img/chat.png'
+import { Link } from 'react-router-dom'
 
 export default class Header extends Component {
     constructor(props){
@@ -37,12 +38,20 @@ export default class Header extends Component {
                 </div>
                 <div>Coffeeland</div>
             </div>
-            <div className="col-sm-6 navigasi">
-                <li>Home</li>
-                <li>Product</li>
-                <li>Your Chart</li>
-                <li>History</li>
-            </div>
+            <ul className="col-sm-6 navigasi">
+                    <li className='listNavItem'>
+                        <Link className='link' to='/'>Home</Link>
+                    </li>
+                    <li className='listNavItem'>
+                        <Link className='link' to='/product'>Product</Link>
+                    </li>
+                    <li className='listNavItem'>
+                        <Link className='link' to='/Login'>Your Chart</Link>
+                    </li>
+                    <li className='listNavItem'>
+                        <Link className='link' to='/Login'>History</Link>
+                    </li>
+            </ul>
             <div className="col-sm-3 auth">
                 <div className="searchIcon" onMouseOver={searchButton} onMouseLeave={()=>{
                     this.setState({

@@ -10,12 +10,15 @@ import pinky from '../../assets/img/pinky.png'
 import teamWork from '../../assets/img/teamwork.png'
 import chickenWings from '../../assets/img/chickenWIngs.png'
 import maps from '../../assets/img/maps.png'
+import Header from '../../components/header/Header'
+import Footer from '../../components/footer/Footer'
 
 export default class Home extends Component {
 
     render() {
     return (
     <div>
+        <Header/>
         <div className="hero">
             <img src={hero} alt=""/>
             <div className="textHero">Start Your Day With <br/>Coffee and Good Meals</div>
@@ -267,6 +270,7 @@ export default class Home extends Component {
                 <div className="btn-promo">See Promo</div>
             </div>
         </div>
+        <Footer/>
     </div>
     )
 }
