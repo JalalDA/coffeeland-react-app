@@ -85,8 +85,33 @@
     width: 100%;
 }
 
-@media screen and(max-width : 768px) {
-    .forgotContainer{
-        height: 1000px;
+@media screen and (max-width : 768px) {
+    .forgotForm{
+        width: 100%;
+        row-gap: 50px;
+    }
+}
+
+@media screen and (max-width : 425px) {
+    .forgotTitle > span{
+        font-size: 20px;
+    }
+    .forgotTitle > p{
+        font-size: 15px;
+    }
+    .forgotForm{
+        row-gap: 10px;
+        top: 50px;
+    }
+    .forgotImg{
+        height: 550px;
+    }
+    .forgotReceive > p{
+        font-size: 20px;
+    }
+    .resendLink{
+        font-size: 15px;
+        width: 90%;
+        padding : 20px;
     }
 }
