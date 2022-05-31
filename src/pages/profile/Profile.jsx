@@ -1,23 +1,98 @@
 import React, { Component } from 'react'
 import Footer from '../../components/footer/Footer'
 import Header from '../../components/header/Header'
-import profile2 from '../../assets/img/pp.png'
 import axios from 'axios'
 import './profile.css'
+import photoprofile from '../../assets/img/nullProfile.png' 
+import { Navigate } from 'react-router-dom'
 
 export default class Profile extends Component {
     constructor() {
         super()
         this.state = {
-            profile: []
+            profile: [],
+            isLoggedOut : false,
+            token : '',
+            statephoto : true,
+            email : '',
+            delivery_adress: '', 
+            phone : '',
+            display_name : '',
+            firstname : '',
+            lastname : '',
+            gender : ''
         }
     }
-
+    editProfile = async ()=>{
+        try { 
+        const {
+            email ,
+            delivery_adress,
+            phone,
+            display_name ,
+            firstname,
+            lastname,
+            gender
+        } = this.state
+        const body = {
+            email,
+            phone,
+            delivery_adress,
+            display_name,
+            firstname,
+            lastname,
+            gender
+        }
+        const config = {
+            headers : {
+                Authorization : `Bearer ${localStorage.getItem('token')}` 
+            }
+        }
+        const result = await axios.patch('http://localhost:8000/user', body, config)
+        console.log(result);
+        alert(result.data.msg)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    logout = async()=>{
+        try {
+            const config = {
+                headers : {
+                    Authorization : `Bearer ${localStorage.getItem('token')}` 
+                }
+            }
+            const result = await axios.patch('http://localhost:8000/auth/logout', config)
+            console.log(result);
+        } catch (error) {
+            console.log(error);
+        }
+    }
     async componentDidMount() {
         try {
+            const token = localStorage.getItem("token")
+            const photo = localStorage.getItem("photo")
+            if(photo === "null"){
+                this.setState({
+                    statephoto : false
+                })
+            }
+            if(!token){
+                this.setState({
+                    isLoggedOut : true
+                })
+            }
+            const config = {
+                headers : {Authorization : `Bearer ${token}`}
+            }
             const result = await axios.get(
-
+                'http://localhost:8000/user',
+                config
             )
+            console.log(result);
+            this.setState({
+                profile : result.data.data[0]
+            })
         } catch (error) {
             console.log(error);
         }
@@ -25,29 +100,33 @@ export default class Profile extends Component {
 
     render() {
         return (
-            <div>
-                <Header />
-                <div className="row mainContent">
+            <div >
+                <Header  />
+                {this.state.isLoggedOut ? <Navigate to={'/'} replace={true}/> : null}
+                <div profilepict = {`http://localhost:8000${this.state.profile.photo}`} className="row mainContent">
                     <h2 className="user-profile">User Profile</h2>
                     <div className="d-flex profileContainer">
                         <div className="row profileInfo">
                             <div className="profile">
-                                <img src={profile2} alt="" />
+                                {this.state.statephoto ? <img src={`http://localhost:8000${this.state.profile.photo}`} alt="" /> : <img src={photoprofile} alt="" />}
                                 <div className="userName">
-                                    <h3>Zulaikha</h3>
-                                    <p>zulaikha17@gmail.com</p>
+                                    <h3>{this.state.profile.display_name}</h3>
+                                    <p>{this.state.profile.email}</p>
                                 </div>
                             </div>
                             <form>
                                 <div className="profileButton">
-                                    <div className="choosePhoto" type="submit">Choose photo</div>
+                                    <div className="choosePhoto">
+                                        <input type="file" style={{display:'none'}} />
+                                        Choose photo
+                                    </div>
                                     <div className="removePhoto" type="submit">Remove photo</div>
                                     <div className="editPassword" type="submit">Edit Password</div>
                                     <p>Do you want to save the change?</p>
-                                    <div className="saveChange" type="submit">Save Change</div>
+                                    <div className="saveChange" type="submit" onClick={this.editProfile}>Save Change</div>
                                     <div className="cancel" type="submit">Cencel</div>
-                                    <div className="logout" type="submit">Log out</div>
-                                </div>
+                                    <div className="logout" onClick={this.logout}>Logout</div>
+                                </div>    
                             </form>
                         </div>
                         <div className="row profileDetail">
@@ -55,14 +134,27 @@ export default class Profile extends Component {
                                 <h3>Contacts</h3>
                                 <form className="row form-contacts">
                                     <div className="col-sm-8 formEmail">
-                                        <label for="email">Email adress :</label>
-                                        <input type="email" id="email" placeholder="zulaikhha17@gmail.com" />
-                                        <label for="adres">Delivery adress :</label>
-                                        <input type="text" id="adress" placeholder="Iskandar Street No. 67 Block A Near Bus Stop" />
+                                        <label htmlFor="email">Email adress :</label>
+                                        <input className='inputProfile' type="email" id="email" value={this.state.profile.email} 
+                                        onChannge={(e)=>{
+                                            this.setState({
+                                            email : e.target.value
+                                            })
+                                        }}/>
+                                        <label htmlFor="adres">Delivery adress :</label>
+                                        <input className='inputProfile' type="text" id="adress" value={this.state.profile.delivery_adress} onChange={e=>{
+                                            this.setState({
+                                                delivery_adress : e.target.value
+                                            })
+                                        }}/>
                                     </div>
-                                    <div className="col-sm-4 form-phone">
-                                        <label for="phone">Mobile number :</label>
-                                        <input type="text" id="phone" placeholder="(+62)813123456782" />
+                                    <div className="col-lg-4 col-sm-8 form-phone">
+                                        <label htmlFor="phone">Mobile number :</label>
+                                        <input className='inputProfile' type="text" id="phone"value={this.state.profile.phone} onChange={e=>{
+                                            this.setState({
+                                                phone : e.target.value
+                                            })
+                                        }} />
                                     </div>
                                 </form>
                             </div>
@@ -70,28 +162,48 @@ export default class Profile extends Component {
                                 <h3>Details</h3>
                                 <form className="row form-details">
                                     <div className="col-sm-8 form-display-first-last">
-                                        <label for="name">Display name :</label>
-                                        <input type="text" id="name" placeholder="Zulaikha" />
-                                        <label for="first">First name :</label>
-                                        <input type="text" id="first" placeholder="Zulaikha" />
-                                        <label for="last">Last name :</label>
-                                        <input type="text" id="last" placeholder="Nirmala" />
+                                        <label htmlFor="name">Display name :</label>
+                                        <input className='inputProfile' type="text" id="name" value={this.state.profile.display_name} onChange={e=>{
+                                            this.setState({
+                                                display_name : e.target.value
+                                            })
+                                        }} />
+                                        <label htmlFor="first">First name :</label>
+                                        <input className='inputProfile' type="text" id="first" value={this.state.profile.firstname} onChange={e=>{
+                                            this.setState({
+                                                firstname : e.target.value
+                                            })
+                                        }}/>
+                                        <label htmlFor="last">Last name :</label>
+                                        <input className='inputProfile' type="text" id="last" value={this.state.profile.lastname} onChange={e=>{
+                                            this.setState({
+                                                lastname : e.target.value
+                                            })
+                                        }} />
                                     </div>
-                                    <div className="col-sm-4 form-date">
-                                        <label for="date">DD/MM/YY</label>
-                                        <input type="date" id="" placeholder="03/04/90" />
+                                    <div className="col-lg-4 col-sm-8 form-date">
+                                        <label htmlFor="date">DD/MM/YY</label>
+                                        <input className='inputProfile'type="date" id="" placeholder={this.state.profile.birthday} />
                                     </div>
                                 </form>
                             </div>
                             <div className="gender">
                                 <label className="radio-container"
                                 >Male
-                                    <input type="radio" checked="checked" name="radio" />
+                                    <input type="radio" value='Male'  name="radio" onChange={e=>{
+                                        this.setState({
+                                            gender : e.target.value
+                                        })
+                                    }}/>
                                     <span className="checkmark"></span>
                                 </label>
                                 <label className="radio-container"
                                 >Female
-                                    <input type="radio" name="radio" />
+                                    <input type="radio" value='Female'  name="radio" onChange={e=>{
+                                        this.setState({
+                                            gender : e.target.value
+                                        })
+                                    }} />
                                     <span className="checkmark"></span>
                                 </label>
                             </div>

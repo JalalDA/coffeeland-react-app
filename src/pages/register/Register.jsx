@@ -5,23 +5,28 @@ import logo from '../../assets/img/logo.png'
 import googleLogo from '../../assets/img/googleLogo.png'
 import Footer from '../../components/footer/Footer'
 import axios from 'axios'
+import { Navigate } from 'react-router-dom'
 
 export default class Register extends Component{
-  state={
-    email : "",
-    password : "",
-    phone : "",
-    msg :""
-  }
-
+  constructor(){
+    super()
+    this.state={
+      email : "",
+      password : "",
+      phone : "",
+      msg :"",
+      isRegist : false
+    }
+  } 
   render(){
     return (
       <>
       <div className="headerContainer">
+        {this.state.isRegist ? <Navigate to="/login" replace={true}/> : null}
               <img className="img" src={loginImg} alt=""/>
               <div className="loginPage">
                   <div className="loginHeader">
-                      <div className="logo">
+                      <div className="logoLogin">
                         <div className="logoImg"><img className="imgLogo" src={logo} alt=""/></div>
                         <div className="logoText"><p>Coffeeland</p></div>
                       </div>
@@ -55,7 +60,6 @@ export default class Register extends Component{
                         })
                       }}                     
                       type="text" placeholder="Enter your phone number"/>
-                      <p className="forgotPassword">Forgot Password?</p>
                       <div className="btn-login"
                       onClick={()=>{
                         const {email, password, phone} = this.state
@@ -67,7 +71,10 @@ export default class Register extends Component{
                       axios.post('http://localhost:8000/auth/register', body)
                       .then(result=>{
                         console.log(result.data);
-                        alert(`${result.data.data.msg}`)
+                        alert(`${result.data.msg}`)
+                        this.setState({
+                          isRegist : true
+                        })
                       })
                       .catch(err=>{
                         console.log(err);

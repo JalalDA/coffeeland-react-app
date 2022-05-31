@@ -158,13 +158,22 @@
     padding: 160px;
     z-index: 5;
 }
-.imgProductContainer{
+.containerProduct{
+    width: 350px;
+    height: 567px;
+    border: 2px solid #DDDDDD ;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content:flex-end;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
 }
-.imgProduct{
+.imgProductHome{
+    position: absolute;
     border-radius: 50%;
+    top: -50px;
 }
 .productTittle{
     font-size: 18px;
@@ -172,16 +181,7 @@
     color: #0B132A;
     margin-bottom: 30px;
 }
-.containerProduct{
-    width: 350px;
-    height: 567px;
-    border: 2px solid #DDDDDD ;
-    display: flex;
-    align-items: center;
-    justify-content:center;
-    flex-direction: column;
-    border-radius: 10px;
-}
+
 .productInfo{
     display: flex;
     align-items: center;
@@ -323,3 +323,319 @@
     line-height: 30px;
     color: #0b132a;
 }
+.promoContainer{
+    width: 100%;
+    position: relative;
+}
+.promoHome{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    position: absolute;
+    background-color: #FFFFFF;
+    z-index: 5;
+    height: 233px;
+    left: 12%;
+    top: -120px;
+    padding: 100px;
+    border-radius: 10px;
+}
+.promotext>h3{
+    font-weight: 600;
+    font-size: 35px;
+    color: #0B132A;
+}
+.promotext>p{
+    font-size: 16px;
+    font-weight: 400;
+    color:#4f5665;
+}
+.btn-promo{
+    height: 60px;
+    width: 250px;
+    background-color: #FFBA33;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6A4029;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.btn-promo:hover{
+    background-color: #ffcc67;
+}
+
+@media screen and (max-width:1440px) {
+    .promo{
+        position: absolute;
+        top: 590%;
+    }
+}
+
+@media screen and (max-width:1024px){
+    .infoStore{
+        position: relative;
+        width: 90%;
+        margin: 0px;
+        padding: 0px;
+    }
+    .teamWork{
+        margin: 0;
+        padding: 0;
+        flex-direction: column-reverse;
+    }
+    .hero{
+        margin: 0;padding: 0;
+        height: 400px;
+    }
+    .favorite{
+        width: 100%;
+    }
+    .favoriteProduct{
+        padding: 0;
+        top: 300px;
+    }
+    .maps{
+        margin: 0;
+        padding: 0;
+    }
+    .maps>h3{
+        font-size: 25px;
+        font-weight: 700;
+        margin-top: 10px;
+    }
+    .maps>img{
+        width: 100%;
+    }
+    .promo{
+        top: 4800px;
+    }
+    .testiListItem{
+        height: 400px;
+    }
+    .footer{
+        padding: 100px;
+        padding-bottom: 0;
+    }
+    .btn-signUp{
+        width: auto;
+        padding: 10px;
+        border-radius: 20px;
+    }
+}
+
+@media screen and (max-width :768px) {
+    .teamWork{
+        padding: 0px;
+        margin: 0px;
+        flex-direction: column-reverse;
+    }
+    .hero{
+        padding: 0px;
+        margin: 0px;
+        height: 300px;
+    }
+    .teamWorkImg{
+        margin: 0;
+        padding: 0;
+    }
+    .infoStore{
+        margin: 0;
+        padding: 0;
+        width: 80%;
+    }
+    .textLogo{
+        font-size: 18px;
+    }
+    .navbarItem > li{
+        font-size: 13px;
+    }
+    .btn-login, .btn-signUp{
+        font-size: 14px;
+    }
+    .btn-signUp{
+        width: auto;
+    }
+    .textHero{
+        top: 140px;
+    }
+    .hero>p{
+        top: 300px;
+    }
+    .getStarted{
+        top: 400px;
+    }
+    .teamWorkText{
+        margin: 0;
+    }
+    .quotes{
+        margin : 0;
+        padding: 0;
+        font-size: 25px;
+    }
+    .textQuotes{
+        font-size: 14px;
+    }
+    .checklistText{
+        font-size: 14px;
+    }
+    .favoriteProduct{
+        top: 280px;
+        padding: 40px;
+    }
+    .productInfo{
+        width: 140%;
+    }
+    .containerProduct{
+        width: 230px;
+        padding-top: 175px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .checkText{
+        font-size: 14px;
+    }
+    .price{
+        margin: 0;
+    }
+    .maps{
+        margin: 0;
+        padding: 0;
+    }
+    .maps>h3{
+        font-size: 25px;
+        font-weight: 700;
+    }
+    .maps>p{
+        font-size: 16px;
+        margin: 0;
+    }
+    .maps>img{
+        width: 100%;
+    }
+    .partner>h3{
+        font-size: 25px;
+    }
+    .promoHome{
+display: none;
+    }
+    .promoContainer
+    .testiContainer{
+        padding: 0;
+        margin: 0;
+    }
+    .testiTitle>h2{
+        font-size: 25px;
+        font-weight: 700;
+    }
+    .testiTitle>p{
+        font-size: 16px;
+        font-weight: 400;
+        margin: 0;
+    }
+    .testiList{
+        margin: 0;
+        width: 100%;
+        padding: 0;
+    }
+    .testiListItem{
+        margin-left: 10px;
+        height: 450px;
+    }
+    .paginasi{
+        display: none;
+    }
+    
+    .footer{
+        padding: 50px;
+        margin: 0;
+
+    }
+}
+
+@media screen and (max-width:425px) {
+    .maps>h3{
+        margin: 0;
+    }
+    .maps>p{
+        text-align: center;
+    }
+    .paginasi{
+        display: none;
+    }
+    .auth{
+        display: none;
+    }
+    .hero{
+        height: 450px;
+    }
+    .textHero{
+        margin: 0;
+        font-size: 20px;
+        left: 20px;
+        top: 160px;
+    }
+    .hero>p{
+        top: 220px;
+        font-size: 14px;
+        left: 20px;
+    }
+    .hero>img{
+        height: 380px;
+        object-fit: cover;
+    }
+    .getStarted{
+        top: 350px;
+        left: 20px;
+    }
+    .quotes{
+        font-size: 20px;
+        margin: 0;
+        padding: 0;
+    }
+    .teamWork{
+        width: 100%;
+        margin-left: 20px;
+    }
+    .teamWork>img{
+        width: 100%;
+    }
+    .favorite{
+        display: none;
+    }
+    .infoStore{
+        display: none;
+    }
+    .productInfo{
+        flex-direction: column;
+        position: relative;
+    }
+    .favoriteTitle{
+        font-size: 25px;
+        font-weight: 700;
+    }
+    .favoriteProduct{
+        flex-direction: column;
+    }
+    .desc{
+        margin: 0;
+        font-size: 16px;
+    }
+    .maps>img{
+        width: 100%;
+    }
+    .testiList{
+        flex-direction: column;
+        row-gap: 20px;
+    }
+    .footer{
+        height: auto;
+    }
+    .promo{
+        display: none;
+    }
+    
+} 

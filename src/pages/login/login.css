@@ -105,7 +105,7 @@
     margin-bottom: 20px;
 }
 
-.btn-login{
+.btn-login-login{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -141,7 +141,7 @@
 .btn-login-google:active{
     background-color: #f7e4e4;
 }
-.btn-login:active{
+.btn-login-login:active{
     background-color: #fcc75d;
 }
 .memberCardContainer{

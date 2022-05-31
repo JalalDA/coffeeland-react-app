@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './header.css'
 import logo from '../../assets/img/logo.png'
 import search from '../../assets/img/search.png'
-import profile from '../../assets/img/pp.png'
+import profile from '../../assets/img/nullProfile.png'
 import chat from '../../assets/img/chat.png'
 import { Link } from 'react-router-dom'
 
@@ -11,29 +11,38 @@ export default class Header extends Component {
         super(props)
         this.state = {
             product : [],
-            cari : true
+            isSearch : true,
+            user : false,
+            photo : true,
+            setSearchName : props
         }
     }
-
     componentDidMount(){
+        
+        const token = localStorage.getItem('token')
+        const photo = localStorage.getItem('photo')
+        if(token){
+            this.setState({
+                user : true
+            })
+        }
+        if(photo === 'null'){
+            this.setState({
+                photo : false
+            })
+        }
     }
     render() {
         const searchButton = ()=>{
             this.setState({
-                cari : false
+                isSearch : false
             })
-        }
-        const getProfile = ()=>{
-            fetch('http://localhost:8000/product/all').then(response => response.json()).then(data => 
-            this.setState({
-                product : data.data
-            }))
         }
         return (
         <>
             <div className="row header sticky-top">
-            <div className="col-sm-3 logo">
-                <div className="logoImg">
+            <div className="col-sm-3 logoHeader">
+                <div className="logoImgHeader">
                     <img src={logo} alt=""/>
                 </div>
                 <div>Coffeeland</div>
@@ -43,33 +52,48 @@ export default class Header extends Component {
                         <Link className='link' to='/'>Home</Link>
                     </li>
                     <li className='listNavItem'>
-                        <Link className='link' to='/product'>Product</Link>
+                        <Link className='link' to='/products'>Product</Link>
                     </li>
                     <li className='listNavItem'>
-                        <Link className='link' to='/Login'>Your Chart</Link>
+                        <Link className='link' to='/your-cart'>Your Chart</Link>
                     </li>
                     <li className='listNavItem'>
-                        <Link className='link' to='/Login'>History</Link>
+                        <Link className='link' to='/history'>History</Link>
                     </li>
             </ul>
+            {this.state.user ? 
             <div className="col-sm-3 auth">
-                <div className="searchIcon" onMouseOver={searchButton} onMouseLeave={()=>{
-                    this.setState({
-                        cari : true
-                    })
-                }}>
-                <div>{this.state.cari ? <div> <img src={search} alt=""/></div> : <div className='searching'><input className='inputSearch' type="text"/>
-                    <img src={search} alt=""/></div>}</div>
-                </div>
-                <div className="message">
-                    <div className="messageCount">1</div>
-                    <img src={chat} alt=""/>
-                </div>
-                <div className="profil">
-                    <img onClick={getProfile} className='profileImg' src={profile} alt=""/>
-                    <ul>{this.state.product}</ul>
-                </div>
+            <div className="searchIcon" onMouseOver={searchButton} onMouseLeave={()=>{
+                this.setState({
+                    isSearch : true
+                })
+            }}>
+            {this.state.isSearch ? <div><img src={search} alt=""/></div> : <input className='inputSearch' placeholder='Search...' type="text" onKeyUp={(e)=>{
+                if(e.key==='Enter'){
+                    console.log(this.state.searchName);
+                }
+            }} onChange={e=>{
+                this.props.setSearchName(e.target.value)
+            }}/>}
             </div>
+            <div className="message">
+                <div className="messageCount">1</div>
+                <img src={chat} alt=""/>
+            </div>
+            <div className="profil">
+                <Link to="/profile">
+                    {this.state.photo ? <img  className='profileImg' src={`http://localhost:8000${localStorage.getItem('photo')}`} alt=""/> : <img  className='profileImg' src={profile} alt=""/>}
+                </Link>
+            </div> 
+        </div> : <div className="showLogin">
+                <div className="loginButtonHeader">
+                    <Link className='link' to="/login">Login</Link>
+                </div>
+                <div className="signUpButtonHeader">
+                    <Link className='link' to="/register">Sign Up</Link>
+                </div>
+            </div>}
+            
         </div>
         </>
         )

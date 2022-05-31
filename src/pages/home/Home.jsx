@@ -4,14 +4,22 @@ import hero from '../../assets/img/hero.png'
 import staff from '../../assets/img/staff.png'
 import stores from '../../assets/img/stores.png'
 import customer from '../../assets/img/customer.png'
-// import checklist from '../../assets/img/checklist.png'
+import checklist from '../../assets/img/checklist.png'
 import hazlnut from '../../assets/img/hazelnut.png'
-import pinky from '../../assets/img/pinky.png'
 import teamWork from '../../assets/img/teamwork.png'
-import chickenWings from '../../assets/img/chickenWIngs.png'
 import maps from '../../assets/img/maps.png'
 import Header from '../../components/header/Header'
 import Footer from '../../components/footer/Footer'
+import netflix from '../../assets/img/Netflix.png'
+import spotify from '../../assets/img/Sptify.png'
+import amazon from '../../assets/img/Amazon.png'
+import reddit from '../../assets/img/reddit.png'
+import discord from '../../assets/img/discord.png'
+import viez from '../../assets/img/viezhRobet.png'
+import yessika from '../../assets/img/yessika.png'
+import kim from '../../assets/img/Kim.png'
+import star from '../../assets/img/star.png'
+
 
 export default class Home extends Component {
 
@@ -87,103 +95,80 @@ export default class Home extends Component {
             <div className="desc">
                 <p>Let's choose and have a bit tasteof people's favorite. it might be yours tool</p>
             </div>
-            <div className="favoriteProduct">
-                <div className="imgProductContainer">
-                    <img className="imgProduct" src={hazlnut} alt=""/>
-                    <div className="productTittle">Hazelnut Late</div>
-                </div>
-                <div className="imgProductContainer">
-                    <img className="imgProduct" src={pinky} alt=""/>
-                    <div className="productTittle">Pinky Promise</div>
-                </div>
-                <div className="imgProductContainer">
-                    <img className="imgProduct" src={chickenWings} alt=""/>
-                    <div className="productTittle">Chicken Wings</div>
-                </div>
-            </div>
             <div className="productInfo">
-                <div className="hazelnutLate">
-                    <div className="containerProduct">
+                <div className="containerProduct">
+                <img className='imgProductHome' src={hazlnut} alt="" />
+                    <div className="checklistSpace">
                         <div className="checklistmin">
-                            <img src="/coffeeland-client/assets/img/ceklistmin.png" alt=""/>
+                            <img src={checklist} alt=""/>
                             <div className="checkText">HazelnutSyrup</div>
                         </div>
                         <div className="checklistmin">
-                            <img src="/coffeeland-client/assets/img/ceklistmin.png" alt=""/>
+                            <img src={checklist} alt=""/>
                             <div className="checkText">Vanila Whiped Cream</div>
                         </div>
                         <div className="checklistmin">
-                            <img src="/coffeeland-client/assets/img/ceklistmin.png" alt=""/>
+                            <img src={checklist} alt=""/>
                             <div className="checkText">HazelnutSyrup</div>
                         </div>
                         <div className="checklistmin">
-                            <img src="/coffeeland-client/assets/img/ceklistmin.png" alt=""/>
+                            <img src={checklist} alt=""/>
                             <div className="checkText">HazelnutSyrup</div>
                         </div>
-                        <div className="price">
+                    </div>
+                    <div className="price">
                             <div className="priceLabel">IDR 25.000</div>
                             <div className="orderNow">OrderNow</div>
-                        </div>
                     </div>
                 </div>
-                <div className="hazelnutLate">
-                    <div className="containerProduct">
+                <div className="containerProduct">
+                <img className='imgProductHome' src={hazlnut} alt="" />
+                    <div className="checklistSpace">
                         <div className="checklistmin">
-                            <img src="/coffeeland-client/assets/img/ceklistmin.png" alt=""/>
-                            <div className="checkText">1 Shot of coffee</div>
+                            <img src={checklist} alt=""/>
+                            <div className="checkText">HazelnutSyrup</div>
                         </div>
                         <div className="checklistmin">
-                            <img src="/coffeeland-client/assets/img/ceklistmin.png" alt=""/>
+                            <img src={checklist} alt=""/>
                             <div className="checkText">Vanila Whiped Cream</div>
                         </div>
                         <div className="checklistmin">
-                            <img src="/coffeeland-client/assets/img/ceklistmin.png" alt=""/>
-                            <div className="checkText">Chocolate Biscuits</div>
+                            <img src={checklist} alt=""/>
+                            <div className="checkText">HazelnutSyrup</div>
                         </div>
                         <div className="checklistmin">
-                            <img src="/coffeeland-client/assets/img/ceklistmin.png" alt=""/>
-                            <div className="checkText">Strawberry Syrup</div>
-                        </div>
-                        <div className="checklistmin">
-                            <img src="/coffeeland-client/assets/img/ceklistmin.png" alt=""/>
-                            <div className="checkText">Sliced Strawberry on top</div>
-                        </div>
-                        <div className="price">
-                            <div className="priceLabel">IDR 3.000</div>
-                            <div className="orderNow">OrderNow</div>
+                            <img src={checklist} alt=""/>
+                            <div className="checkText">HazelnutSyrup</div>
                         </div>
                     </div>
-                </div>
-                <div className="hazelnutLate">
-                    <div className="containerProduct">
-                        <div className="checklistmin">
-                            <img src="/coffeeland-client/assets/img/ceklistmin.png" alt=""/>
-                            <div className="checkText">Wings</div>
-                        </div>
-                        <div className="checklistmin">
-                            <img src="/coffeeland-client/assets/img/ceklistmin.png" alt=""/>
-                            <div className="checkText">Drum Sticks</div>
-                        </div>
-                        <div className="checklistmin">
-                            <img src="/coffeeland-client/assets/img/ceklistmin.png" alt=""/>
-                            <div className="checkText">Mayonaise and Lemon</div>
-                        </div>
-                        <div className="checklistmin">
-                            <img src="/coffeeland-client/assets/img/ceklistmin.png" alt=""/>
-                            <div className="checkText">Hot Fried</div>
-                        </div>
-                        <div className="checklistmin">
-                            <img src="/coffeeland-client/assets/img/ceklistmin.png" alt=""/>
-                            <div className="checkText">Secret Recipe</div>
-                        </div>
-                        <div className="checklistmin">
-                            <img src="/coffeeland-client/assets/img/ceklistmin.png" alt=""/>
-                            <div className="checkText">Buy 1 Get 1 only for dine in</div>
-                        </div>
-                        <div className="price">
-                            <div className="priceLabel">IDR 40.000</div>
+                    <div className="price">
+                            <div className="priceLabel">IDR 25.000</div>
                             <div className="orderNow">OrderNow</div>
+                    </div>
+                </div>
+                <div className="containerProduct">
+                <img className='imgProductHome' src={hazlnut} alt="" />
+                    <div className="checklistSpace">
+                        <div className="checklistmin">
+                            <img src={checklist} alt=""/>
+                            <div className="checkText">HazelnutSyrup</div>
                         </div>
+                        <div className="checklistmin">
+                            <img src={checklist} alt=""/>
+                            <div className="checkText">Vanila Whiped Cream</div>
+                        </div>
+                        <div className="checklistmin">
+                            <img src={checklist} alt=""/>
+                            <div className="checkText">HazelnutSyrup</div>
+                        </div>
+                        <div className="checklistmin">
+                            <img src={checklist} alt=""/>
+                            <div className="checkText">HazelnutSyrup</div>
+                        </div>
+                    </div>
+                    <div className="price">
+                            <div className="priceLabel">IDR 25.000</div>
+                            <div className="orderNow">OrderNow</div>
                     </div>
                 </div>
             </div>
@@ -198,11 +183,11 @@ export default class Home extends Component {
         <div className="partner">
             <h3>Our Partner</h3>
             <div className="imgList">
-                <img src="/coffeeland-client/assets/img/Netflix.png" alt=""/>
-                <img src="/coffeeland-client/assets/img/reddit.png" alt=""/>
-                <img src="/coffeeland-client/assets/img/Amazon.png" alt=""/>
-                <img src="/coffeeland-client/assets/img/discord.png" alt=""/>
-                <img src="/coffeeland-client/assets/img/Sptify.png" alt=""/>
+                <img src={netflix} alt=""/>
+                <img src={reddit} alt=""/>
+                <img src={amazon} alt=""/>
+                <img src={discord} alt=""/>
+                <img src={spotify} alt=""/>
             </div>
         </div>
         <div className="testiContainer">
@@ -215,10 +200,10 @@ export default class Home extends Component {
             <div className="testiList">
             <div className="testiListItem">
                 <div className="testiName">
-                    <img src="/coffeeland-client/assets/img/viezhRobet.png" alt=""/>
+                    <img src={viez} alt=""/>
                     <div className="rating">
                         <div>4.5</div>
-                        <div className="star"><img src="/coffeeland-client/assets/img/star.png" alt="" /></div>
+                        <div className="star"><img src={star} alt="star" /></div>
                     </div>
                 </div>
                 <div className="testiDesc">
@@ -227,10 +212,10 @@ export default class Home extends Component {
             </div>
             <div className="testiListItem">
                 <div className="testiName">
-                <img src="/coffeeland-client/assets/img/yessika.png" alt=""/>
+                <img src={yessika} alt=""/>
                 <div className="rating">
                     <div>4.5</div>
-                    <div className="star"><img src="/coffeeland-client/assets/img/star.png" alt="" /></div>
+                    <div className="star"><img src={star} alt="" /></div>
                 </div>
             </div>
             <div className="testiDesc">
@@ -239,10 +224,10 @@ export default class Home extends Component {
         </div>
         <div className="testiListItem">
             <div className="testiName">
-            <img src="/coffeeland-client/assets/img/Kim.png" alt=""/>
+            <img src={kim} alt=""/>
             <div className="rating">
                 <div>4.5</div>
-                <div className="star"><img src="/coffeeland-client/assets/img/star.png" alt="" /></div>
+                <div className="star"><img src={star} alt="" /></div>
             </div>
         </div>
         <div className="testiDesc">
@@ -261,7 +246,7 @@ export default class Home extends Component {
             </div>
         </div>
         <div className="promoContainer">
-            <div className="promo">
+            <div className="promoHome">
                 <div className="promotext">
                     <h2>Check Our Promo</h2>
                     <h2>Today</h2>

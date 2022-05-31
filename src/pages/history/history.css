@@ -1,0 +1,65 @@
+.historyContainer{
+    position: relative;
+}
+.bgHistory{
+    width: 100%;
+}
+.historyContain{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.titleHistory{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    top: 10%;
+    color:white;
+    font-weight: 700;
+}
+.titleHistory > h3{
+    font-size: 40px;
+}
+.titleHistory > p{
+    font-size: 20px;
+}
+.cardHistoryContain{
+    position: absolute;
+    top: 15%;
+    width: 90%;
+    row-gap: 20px;
+}
+.cardHistory{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: white;
+    padding : 16px 29px;
+    border-radius: 20px;
+}
+.cardHistory > img{
+    border-radius: 50%;
+}
+.historyDetail > h4{
+    font-size: 25px;
+    font-weight: 700;
+}
+.historyDetail > p{
+    font-size: 20px;
+    font-weight: 400;
+    color: #895537;
+}
+@media screen and (max-width : 768px) {
+    .cardHistoryContain{
+        position: relative;
+    }
+}
+
+@media screen and (max-width : 425px) {
+    .cardHistoryContain{
+        position: relative;
+    }
+}

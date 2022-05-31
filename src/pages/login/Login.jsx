@@ -4,8 +4,40 @@ import loginImg from '../../assets/img/loginImg.png'
 import logo from '../../assets/img/logo.png'
 import googleLogo from '../../assets/img/googleLogo.png'
 import Footer from '../../components/footer/Footer'
+import axios from 'axios'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Login = () => {
+  document.title = "Login"
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const navigate = useNavigate()
+  const login = async ()=>{
+    try {
+      const body = {
+        email,
+        password
+      }
+      const result = await axios.post('http://localhost:8000/auth/login', body)
+      console.log(result);
+      navigate('/', {replace:true})
+      alert(result.data.msg)
+      localStorage.setItem(
+        "token",
+        result.data.data.token
+      )
+      localStorage.setItem(
+        "photo",
+        result.data.data.photo
+      )
+    } catch (error) {
+      console.log(error);
+      console.log(setEmail);
+      console.log(setPassword);
+    }
+  }
   return (
     <>
     <div className="headerContainer">
@@ -22,12 +54,24 @@ const Login = () => {
                     <p>Login</p>
                 </div>
                 <form className="loginForm" action="">
-                    <label className="inputLabel" for="">Email Addres</label>
-                    <input className="input" type="text" placeholder="Enter your email addres"/>
+                    <label className="inputLabel" htmlFor=''>Email Addres</label>
+                    <input className="input" 
+                    value={email}
+                    onChange={(e)=>{
+                      setEmail(e.target.value)
+                    }}
+                    type="text" placeholder="Enter your email addres"/>
                     <label className="inputLabel" for="">Password</label>
-                    <input className="input" type="password" placeholder="Enter your password"/>
-                    <p className="forgotPassword">Forgot Password?</p>
-                    <div className="btn-login">
+                    <input className="input" 
+                    value={password}
+                    onChange={(e)=>{
+                      setPassword(e.target.value)
+                    }}
+                    type="password" placeholder="Enter your password"/>
+                    <p className="forgotPassword">
+                      <Link className='forgotPassword' to='/forgot-password'>Forgot Password?</Link>
+                      </p>
+                    <div className="btn-login-login" onClick={login}>
                         <p>Login</p>
                     </div>
                     <div className="btn-login-google">

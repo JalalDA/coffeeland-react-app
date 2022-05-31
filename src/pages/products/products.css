@@ -13,10 +13,10 @@
     text-decoration: underline;
     color:#6a4029;
 }
-.favoriteProduct{
+.favoriteProductProducts{
     padding: 30px;
 }
-.productContainer{
+.productContainerProducts{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,9 +32,11 @@
     box-shadow: 0px 30px 60px rgba(57, 57, 57, 0.1);
     border-radius: 30px;
 }
-.imgProduct{
+.imgProductProducts{
     position: absolute;
     border-radius: 50%;
+    width: 80%;
+    height: 60%;
     top: -80px;
 }
 .productName{
@@ -42,9 +44,10 @@
     font-weight: 900;
     text-align: center;
 }
-.price{
+.priceProducts{
     font-size: 17px;
     font-weight: 700;
     color: #6a4029;
     margin-top: 10%;
 }
+

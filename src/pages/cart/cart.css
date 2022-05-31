@@ -1,0 +1,210 @@
+.cartContainer{
+    position: relative;
+}
+.cartContainer > img{
+    width: 100%;
+}
+.cartContainer > span{
+    font-size: 40px;
+    font-weight: 700;
+    color: #FFFFFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.8);
+    position: absolute;
+    top: 100px;
+    left: 10%;
+}
+.cardCart{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    position: absolute;
+    top: 198px;
+}
+.leftCart {
+    width: 33%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 20px;
+    padding: 65px 43px;
+    background: #FFFFFF;
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.35);
+    border-radius: 20px;
+}
+.leftCart > h3{
+    font-size: 35px;
+    font-weight: 700;
+    color: #362115;
+}
+.productListCart{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 20px;
+    width: 100%;
+}
+.subTotal{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.subTotal > p{
+    text-align: left;
+    width: 30%;
+    font-size: 20px;
+    font-weight: 400;
+    color: #362115;
+}
+.firstProduct{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+.firstProduct > img{
+    border-radius: 20px;
+    height: 90px;
+    width: 82px;
+}
+.firstProduct > span{
+    font-size: 20px;
+    font-weight: 400;
+}
+.productCartDetail > p{
+    margin : 0;
+    font-size: 20px;
+    font-weight: 400;
+}
+.lineCart{
+    border-bottom:1px solid #666;
+    width: 100%;
+    
+}
+.totalPaymentCart{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.totalPaymentCart > p {
+    font-size: 30px;
+    font-weight: 700;
+    color: #362115;
+}
+.rightCart{
+    width: 33%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 50px;
+}
+.firsCardRightCart{
+    width: 100%;
+}
+.adressCart{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    color: #FFFFFF;
+}
+.adressCart > h3{
+    font-weight: 700;
+    font-size: 25px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.8);
+}
+.deliveryCardCart{
+    width: 100%;
+    padding: 21px 42px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 8px;
+}
+.lineDeliveryCart{
+    border-bottom: 1px solid #666;
+    width: 100%;
+}
+.deliveryCardCart > p{
+    font-size: 20px;
+    font-weight: 500;
+    width: 100%;
+}
+.imgCardPayment {
+    background: #F47B0A;
+    padding: 13px 15px;
+    border-radius: 10px;
+}
+.radioCart{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 420px;
+}
+.confirmPay{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #6A4029;
+    padding: 20px 30px;
+    width: 100%;
+    box-shadow: 0px 10px 20px rgba(137, 85, 55, 0.4);
+    border-radius: 20px;
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.confirmPay:hover{
+    background-color: #b97c5b;;
+}
+
+@media screen and (max-width:425px){
+    .cartContainer > span{
+        left: 10px;
+    }
+    .cardCart{
+        position: relative;
+        flex-direction: column;
+        top: 0;
+        margin-top: 10px;
+    }
+    .leftCart{
+        width: 90%;
+        top: 0;
+    }
+    .rightCart{
+        width: 90%;
+        margin-top: 20px;
+    }
+}
+@media screen and (max-width : 768px) {
+    .cartContainer > span{
+        left: 10px;
+    }
+    .cardCart{
+        position: relative;
+        flex-direction: column;
+        top: 0;
+        margin-top: 10px;
+    }
+    .leftCart{
+        width: 90%;
+        top: 0;
+    }
+    .rightCart{
+        width: 90%;
+        margin-top: 20px;
+    }
+}
