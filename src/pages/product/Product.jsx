@@ -7,9 +7,15 @@ import withParam from '../../helpers/withParam'
 import arrow from '../../assets/img/ArrowRight.png'
 import { Link } from 'react-router-dom'
 
+
 class Product extends Component {
     state={
-        detailProduct : []
+        detailProduct : [],
+        time : new Date(Date.now()),
+        count : 1,
+        pick : false,
+        size : 'Regular',
+        productCart : [],
     }
     async componentDidMount(){
         try {
@@ -23,21 +29,47 @@ class Product extends Component {
             console.log(error);
         }
     }
-
+    addToCart = ()=>{
+        const singleCart = {
+            idProduct : this.state.detailProduct.id,
+            name : this.state.detailProduct.name,
+            price : this.state.detailProduct.price,
+            deliveryMethod : this.state.pick,
+            quantity : this.state.count,
+            size : this.state.size,
+            productImg : this.state.detailProduct.pictures
+        }
+        this.state.productCart.push(singleCart)
+        localStorage.setItem('cart', JSON.stringify(this.state.productCart))
+        console.log(this.state.productCart);
+    }
 render() {
     return (
     <>
         <Header product={this.state.detailProduct} {...this.props}/>
         Favorit and Promo
+        {localStorage.getItem('productCart')}
         <div className="row containerDetailProduct">
             <div className="col-lg-6 leftProduct">
                 <img className='imgDetailProduct' src={`http://localhost:8000${this.state.detailProduct.pictures}`} alt="" />
                 <div className="delivery">
                     <div className="delivTitle">Delivery and Time</div>
                     <div className="deliveryMethod">
-                        <div className="dineIn">Dine in</div>
-                        <div className="dineIn">DoorDelivery</div>
-                        <div className="dineIn">Pick Up</div>
+                        <div className={this.state.pick === 'Dine in' ? 'dineInActive' : 'dineIn'} onClick={()=>{
+                            this.setState({
+                                pick : 'Dine in'
+                            })
+                        }}>Dine in</div>
+                        <div className={this.state.pick === 'Door Delivery' ? 'dineInActive' : 'dineIn'} onClick={()=>{
+                            this.setState({
+                                pick : 'Door Delivery'
+                            })
+                        }}>DoorDelivery</div>
+                        <div className={this.state.pick === 'Pick Up' ? 'dineInActive' : 'dineIn'} onClick={()=>{
+                            this.setState({
+                                pick : 'Pick Up'
+                            })
+                        }}>Pick Up</div>
                     </div>
                     <div className="setTime">
                             <div className='now'>Now</div>
@@ -56,17 +88,28 @@ render() {
                 <div className="timeDeliveryText">Delivery only on <b>monday to friday</b> at <b>1 - 7 PM</b></div>
                 <div className="count">
                     <div className="countButton">
-                        <div className="minus"> - </div>
+                        <div className="minus" onClick={()=>{
+                            this.setState({
+                                count : this.state.count - 1
+                            })
+                            if(this.state.count === 1){
+                                this.setState({
+                                    count : 1
+                                })
+                            }
+                        }}> - </div>
                         <div className="lineButton"></div>
-                        <div className="numb"> 2 </div>
+                        <div className="numb"> {this.state.count} </div>
                         <div className="lineButton"></div>
-                        <div className="plus"> + </div>
+                        <div className="plus" onClick={()=>{
+                            this.setState({
+                                count : this.state.count + 1
+                            })
+                        }}> + </div>
                     </div>
                     <div className="priceDetail"> IDR {this.state.detailProduct.price}</div>
                 </div>
-                <div className="addToCart" >
-                    <Link className='linktoCart' to='/your-cart'>Add to Cart</Link>
-                </div>
+                <Link to='/your-cart'><div className="addtoCart" onClick={this.addToCart}>Add to Cart</div></Link> 
                 <div className="askToStaff">Ask to Staff</div>
             </div>
             <div className="col-lg-12 choose">
@@ -75,9 +118,21 @@ render() {
                         Choose a size
                     </div>
                     <div className="sizeRow">
-                    <span> R</span>
-                    <span> L</span>
-                    <span>XL</span>
+                    <div className={this.state.size === 'Regular'? 'sizeRowPick' : 'sizeRowNotPick'} onClick={()=>{
+                        this.setState({
+                            size : 'Regular'
+                        })
+                    }}>R</div>
+                    <div className={this.state.size === 'Large'? 'sizeRowPick' : 'sizeRowNotPick'} onClick={()=>{
+                        this.setState({
+                            size : 'Large'
+                        })
+                    }}>L</div>
+                    <div className={this.state.size === 'XtraLarge'? 'sizeRowPick' : 'sizeRowNotPick'} onClick={()=>{
+                        this.setState({
+                            size : 'XtraLarge'
+                        })
+                    }}>XL</div>
                     </div>
                 </div>
                 <div className="checkOut">
@@ -85,8 +140,7 @@ render() {
                         <img src={`http://localhost:8000${this.state.detailProduct.pictures}`} alt="" />
                         <div className="detailOrder">
                             <h3>{this.state.detailProduct.name}</h3>
-                            <p>x1 (Large)</p>
-                            <p>x1 (Regular)</p>
+                            <p>x {this.state.count} ({this.state.size})</p>
                         </div>
                     </div>
                     <div className="checkoutRight">

@@ -19,19 +19,35 @@ import viez from '../../assets/img/viezhRobet.png'
 import yessika from '../../assets/img/yessika.png'
 import kim from '../../assets/img/Kim.png'
 import star from '../../assets/img/star.png'
+import Modal from '../../components/Modal/Modal'
 
 
 export default class Home extends Component {
-
+    constructor(props){
+        super(props)
+        this.state = {
+            setShowButton : props,
+            show : false
+        }
+    }
     render() {
     return (
     <div>
+        <Modal show={this.state.show} onClose = {()=>{
+            this.setState({
+                show : false
+            })
+        }}/>
         <Header/>
         <div className="hero">
             <img src={hero} alt=""/>
             <div className="textHero">Start Your Day With <br/>Coffee and Good Meals</div>
             <p>We Provide a high quality beans, good taste, and healthy <br/>meals made by love just for you. Start your day with us <br/>for a bigger smile</p> 
-            <div className="getStarted">Get Started</div>
+            <div className="getStarted"  onClick={()=>{
+                this.setState({
+                    show : true
+                })
+            }}>Get Started</div>
         </div>
         <div className="infoStore">
             <div className="staff">

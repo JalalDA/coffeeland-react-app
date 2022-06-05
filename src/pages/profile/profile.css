@@ -364,7 +364,7 @@ input {
     .profileContainer{
         display: flex;
         align-items: center;
-        justify-content: start;
+        justify-content: flex-start;
         height: 1850px;
         flex-direction: column;
     }

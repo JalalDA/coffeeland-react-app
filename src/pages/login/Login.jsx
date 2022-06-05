@@ -8,11 +8,17 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import Modal from '../../components/Modal/Modal'
+import eye from '../../assets/img/eye.png'
+import eyeSlash from '../../assets/img/eye-slash.png'
 
 const Login = () => {
   document.title = "Login"
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [show, setShow] = useState(false)
+  const [msg, setMsg] = useState('')
+  const [showPass, setShowPass] = useState(false)
   const navigate = useNavigate()
   const login = async ()=>{
     try {
@@ -22,8 +28,8 @@ const Login = () => {
       }
       const result = await axios.post('http://localhost:8000/auth/login', body)
       console.log(result);
-      navigate('/', {replace:true})
-      alert(result.data.msg)
+      setShow(true)
+      setMsg(result.data.msg)
       localStorage.setItem(
         "token",
         result.data.data.token
@@ -41,6 +47,10 @@ const Login = () => {
   return (
     <>
     <div className="headerContainer">
+      <Modal show={show} response={msg} onClose={()=>{
+        setShow(false)
+        navigate('/', {replace:true})
+      }}/>
             <img className="img" src={loginImg} alt=""/>
             <div className="loginPage">
                 <div className="loginHeader">
@@ -48,7 +58,9 @@ const Login = () => {
                       <div className="logoImg"><img className="imgLogo" src={logo} alt=""/></div>
                       <div className="logoText"><p>Coffeeland</p></div>
                     </div>
-                    <div className="btn-signUp">Sign Up</div>
+                    <div className="btn-signUp">
+                      <Link className='linkSignup' to="/register">Sign Up</Link>
+                    </div>
                 </div>
                 <div className="loginText">
                     <p>Login</p>
@@ -61,13 +73,17 @@ const Login = () => {
                       setEmail(e.target.value)
                     }}
                     type="text" placeholder="Enter your email addres"/>
-                    <label className="inputLabel" for="">Password</label>
-                    <input className="input" 
-                    value={password}
-                    onChange={(e)=>{
+                    <label className="inputLabel" htmlFor="">Password</label>
+                    <input className="input" value={password} onChange={(e)=>{
                       setPassword(e.target.value)
                     }}
-                    type="password" placeholder="Enter your password"/>
+                    type={showPass?"text" : "password"}   placeholder="Enter your password"/>
+                    {showPass? <img src={eye} alt="" onClick={()=>{
+                      setShowPass(false)
+                    }}/> : <img src={eyeSlash} alt="" onClick={()=>{
+                      setShowPass(true)
+                    }}/> }
+                    
                     <p className="forgotPassword">
                       <Link className='forgotPassword' to='/forgot-password'>Forgot Password?</Link>
                       </p>

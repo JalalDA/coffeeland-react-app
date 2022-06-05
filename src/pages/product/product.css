@@ -39,7 +39,6 @@ text-align: left;
 .dineIn{
     background: #F4F4F8;
     border: 1px solid rgba(186, 186, 186, 0.35);
-
     border-radius: 10px;
     padding: 6px 9px;
     margin-right: 30px;
@@ -47,6 +46,18 @@ text-align: left;
     color: #9F9F9F;
     font-size: 20px;
     font-weight: 400;
+}
+.dineInActive {
+    background-color: #6A4029;
+    color: #F4F4F8;
+    font-weight: 700;
+    box-shadow: 0px 6px 20px rgba(137, 85, 55, 0.4);
+    border: 1px solid rgba(186, 186, 186, 0.35);
+    border-radius: 10px;
+    padding: 6px 9px;
+    margin-right: 30px;
+    cursor: pointer;
+    font-size: 20px;
 }
 .dineIn:active{
     background-color: #6A4029;
@@ -70,6 +81,9 @@ text-align: left;
     margin-right: 30px;
     font-size: 20px;
     font-weight: 400;
+}
+.plus, .minus{
+    cursor: pointer;
 }
 .inputSetTime{
     display: flex;
@@ -134,7 +148,23 @@ text-align: left;
     font-weight: 700;
     color: #6A4029;
 }
-.addToCart{
+.linktoCart{
+    font-size: 25px;
+    font-weight: 700;
+    color: #F4F4F8;
+    border-radius: 20px;
+    background-color: #6A4029;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 25px 220px;
+    cursor: pointer;
+}
+.linktoCart:hover{
+    color: #a8a8cc;
+}
+.addtoCart{
     border-radius: 20px;
     background-color: #6A4029;
     display: flex;
@@ -201,7 +231,17 @@ text-align: left;
     font-size: 30px;
     font-weight: 700;
 }
-.sizeRow > span {
+.sizeRowPick{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:#6A4029;
+    padding: 20px 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #FFFFFF;
+}
+.sizeRowNotPick {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -209,6 +249,16 @@ text-align: left;
     padding: 20px 20px;
     border-radius: 50%;
     cursor: pointer;
+}
+.sizeRowNotPick:hover{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:#6A4029;
+    padding: 20px 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #FFFFFF;
 }
 /* .sizeRow:nth-child(1){
     padding: 20px 23px;
@@ -265,4 +315,46 @@ text-align: left;
     background-color: #ffba33;
     padding: 30px 30px ;
     border-radius: 50%;
+}
+
+@media screen and (max-width:768px) {
+    .choose{
+        margin: 0;
+        padding: 0;
+        margin-bottom: 30px;
+    }
+    .size{
+        position: relative;
+        padding: 20px;
+        left: 0;
+        width: 35%;
+    }
+    .checkOut{
+        position: relative;
+        top: 0;
+        margin: 0;
+        left: 0;
+        width: 50%;
+        padding: 20px;
+    }
+    /* .checkOutLeft > img{
+        height: 80px;
+        width: 80px;
+    } */
+    .detailOrder{
+        margin-left: 20px;
+    }
+    .detailOrder > h3{
+        font-size: 15px;
+    }
+    .detailOrder > p{
+        font-size: 15px;
+        margin-bottom: 0;
+    }
+    .checkoutRight{
+        flex-direction: column;
+    }
+    .checkoutRight > span{
+        margin: 0;
+    }
 }

@@ -25,7 +25,7 @@
 .logoLogin{
     display: flex;
     align-items:center;
-    justify-content: start;
+    justify-content: flex-start;
     flex: 2;
 }
 .logoText{
@@ -44,7 +44,13 @@
     font-family: 'Rubik', sans-serif;
     margin-bottom: 20px;
 }
-
+.loginForm > img{
+    position: absolute;
+    height: 32px;
+    width: 32px;
+    top: 245px;
+    right: 110px;
+}
 .btn-signUp{
     display: flex;
     flex: 1;

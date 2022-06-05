@@ -63,19 +63,17 @@ export default class Header extends Component {
             </ul>
             {this.state.user ? 
             <div className="col-sm-3 auth">
-            <div className="searchIcon" onMouseOver={searchButton} onMouseLeave={()=>{
+            <div className="searchIcon" onMouseOver={searchButton}>
+            {this.state.isSearch ? <div><img src={search} alt=""/></div> : 
+            <div className='showInput'><input className='inputSearch' placeholder='Search...' type="text" onChange={e=>{
+                this.props.setSearchName(e.target.value)
+            }}/>
+            <p onClick={()=>{
                 this.setState({
                     isSearch : true
                 })
-            }}>
-            {this.state.isSearch ? <div><img src={search} alt=""/></div> : <input className='inputSearch' placeholder='Search...' type="text" onKeyUp={(e)=>{
-                if(e.key==='Enter'){
-                    console.log(this.state.searchName);
-                }
-            }} onChange={e=>{
-                this.props.setSearchName(e.target.value)
-            }}/>}
-            </div>
+            }}>X</p>
+            </div>}</div>
             <div className="message">
                 <div className="messageCount">1</div>
                 <img src={chat} alt=""/>

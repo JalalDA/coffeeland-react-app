@@ -25,7 +25,7 @@
 .logo{
     display: flex;
     align-items:center;
-    justify-content: start;
+    justify-content: flex-start;
     flex: 2;
 }
 .logoText{
@@ -36,6 +36,7 @@
     margin-right: 3%;
 }
 .loginForm{
+    position: relative;
     padding: 20px 90px;
     display: flex;
     flex-direction: column;
@@ -44,7 +45,13 @@
     font-family: 'Rubik', sans-serif;
     margin-bottom: 20px;
 }
-
+.loginForm > img{
+    position: absolute;
+    height: 32px;
+    width: 32px;
+    top: 245px;
+    right: 110px;
+}
 .btn-signUp{
     display: flex;
     flex: 1;
@@ -59,6 +66,11 @@
     font-weight: 600;
     font-size: 16px;
     cursor: pointer;
+}
+.linkSignup{
+    font-weight: 600;
+    font-size: 16px;
+    color: #6A4029;
 }
 
 .btn-signUp:active{

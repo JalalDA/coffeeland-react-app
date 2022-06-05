@@ -8,10 +8,26 @@
     color: #9F9F9F;
     cursor: pointer;
 }
-.headerItem:active{
+.linkCategory:hover{
     font-weight: 700;
     text-decoration: underline;
     color:#6a4029;
+}
+.linkCategoryActive{
+    font-weight: 700;
+    text-decoration: underline;
+    color:#6a4029;
+}
+.linkCategoryActive:hover{
+    font-weight: 700;
+    text-decoration: underline;
+    color:#6a4029;
+}
+.linkCategory{
+    font-size: 20px;
+    font-weight: 400;
+    color: #9F9F9F;
+
 }
 .favoriteProductProducts{
     padding: 30px;
@@ -43,6 +59,10 @@
     font-size: 22px;
     font-weight: 900;
     text-align: center;
+    color: #4F5665;
+}
+.productName:hover{
+    color: #6a4029;
 }
 .priceProducts{
     font-size: 17px;
@@ -50,4 +70,14 @@
     color: #6a4029;
     margin-top: 10%;
 }
+.paginasiProduct{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 30px;
 
+}
+.paginasiProduct > img {
+    cursor: pointer;
+}

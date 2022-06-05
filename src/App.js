@@ -10,9 +10,13 @@ import Product from "./pages/product/Product";
 import FavProduct from "./pages/product/FavProduct";
 import Cart from "./pages/cart/Cart";
 import History from "./pages/history/History";
+import Modal from "./components/Modal/Modal";
+import Productdua from "./pages/product/Productdua";
+
 
 function App() {
   const token = localStorage.getItem('token')
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -27,6 +31,8 @@ function App() {
           <Route path="/product/favorit" element={<FavProduct/>}/>
           <Route path="/your-cart" element={ token ? <Cart/> : <Home/>}/>
           <Route path="/history"  element={<History/>}/>
+          <Route path="/modal" element={<Modal />} />
+          <Route path="/productdua" element={<Productdua/>}/>
         </Routes>
       </BrowserRouter>
     </div>

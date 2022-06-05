@@ -6,6 +6,9 @@ import googleLogo from '../../assets/img/googleLogo.png'
 import Footer from '../../components/footer/Footer'
 import axios from 'axios'
 import { Navigate } from 'react-router-dom'
+import Modal from '../../components/Modal/Modal'
+import eye from '../../assets/img/eye.png'
+import eyeSlash from '../../assets/img/eye-slash.png'
 
 export default class Register extends Component{
   constructor(){
@@ -15,13 +18,21 @@ export default class Register extends Component{
       password : "",
       phone : "",
       msg :"",
-      isRegist : false
+      isRegist : false,
+      show : false,
+      showPass : false
     }
   } 
   render(){
     return (
       <>
       <div className="headerContainer">
+        <Modal show={this.state.show} onClose = {()=>{
+            this.setState({
+                show : false,
+                isRegist : true
+            })
+        }} response={this.state.msg}/>
         {this.state.isRegist ? <Navigate to="/login" replace={true}/> : null}
               <img className="img" src={loginImg} alt=""/>
               <div className="loginPage">
@@ -51,7 +62,16 @@ export default class Register extends Component{
                           password : e.target.value
                         })
                       }}
-                      type="password" placeholder="Enter your password"/>
+                      type={this.state.showPass? 'text' : 'password'} placeholder="Enter your password"/>
+                      {this.state.showPass ? <img src={eye} alt="" onClick={()=>{
+                        this.setState({
+                          showPass : false
+                        })
+                      }}/>           : <img src={eyeSlash} alt="" onClick={()=>{
+                        this.setState({
+                          showPass : true
+                        })
+                      }}/>}
                       <label className="inputLabel" htmlFor='phone'>Phone Number:</label>
                       <input className="input" 
                       value={this.state.phone} onChange={(e)=>{
@@ -71,17 +91,15 @@ export default class Register extends Component{
                       axios.post('http://localhost:8000/auth/register', body)
                       .then(result=>{
                         console.log(result.data);
-                        alert(`${result.data.msg}`)
                         this.setState({
-                          isRegist : true
+                          show : true
+                        })
+                        this.setState({
+                          msg : result.data.msg
                         })
                       })
                       .catch(err=>{
                         console.log(err);
-                        alert(err.response.data.msg)
-                        this.setState({
-                          msg : err.response.data.err.msg
-                        })
                       })
                       }}
                       >Register</div>
