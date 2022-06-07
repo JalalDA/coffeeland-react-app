@@ -31,7 +31,7 @@ const Cart = (props) => {
             const result = await axios.get('http://localhost:8000/user', config)
             setUser_id(result.data.data[0].id)
             setDisplayName(result.data.data[0].display_name)
-            setAdress(result.data.data[0].delivery_address)
+            setAdress(result.data.data[0].delivery_adress)
             setPhone(result.data.data[0].phone)
         }
         getDataProfile()
@@ -55,7 +55,8 @@ const Cart = (props) => {
             total_payment : subTotal + taxAndFee + shipping,
             payment_method : payment_method,
             delivery_method : delivery_method, 
-            user_id : user_id
+            user_id : user_id,
+            product_image : cart[0].productImg
         }
         const result = await axios.post('http://localhost:8000/transaction', body, config)
         console.log(result);

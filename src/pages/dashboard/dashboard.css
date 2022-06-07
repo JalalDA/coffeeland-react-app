@@ -1,0 +1,63 @@
+.dashboardContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    background-color: #F8F8F8;
+}
+.dashboardTitle{
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 50px;
+    color: #6A4029;
+}
+.dashboardTop{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 80%;
+}
+.dashboardContent{
+    width: 80%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.leftContent{
+    background: #FFFFFF;
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.03);
+    border-radius: 20px;
+    width: 65%;
+    height: 500px;
+    padding: 32px 46px;
+}
+.leftContenttop{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.rightContent{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    height: 500px;
+    width: 30%;
+    row-gap: 30px;
+    margin-left: 44px;
+}
+.achieve{
+    background: #FFFFFF;
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.03);
+    border-radius: 20px;
+    height: 200px;
+    width: 100%;
+}
+.target{
+    background: #FFFFFF;
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.03);
+    border-radius: 20px;
+    height: 200px;
+    width: 100%;
+}

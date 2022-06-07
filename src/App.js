@@ -12,6 +12,7 @@ import Cart from "./pages/cart/Cart";
 import History from "./pages/history/History";
 import Modal from "./components/Modal/Modal";
 import Productdua from "./pages/product/Productdua";
+import Dashboard from "./pages/dashboard/Dashboard";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path="/history"  element={<History/>}/>
           <Route path="/modal" element={<Modal />} />
           <Route path="/productdua" element={<Productdua/>}/>
+          <Route path="/dashboard" element={<Dashboard/>} />
         </Routes>
       </BrowserRouter>
     </div>

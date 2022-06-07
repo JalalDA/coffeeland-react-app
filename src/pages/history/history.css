@@ -52,6 +52,10 @@
     font-weight: 400;
     color: #895537;
 }
+.productImageHistory{
+    height: 100px;
+    width: 100px;
+}
 @media screen and (max-width : 768px) {
     .cardHistoryContain{
         position: relative;

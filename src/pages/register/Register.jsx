@@ -100,6 +100,9 @@ export default class Register extends Component{
                       })
                       .catch(err=>{
                         console.log(err);
+                        this.setState({
+                          msg : err.response.data.msg
+                        })
                       })
                       }}
                       >Register</div>

@@ -13,14 +13,14 @@ export default class Profile extends Component {
             profile: [],
             isLoggedOut : false,
             token : '',
-            statephoto : true,
             email : '',
             delivery_adress: '', 
             phone : '',
             display_name : '',
             firstname : '',
             lastname : '',
-            gender : ''
+            gender : '',
+            selectedFile : ''
         }
     }
     editProfile = async ()=>{
@@ -32,7 +32,8 @@ export default class Profile extends Component {
             display_name ,
             firstname,
             lastname,
-            gender
+            gender,
+            selectedFile,
         } = this.state
         const body = {
             email,
@@ -41,10 +42,12 @@ export default class Profile extends Component {
             display_name,
             firstname,
             lastname,
-            gender
+            gender,
+            photo : selectedFile
         }
         const config = {
             headers : {
+                'Content-type' : 'multipart/form-data',
                 Authorization : `Bearer ${localStorage.getItem('token')}` 
             }
         }
@@ -108,7 +111,8 @@ export default class Profile extends Component {
                     <div className="d-flex profileContainer">
                         <div className="row profileInfo">
                             <div className="profile">
-                                {this.state.statephoto ? <img src={`http://localhost:8000${this.state.profile.photo}`} alt="" /> : <img src={photoprofile} alt="" />}
+                                {/* <img src={`http://localhost:8000${this.state.profile.photo}`} alt="" /> */}
+                                {this.state.profile.photo ? <img src={`http://localhost:8000${this.state.profile.photo}`} alt="" /> : <img src={photoprofile} alt="" />}
                                 <div className="userName">
                                     <h3>{this.state.profile.display_name}</h3>
                                     <p>{this.state.profile.email}</p>
@@ -117,7 +121,11 @@ export default class Profile extends Component {
                             <form>
                                 <div className="profileButton">
                                     <div className="choosePhoto">
-                                        <input type="file" style={{display:'none'}} />
+                                        <input type="file" value='' className='inputFile' onChange={e=>{
+                                            this.setState({
+                                                selectedFile : e.target.files[0]
+                                            })
+                                        }}/>
                                         Choose photo
                                     </div>
                                     <div className="removePhoto" type="submit">Remove photo</div>
@@ -135,11 +143,12 @@ export default class Profile extends Component {
                                 <form className="row form-contacts">
                                     <div className="col-sm-8 formEmail">
                                         <label htmlFor="email">Email adress :</label>
-                                        <input className='inputProfile' type="email" id="email" value={this.state.profile.email} 
+                                        <input className='inputProfile' type="email" id="email" placeholder={this.state.profile.email} 
                                         onChannge={(e)=>{
                                             this.setState({
                                             email : e.target.value
                                             })
+                                            console.log(this.state.email);
                                         }}/>
                                         <label htmlFor="adres">Delivery adress :</label>
                                         <input className='inputProfile' type="text" id="adress" value={this.state.profile.delivery_adress} onChange={e=>{

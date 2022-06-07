@@ -251,7 +251,10 @@ input {
     flex-direction: column;
 
 }
-
+.inputFile{
+    width: 10px;
+    z-index: 50;
+}
 .gender {
     text-align: center;
 }
