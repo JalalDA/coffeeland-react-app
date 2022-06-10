@@ -40,6 +40,12 @@
     border-radius: 30px;
     margin-bottom: 30px;
 }
+.productFilter{
+    height: 100px;
+}
+.productFilter>img{
+    margin: 0px 30px;
+}
 .cardProduct{
     width: 156px;
     position: relative;

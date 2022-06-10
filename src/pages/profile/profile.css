@@ -55,6 +55,7 @@
     padding: 4%;
 }
 .choosePhoto {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -76,8 +77,16 @@
 }
 .choosePhoto > input {
     z-index: 5;
-    width: 100%;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
 }
+/* .inputFile{
+    width: 10px;
+    position: absolute;
+} */
 .removePhoto {
     height: 40px;
     width: 100%;
@@ -251,10 +260,7 @@ input {
     flex-direction: column;
 
 }
-.inputFile{
-    width: 10px;
-    z-index: 50;
-}
+
 .gender {
     text-align: center;
 }

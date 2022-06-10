@@ -11,45 +11,59 @@ import { Link } from 'react-router-dom'
 import Modal from '../../components/Modal/Modal'
 import eye from '../../assets/img/eye.png'
 import eyeSlash from '../../assets/img/eye-slash.png'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUserInfo } from '../../redux/loginSlice'
+
 
 const Login = () => {
   document.title = "Login"
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [show, setShow] = useState(false)
-  const [msg, setMsg] = useState('')
   const [showPass, setShowPass] = useState(false)
   const navigate = useNavigate()
-  const login = async ()=>{
-    try {
-      const body = {
-        email,
-        password
-      }
-      const result = await axios.post('http://localhost:8000/auth/login', body)
-      console.log(result);
-      setShow(true)
-      setMsg(result.data.msg)
-      localStorage.setItem(
-        "token",
-        result.data.data.token
-      )
-      localStorage.setItem(
-        "photo",
-        result.data.data.photo
-      )
-    } catch (error) {
-      console.log(error);
-      console.log(setEmail);
-      console.log(setPassword);
-    }
+  const dispatch = useDispatch()
+  const userInfo = useSelector((state)=>state.login.value)
+  const message = useSelector((state)=>state.login.msg)
+  const isSucces = useSelector((state)=>state.login.isSucces)
+  // const login = async ()=>{
+  //   try {
+  //     const body = {
+  //       email,
+  //       password
+  //     }
+  //     const result = await axios.post('http://localhost:8000/auth/login', body)
+  //     console.log(result);
+  //     setShow(true)
+  //     setMsg(result.data.msg)
+  //     localStorage.setItem(
+  //       "token",
+  //       result.data.data.token
+  //     )
+  //     localStorage.setItem(
+  //       "photo",
+  //       result.data.data.photo
+  //     )
+  //   } catch (error) {
+  //     console.log(error);
+  //     console.log(setEmail);
+  //     console.log(setPassword);
+  //   }
+  // }
+  const body = {
+    email,
+    password
   }
+  console.log(userInfo);
+  console.log(message);
   return (
     <>
     <div className="headerContainer">
-      <Modal show={show} response={msg} onClose={()=>{
+      <Modal show={show} response={message} onClose={()=>{
         setShow(false)
-        navigate('/', {replace:true})
+        if(isSucces){
+          navigate('/', {replace:true})
+        }
       }}/>
             <img className="img" src={loginImg} alt=""/>
             <div className="loginPage">
@@ -87,7 +101,12 @@ const Login = () => {
                     <p className="forgotPassword">
                       <Link className='forgotPassword' to='/forgot-password'>Forgot Password?</Link>
                       </p>
-                    <div className="btn-login-login" onClick={login}>
+                    <div className="btn-login-login"
+                    onClick={()=>{
+                      dispatch(getUserInfo(body))
+                      setShow(true)
+                    }}
+                    >
                         <p>Login</p>
                     </div>
                     <div className="btn-login-google">

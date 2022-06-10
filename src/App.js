@@ -13,30 +13,62 @@ import History from "./pages/history/History";
 import Modal from "./components/Modal/Modal";
 import Productdua from "./pages/product/Productdua";
 import Dashboard from "./pages/dashboard/Dashboard";
+import PrivateElement from "./components/private/PrivateElement";
+import PrivateLogin from "./components/private/PrivateLogin";
+import { Provider } from "react-redux";
+import {store} from "./redux/store";
+import Producttest from "./pages/product/Producttest";
+import {persistStore} from 'redux-persist'
+import { PersistGate } from "redux-persist/integration/react";
 
+let persistor = persistStore(store)
 
 function App() {
-  const token = localStorage.getItem('token')
-
   return (
     <div className="App">
+      
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
       <BrowserRouter>
         <Routes>
+        {/* <Route path="/producttest" element={<Producttest/>}/> */}
           <Route path="/" element={<Home/>}/>
-          <Route path="/product/:id" element={<Product/>}/>
+          <Route path="/producttest/:id" element={<Producttest/>}/>
           <Route path="/products" element={<Products/>}/>
-          <Route path="/profile" element={token ? <Profile/> : <Login/>}/>
-          <Route path="/login" element={token? <Home/> : <Login/>}/>
-          <Route path="/register" element={token? <Home/> : <Register/>}/>
-          <Route path="/forgot-password" element={token ? <Home/> : <Forgot/>}/>
+          <Route path="/profile" element={
+            <PrivateElement redirectTo="/login">
+              <Profile/>
+            </PrivateElement> 
+          }/>
+          <Route path="/login" element={
+            <PrivateLogin redirectTo="/">
+              <Login/>
+            </PrivateLogin> 
+          }/>
+          <Route path="/register" element={
+            <PrivateLogin redirectTo="/">
+              <Register/>
+            </PrivateLogin> 
+          }/>
+          <Route path="/forgot-password" element={ <Forgot/>}/>
           <Route path="/product/favorit" element={<FavProduct/>}/>
-          <Route path="/your-cart" element={ token ? <Cart/> : <Home/>}/>
-          <Route path="/history"  element={<History/>}/>
+          <Route path="/your-cart" element={
+            <PrivateElement redirectTo="/login">
+              <Cart/>
+            </PrivateElement>
+          }/>
+          <Route path="/history"  element={
+            <PrivateElement redirectTo="/login">
+              <History/>
+            </PrivateElement>
+          }/>
           <Route path="/modal" element={<Modal />} />
           <Route path="/productdua" element={<Productdua/>}/>
           <Route path="/dashboard" element={<Dashboard/>} />
         </Routes>
       </BrowserRouter>
+      </PersistGate>
+      </Provider>
     </div>
   );
 }

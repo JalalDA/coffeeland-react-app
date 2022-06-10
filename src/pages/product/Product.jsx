@@ -41,7 +41,6 @@ class Product extends Component {
         }
         this.state.productCart.push(singleCart)
         localStorage.setItem('cart', JSON.stringify(this.state.productCart))
-        console.log(this.state.productCart);
     }
 render() {
     return (
@@ -109,7 +108,10 @@ render() {
                     </div>
                     <div className="priceDetail"> IDR {this.state.detailProduct.price}</div>
                 </div>
-                <Link to='/your-cart'><div className="addtoCart" onClick={this.addToCart}>Add to Cart</div></Link> 
+                <Link to='/your-cart'>
+                    <div className="addtoCart">
+                    Add to Cart
+                    </div></Link> 
                 <div className="askToStaff">Ask to Staff</div>
             </div>
             <div className="col-lg-12 choose">
@@ -145,7 +147,7 @@ render() {
                     </div>
                     <div className="checkoutRight">
                         <span>Checkout</span>
-                        <img src={arrow} alt="" />
+                        <img src={arrow} alt="arrow"/>
                     </div>
                 </div>
             </div>

@@ -6,7 +6,7 @@ import './profile.css'
 import photoprofile from '../../assets/img/nullProfile.png' 
 import { Navigate } from 'react-router-dom'
 
-export default class Profile extends Component {
+class Profile extends Component {
     constructor() {
         super()
         this.state = {
@@ -25,6 +25,9 @@ export default class Profile extends Component {
     }
     editProfile = async ()=>{
         try { 
+        const persist = JSON.parse(localStorage.getItem('persist:persist'))
+        const login = JSON.parse(persist.login)
+        const token = login.value.token
         const {
             email ,
             delivery_adress,
@@ -45,10 +48,11 @@ export default class Profile extends Component {
             gender,
             photo : selectedFile
         }
+
         const config = {
             headers : {
                 'Content-type' : 'multipart/form-data',
-                Authorization : `Bearer ${localStorage.getItem('token')}` 
+                Authorization : `Bearer ${token}` 
             }
         }
         const result = await axios.patch('http://localhost:8000/user', body, config)
@@ -60,9 +64,12 @@ export default class Profile extends Component {
     }
     logout = async()=>{
         try {
+            const persist = JSON.parse(localStorage.getItem('persist:persist'))
+            const login = JSON.parse(persist.login)
+            const token = login.value.token
             const config = {
                 headers : {
-                    Authorization : `Bearer ${localStorage.getItem('token')}` 
+                    Authorization : `Bearer ${token}` 
                 }
             }
             const result = await axios.patch('http://localhost:8000/auth/logout', config)
@@ -73,8 +80,10 @@ export default class Profile extends Component {
     }
     async componentDidMount() {
         try {
-            const token = localStorage.getItem("token")
-            const photo = localStorage.getItem("photo")
+            const persist = JSON.parse(localStorage.getItem('persist:persist'))
+            const login = JSON.parse(persist.login)
+            const token = login.value.token
+            const photo = login.value.photo
             if(photo === "null"){
                 this.setState({
                     statephoto : false
@@ -224,3 +233,9 @@ export default class Profile extends Component {
         )
     }
 }
+
+const setMapToProps = ()=>{
+    
+}
+
+export default Profile

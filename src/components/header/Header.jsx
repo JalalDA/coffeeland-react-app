@@ -5,8 +5,9 @@ import search from '../../assets/img/search.png'
 import profile from '../../assets/img/nullProfile.png'
 import chat from '../../assets/img/chat.png'
 import { Link } from 'react-router-dom'
+import navigate from '../../helpers/Navigate'
 
-export default class Header extends Component {
+class Header extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -14,25 +15,33 @@ export default class Header extends Component {
             isSearch : true,
             user : false,
             photo : true,
-            setSearchName : props
+            setSearchName : props,
+            profileImg : ''
         }
     }
     componentDidMount(){
-        
-        const token = localStorage.getItem('token')
-        const photo = localStorage.getItem('photo')
+        const persist = JSON.parse(localStorage.getItem('persist:persist'))
+        const login = JSON.parse(persist.login)
+        const token = login.value.token
+        const photo = login.value.photo
         if(token){
             this.setState({
                 user : true
             })
         }
-        if(photo === 'null'){
+        if(photo){
+            this.setState({
+                profileImg : photo
+            })
+        }
+        if(photo === null){
             this.setState({
                 photo : false
             })
         }
     }
     render() {
+        const {navigate} = this.props
         const searchButton = ()=>{
             this.setState({
                 isSearch : false
@@ -65,8 +74,11 @@ export default class Header extends Component {
             <div className="col-sm-3 auth">
             <div className="searchIcon" onMouseOver={searchButton}>
             {this.state.isSearch ? <div><img src={search} alt=""/></div> : 
-            <div className='showInput'><input className='inputSearch' placeholder='Search...' type="text" onChange={e=>{
+            <div className='showInput'><input className='inputSearch' placeholder='Search...' type="text" 
+                onChange={(e)=>{
+                    const valueSearh = e.target.value
                 this.props.setSearchName(e.target.value)
+                navigate(`/products?name=${valueSearh}`)
             }}/>
             <p onClick={()=>{
                 this.setState({
@@ -80,7 +92,7 @@ export default class Header extends Component {
             </div>
             <div className="profil">
                 <Link to="/profile">
-                    {this.state.photo ? <img  className='profileImg' src={`http://localhost:8000${localStorage.getItem('photo')}`} alt=""/> : <img  className='profileImg' src={profile} alt=""/>}
+                    {this.state.photo ? <img  className='profileImg' src={`http://localhost:8000${this.state.profileImg}`} alt=""/> : <img  className='profileImg' src={profile} alt=""/>}
                 </Link>
             </div> 
         </div> : <div className="showLogin">
@@ -97,3 +109,5 @@ export default class Header extends Component {
         )
     }
 }
+
+export default navigate(Header)
