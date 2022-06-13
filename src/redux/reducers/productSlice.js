@@ -4,12 +4,13 @@ import axios from 'axios'
 const productSlice = createSlice({
     name : 'product',
     initialState : {
-        value : [],
-        search : ''
+        data : [],
+        search : '',
+        meta  : ''
     },
     reducers : {
         pushProduct : (state, action)=>{
-            return {...state.value, value :action.payload}
+            return {...state, data :action.payload.data, meta : action.payload.meta}
             // switch (action.type) {
             //     case 'PRODUCT_REQUEST':
             //     return {loading : 'Loading ...'}
@@ -33,11 +34,13 @@ export const getAllProduct = (params)=> async (dispatch)=> {
             type : 'PRODUCT_REQUEST'
         })
         const result = await axios.get(`${process.env.REACT_APP_SERVER}/product${params}`)
-        console.log(result);
+        // console.log(result);
+        // console.log(params);
         dispatch({
             type : 'PRODUCT_SUCCES',
         },)
-        dispatch(pushProduct(result.data.data))
+        dispatch(pushProduct(result.data))
+
     } catch (error) {
         console.log(error);
         dispatch({

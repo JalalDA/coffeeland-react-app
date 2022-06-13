@@ -10,6 +10,7 @@ import filter from '../../assets/img/filter.png'
 import {getAllProduct} from '../../redux/reducers/productSlice'
 import pen from '../../assets/img/pencil.png'
 import './products.css'
+import { useNavigate } from 'react-router-dom'
 
 const Products = () => {
     // this.state = {
@@ -25,7 +26,9 @@ const Products = () => {
     //     categoryActive : false,
     //     sort : false
     // }
-    const product = useSelector((state)=>state.product.value)
+    const navigate = useNavigate()
+    const product = useSelector((state)=>state.product.data)
+    const meta = useSelector(state=>state.product.meta)
     const role = useSelector(state=> state.login.value.role)
     const discpatch = useDispatch()
     const [categoryActive, setCategoryActive] = useState(false)
@@ -93,16 +96,28 @@ return (
                 <img src={filter} alt="" />
                 <select onChange={(e)=>{
                     if(e.target.value === 'price' && (params === '/')) {
-                        setParams(params=>params+='?&sort=price&order=desc')
+                        setParams(params=>params+='?&sort=price')
                     }
-                    if(e.target.value === 'price' && params==='/favorit')
+                    if(e.target.value === 'price' && params==='/favorit'){
+                        setParams(params=>params+='?&sort=price')
+                    }
                     if(e.target.value === 'price'){
-                        setParams(params=>params+='&sort=price&order=desc')
+                        setParams(params=>params+='&sort=price')
                     }
                 }}
                 > <option value="">Filter</option>
                     <option value='price'
                     >Price</option>
+                </select>
+                <select onChange={(e)=>{
+                    if(e.target.value === 'asc'){
+                        setParams(params=>params+='&order=asc')
+                    }
+                    // if(e.target.value === 'desc'){
+                    //     setParams(params=> params+='&order=desc')
+                    // }
+                }}> <option >Sort</option>
+                    <option value="asc">Cheapest</option>
                 </select>
             </div>
                 {role === 'admin'?
@@ -138,8 +153,14 @@ return (
                 </>}
             </div>
             <div className="paginasiProduct">
-                <img src={left} alt="leftArrow" />
-                <img src={right} alt="rightArrow"/>
+                <img src={left} alt="leftArrow" onClick={()=>{
+                    setParams(params=> params=`?page=${meta.curentPage-1}`)
+                    navigate('?page=1')
+                }}/>
+                <img src={right} alt="rightArrow" onClick={()=>{
+                    setParams(params=> params=`?page=${meta.curentPage + 1}`)
+                    navigate('?page=2')
+                }}/>
             </div>
             </div>
             </div>

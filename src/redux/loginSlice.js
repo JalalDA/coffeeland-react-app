@@ -21,7 +21,8 @@ export const loginSlice = createSlice({
             return {...state.photo, photo : action.payload}
         },
         deleteUserInfo : (state, action)=>{
-            return {value : action.payload}
+            return {...state.value, value : action.payload}
+
         }
     }
 })

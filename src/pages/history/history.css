@@ -16,15 +16,25 @@
     justify-content: center;
     flex-direction: column;
     position: absolute;
-    top: 10%;
+    top: 5%;
     color:white;
     font-weight: 700;
+
 }
 .titleHistory > h3{
     font-size: 40px;
 }
 .titleHistory > p{
     font-size: 20px;
+    cursor: pointer;
+}
+.deleteHistory{
+    position: absolute;
+    top: 12%;
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 700;
+    right: 7%;
 }
 .cardHistoryContain{
     position: absolute;
@@ -55,6 +65,12 @@
 .productImageHistory{
     height: 100px;
     width: 100px;
+}
+.checkHistory{
+    border-color: #895537;
+    position: absolute;
+    bottom: 20px;
+    right: 60px;
 }
 @media screen and (max-width : 768px) {
     .cardHistoryContain{

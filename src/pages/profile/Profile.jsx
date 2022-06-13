@@ -12,7 +12,7 @@ import navigate from '../../helpers/Navigate'
 
 
 class Profile extends Component {
-    constructor() {
+    constructor(props) {
         super()
         this.state = {
             profile: [],
@@ -72,10 +72,10 @@ class Profile extends Component {
     }
     logout = async(props)=>{
         try {
-            const {doDeleteUser} = props
+            const {doDeleteUser} = this.props
             const persist = JSON.parse(localStorage.getItem('persist:persist'))
             if(persist){
-                const login = JSON.parse(persist.login)
+            const login = JSON.parse(persist.login)
             const token = login.value.token
             const config = {
                 headers : {
@@ -84,12 +84,13 @@ class Profile extends Component {
             }
             const result = await axios.delete('http://localhost:8000/auth/logout', config)
             console.log(result);
+            doDeleteUser(null)
+            console.log(doDeleteUser);
             localStorage.removeItem('persist:persist')
             localStorage.removeItem('photo')
             this.setState({
                 isLoggedOut : true
             })
-            doDeleteUser()
             }
             
         } catch (error) {
@@ -266,11 +267,12 @@ class Profile extends Component {
 }
 
 const mapDispatchToProps=(dispatch)=>{
+
     return {
-        doDeleteUser : ()=>{
-            dispatch(deleteUserInfo(null))
+        doDeleteUser : (params)=>{
+            dispatch(deleteUserInfo(params))
         }
     }
 }
 
-export default connect(mapDispatchToProps) (navigate(Profile))
+export default connect(mapDispatchToProps)(navigate(Profile))
