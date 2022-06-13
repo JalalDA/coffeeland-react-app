@@ -48,7 +48,9 @@ const Dashboard = () => {
             </div>
             <div className="dashboardNav">
                 <img src={arrowLeft} alt="arrow" />
-                <img src={arrowRight} alt="arrow" />
+                <img src={arrowRight} alt="arrow" onClick={()=>{
+                    setDummyData({})
+                }}/>
             </div>
         </div>
         <div className="dashboardContent">
