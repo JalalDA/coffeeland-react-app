@@ -4,7 +4,8 @@ import axios from 'axios'
 const productSlice = createSlice({
     name : 'product',
     initialState : {
-        value : []
+        value : [],
+        search : ''
     },
     reducers : {
         pushProduct : (state, action)=>{
@@ -19,6 +20,9 @@ const productSlice = createSlice({
             //     default:
             //         return state
             // }
+        },
+        setSearch : (state, action)=>{
+            return {...state.search, search : action.payload}
         }
     }
 })
@@ -28,7 +32,8 @@ export const getAllProduct = (params)=> async (dispatch)=> {
         dispatch({
             type : 'PRODUCT_REQUEST'
         })
-        const result = await axios.get(`${process.env.REACT_APP_SERVER}/product/${params}`)
+        const result = await axios.get(`${process.env.REACT_APP_SERVER}/product${params}`)
+        console.log(result);
         dispatch({
             type : 'PRODUCT_SUCCES',
         },)
@@ -42,5 +47,5 @@ export const getAllProduct = (params)=> async (dispatch)=> {
     }
 }
 
-export const {pushProduct} = productSlice.actions
+export const {pushProduct, setSearch} = productSlice.actions
 export default productSlice.reducer

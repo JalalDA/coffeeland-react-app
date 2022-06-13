@@ -5,8 +5,9 @@ export const loginSlice = createSlice({
     name : 'login',
     initialState : {
         value : [],
+        photo : false,
         msg : '',
-        isSucces : false
+        isSucces : false,
     },
     reducers : {
         pushUserInfo : (state, action)=>{
@@ -15,6 +16,12 @@ export const loginSlice = createSlice({
                     msg : action.payload.msg,
                     isSucces : action.payload.data
                 }
+        },
+        getProfileImg : (state, action)=>{
+            return {...state.photo, photo : action.payload}
+        },
+        deleteUserInfo : (state, action)=>{
+            return {value : action.payload}
         }
     }
 })
@@ -30,6 +37,6 @@ export const getUserInfo = (body)=> async (dispacth)=>{
     }
 }
 
-export const {pushUserInfo} = loginSlice.actions
+export const {pushUserInfo, getProfileImg, deleteUserInfo} = loginSlice.actions
 
 export default loginSlice.reducer

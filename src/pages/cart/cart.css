@@ -4,6 +4,14 @@
 .cartContainer > img{
     width: 100%;
 }
+
+.slideCart  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:  20px 20px;
+    background-color: #fff;
+}
 .cartContainer > span{
     font-size: 40px;
     font-weight: 700;
@@ -21,6 +29,7 @@
     position: absolute;
     top: 198px;
 }
+
 .leftCart {
     width: 33%;
     display: flex;

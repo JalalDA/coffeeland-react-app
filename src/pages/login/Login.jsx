@@ -4,7 +4,6 @@ import loginImg from '../../assets/img/loginImg.png'
 import logo from '../../assets/img/logo.png'
 import googleLogo from '../../assets/img/googleLogo.png'
 import Footer from '../../components/footer/Footer'
-import axios from 'axios'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
@@ -25,6 +24,7 @@ const Login = () => {
   const dispatch = useDispatch()
   const userInfo = useSelector((state)=>state.login.value)
   const message = useSelector((state)=>state.login.msg)
+  const photo = useSelector((state)=>state.login.photo)
   const isSucces = useSelector((state)=>state.login.isSucces)
   // const login = async ()=>{
   //   try {
@@ -60,6 +60,7 @@ const Login = () => {
     <>
     <div className="headerContainer">
       <Modal show={show} response={message} onClose={()=>{
+        localStorage.setItem('photo', photo)
         setShow(false)
         if(isSucces){
           navigate('/', {replace:true})

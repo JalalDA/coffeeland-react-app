@@ -11,15 +11,16 @@ import FavProduct from "./pages/product/FavProduct";
 import Cart from "./pages/cart/Cart";
 import History from "./pages/history/History";
 import Modal from "./components/Modal/Modal";
-import Productdua from "./pages/product/Productdua";
 import Dashboard from "./pages/dashboard/Dashboard";
 import PrivateElement from "./components/private/PrivateElement";
 import PrivateLogin from "./components/private/PrivateLogin";
 import { Provider } from "react-redux";
 import {store} from "./redux/store";
-import Producttest from "./pages/product/Producttest";
 import {persistStore} from 'redux-persist'
 import { PersistGate } from "redux-persist/integration/react";
+import BarChart from "./components/chart/BarChart";
+import Orders from "./pages/orders/Orders";
+import Prompt from "./components/prompt/Prompt";
 
 let persistor = persistStore(store)
 
@@ -33,7 +34,7 @@ function App() {
         <Routes>
         {/* <Route path="/producttest" element={<Producttest/>}/> */}
           <Route path="/" element={<Home/>}/>
-          <Route path="/producttest/:id" element={<Producttest/>}/>
+          <Route path="/product/:id" element={<Product/>}/>
           <Route path="/products" element={<Products/>}/>
           <Route path="/profile" element={
             <PrivateElement redirectTo="/login">
@@ -63,8 +64,10 @@ function App() {
             </PrivateElement>
           }/>
           <Route path="/modal" element={<Modal />} />
-          <Route path="/productdua" element={<Productdua/>}/>
           <Route path="/dashboard" element={<Dashboard/>} />
+          <Route path="/barchart" element={<BarChart/>}/>
+          <Route path="/orders" element={<Orders/>}/>
+          <Route path="/prompt" element={<Prompt/>}/>
         </Routes>
       </BrowserRouter>
       </PersistGate>

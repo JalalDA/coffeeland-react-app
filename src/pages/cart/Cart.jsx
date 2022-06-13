@@ -7,22 +7,28 @@ import bankPayment from '../../assets/img/dashicons_bank.png'
 import cod from '../../assets/img/cod.png'
 import './cart.css'
 import axios from 'axios'
+import { useSelector} from 'react-redux'
+import Modal from '../../components/Modal/Modal'
 
 const Cart = (props) => {
     document.title = 'Your Cart'
-    const cart = JSON.parse(localStorage.getItem('cart'))
     const taxAndFee = 20000
     const shipping = 10000
-    const subTotal = cart[0].quantity * cart[0].price
-    const delivery_method = cart[0].delivery_method
+    const cart = useSelector(state=> state.cart.value)
+    console.log(cart);
+    const subTotal = cart.count * cart.detailProduct.price
+    const delivery_method = cart.deliveryMethod
     const [adress, setAdress] = useState('')
     const [phone, setPhone] = useState('')
     const [display_name, setDisplayName] = useState('')
     const [payment_method, setPaymentMethod] = useState('')
     const [user_id, setUser_id] = useState('')
+    const [show, setShow] = useState(false)
     useEffect(()=>{
         const getDataProfile = async()=>{
-            const token = localStorage.getItem('token')
+            const persist = JSON.parse(localStorage.getItem('persist:persist'))
+            const login = JSON.parse(persist.login)
+            const token = login.value.token
             const config = {
                 headers : {
                     Authorization : `Bearer ${token}`
@@ -30,7 +36,7 @@ const Cart = (props) => {
             }
             const result = await axios.get('http://localhost:8000/user', config)
             setUser_id(result.data.data[0].id)
-            setDisplayName(result.data.data[0].display_name)
+            setDisplayName(result.data[0].data.display_name)
             setAdress(result.data.data[0].delivery_adress)
             setPhone(result.data.data[0].phone)
         }
@@ -38,14 +44,16 @@ const Cart = (props) => {
     }, [])
     const pay = async ()=>{
         try {
-            const token = localStorage.getItem('token')
-        const config = {
+            const persist = JSON.parse(localStorage.getItem('persist:persist'))
+            const login = JSON.parse(persist.login)
+            const token = login.value.token
+            const config = {
             headers : {
                 Authorization : `Bearer ${token}`
             }
         }
         const body = {
-            product_name : cart[0].name,
+            product_name : cart.detailProduct.name,
             user_name : display_name,
             adress : adress,
             time_transaction : new Date(Date.now()),
@@ -56,11 +64,11 @@ const Cart = (props) => {
             payment_method : payment_method,
             delivery_method : delivery_method, 
             user_id : user_id,
-            product_image : cart[0].productImg
+            product_image : cart.detailProduct.pictures
         }
         const result = await axios.post('http://localhost:8000/transaction', body, config)
         console.log(result);
-        alert('Succes Add transaction')
+        setShow(true)
         } catch (error) {
             console.log(error);
         }
@@ -68,6 +76,17 @@ const Cart = (props) => {
 return (
     <>
     <Header/>
+    <Modal show={show} response={
+    <div>
+    <p>Succes add Transaction</p>
+    <p>Product Name : {cart.detailProduct.name}</p>
+    <p>Payment Methode : {payment_method}</p>
+    <p>Delivery Method : {delivery_method} </p>
+    <p>Total Payment : IDR {subTotal + taxAndFee + shipping}</p>
+    </div>
+} onClose={()=>{
+        setShow(false)
+    }}/>
     <div className="cartContainer">
         <img src={bgCart} alt="backgroundCart" />
         <span>Checkout Your Item Now!</span>
@@ -76,19 +95,19 @@ return (
                 <h3>Order Summary</h3>
                 <div className="productListCart">
                     <div className="firstProduct">
-                        <img src={`http://localhost:8000${cart[0].productImg}`} alt="" />
+                        <img src={`http://localhost:8000${cart.detailProduct.pictures}`} alt="" />
                         <div className='productCartDetail'>
-                            <p>{cart[0].name}</p>
-                            <p>X {cart[0].quantity}</p>
-                            <p>{cart[0].size}</p>
+                            <p>{cart.detailProduct.name}</p>
+                            <p>X {cart.count}</p>
+                            <p>{cart.size}</p>
                         </div>
-                        <span>IDR {cart[0].price}</span>
+                        <span>IDR {cart.detailProduct.price}</span>
                     </div>
                 </div>
                 <div className="lineCart"></div>
                 <div className="subTotal">
                     <p>SUBTOTAL</p>
-                    <p>{cart[0].quantity * cart[0].price}</p>
+                    <p>{cart.count * cart.detailProduct.price}</p>
                 </div>
                 <div className="subTotal">
                     <p>TAX & FEES</p>

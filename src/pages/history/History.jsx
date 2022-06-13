@@ -9,7 +9,9 @@ const History = () => {
     document.title = "History"
     const [history, setHistory] = useState([])
     useEffect(()=>{
-        const token = localStorage.getItem('token')
+        const persist = JSON.parse(localStorage.getItem('persist:persist'))
+        const login = JSON.parse(persist.login)
+        const token = login.value.token
         const config = {
             headers : {
                 Authorization : `Bearer ${token}`

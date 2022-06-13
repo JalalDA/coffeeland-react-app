@@ -6,6 +6,7 @@ import profile from '../../assets/img/nullProfile.png'
 import chat from '../../assets/img/chat.png'
 import { Link } from 'react-router-dom'
 import navigate from '../../helpers/Navigate'
+import {connect} from 'react-redux'
 
 class Header extends Component {
     constructor(props){
@@ -14,34 +15,42 @@ class Header extends Component {
             product : [],
             isSearch : true,
             user : false,
-            photo : true,
+            statePhoto : true,
             setSearchName : props,
             profileImg : ''
         }
     }
     componentDidMount(){
         const persist = JSON.parse(localStorage.getItem('persist:persist'))
+        if(persist){
         const login = JSON.parse(persist.login)
-        const token = login.value.token
-        const photo = login.value.photo
-        if(token){
+        // const token = login.value.token
+        // const photo = login.photo
+        if(login.value.token){
             this.setState({
                 user : true
             })
         }
-        if(photo){
+        // if(login.photo){
+        //     this.setState({
+        //         profileImg : photo
+        //     })
+        // }
+        }
+        const photo = localStorage.getItem('photo')
+        if(photo === 'null'){
+            this.setState({
+                statePhoto : false,
+            })
+        }
+        if(photo !== 'null'){
             this.setState({
                 profileImg : photo
             })
         }
-        if(photo === null){
-            this.setState({
-                photo : false
-            })
-        }
     }
     render() {
-        const {navigate} = this.props
+        const {navigate, role} = this.props
         const searchButton = ()=>{
             this.setState({
                 isSearch : false
@@ -57,7 +66,24 @@ class Header extends Component {
                 <div>Coffeeland</div>
             </div>
             <ul className="col-sm-6 navigasi">
+                {role === 'admin' ? 
+                <>
+                <li className='listNavItem'>
+                        <Link className='link' to='/'>Home</Link>
+                    </li>
                     <li className='listNavItem'>
+                        <Link className='link' to='/products'>Product</Link>
+                    </li>
+                    <li className='listNavItem'>
+                        <Link className='link' to='/orders'>Orders</Link>
+                    </li>
+                    <li className='listNavItem'>
+                        <Link className='link' to='/history'>Dashboard</Link>
+                    </li>
+                </> 
+                :
+                <>
+                <li className='listNavItem'>
                         <Link className='link' to='/'>Home</Link>
                     </li>
                     <li className='listNavItem'>
@@ -68,7 +94,8 @@ class Header extends Component {
                     </li>
                     <li className='listNavItem'>
                         <Link className='link' to='/history'>History</Link>
-                    </li>
+                    </li></>}
+                    
             </ul>
             {this.state.user ? 
             <div className="col-sm-3 auth">
@@ -76,9 +103,13 @@ class Header extends Component {
             {this.state.isSearch ? <div><img src={search} alt=""/></div> : 
             <div className='showInput'><input className='inputSearch' placeholder='Search...' type="text" 
                 onChange={(e)=>{
-                    const valueSearh = e.target.value
+                const valueSearh = e.target.value
                 this.props.setSearchName(e.target.value)
                 navigate(`/products?name=${valueSearh}`)
+            }} onKeyUp={e=>{
+                if(e.key === 'Enter'){
+                    navigate('/products')
+                }
             }}/>
             <p onClick={()=>{
                 this.setState({
@@ -92,7 +123,7 @@ class Header extends Component {
             </div>
             <div className="profil">
                 <Link to="/profile">
-                    {this.state.photo ? <img  className='profileImg' src={`http://localhost:8000${this.state.profileImg}`} alt=""/> : <img  className='profileImg' src={profile} alt=""/>}
+                    {this.state.statePhoto ? <img  className='profileImg' src={`http://localhost:8000${this.state.profileImg}`} alt=""/> : <img  className='profileImg' src={profile} alt=""/>}
                 </Link>
             </div> 
         </div> : <div className="showLogin">
@@ -110,4 +141,12 @@ class Header extends Component {
     }
 }
 
-export default navigate(Header)
+const mapStateToProps = (reduxState)=>{
+    const {login : {
+        value : {role}
+    }} = reduxState
+    return {role}
+}
+
+
+export default connect(mapStateToProps)(navigate(Header))

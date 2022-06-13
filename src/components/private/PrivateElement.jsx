@@ -9,6 +9,11 @@ const PrivateElement = ({
     extraData = null
 }) => {
     const persist = JSON.parse(localStorage.getItem('persist:persist'))
+    if(!persist){
+        return(
+            <Navigate to={redirectTo} replace={isRouteReplaced} state={extraData} />
+        )
+    }
     const login = JSON.parse(persist.login)
     const token = login.value.token
     if(!token) {

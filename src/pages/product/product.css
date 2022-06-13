@@ -6,9 +6,17 @@
     row-gap: 60px;
     padding: 100px;
 }
-
+.detailProductTittle{
+    font-size: 20px;
+    font-weight: 400;
+    color: #4F5665;
+    margin-left: 150px;
+    margin-top: 52px;
+}
 .imgDetailProduct{
     border-radius: 50%;
+    height: 250px;
+    width: 250px;
 }
 
 .delivery{

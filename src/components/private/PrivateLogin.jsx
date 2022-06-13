@@ -8,15 +8,17 @@ const PrivateLogin = ({
     isRouteReplaced = true,
     extraData = null
 }) => {
+
     const persist = JSON.parse(localStorage.getItem('persist:persist'))
-    const login = JSON.parse(persist.login)
-    const token = login.value.token
-    if(token) {
+    if(persist){
+        const login = JSON.parse(persist.login)
+        const token = login.value.token
+        if(token) {
         return(
             <Navigate to={redirectTo} replace={isRouteReplaced} state={extraData} />
         )
     }
-
+    }
     const role = localStorage.getItem('role')
     if(role === 'admin'){
         <Navigate/>
