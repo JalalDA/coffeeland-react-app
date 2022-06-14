@@ -9,9 +9,8 @@ const PrivateAdmin = ({
     isRouteReplaced = true,
     extraData = null
 }) => {
-    const userInfo = useSelector(state=>state.login.value)
-    const role = userInfo[0].role
-    if(role === 'Admin'){
+    const role = useSelector(state=>state.login.value.role)
+    if(!role){
         return(
             <Navigate to={redirectTo} replace={isRouteReplaced} state={extraData} />
         )

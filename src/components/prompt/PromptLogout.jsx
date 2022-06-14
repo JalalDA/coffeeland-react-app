@@ -1,9 +1,9 @@
 import React from 'react'
 import './prompt.css'
 // import { useNavigate } from 'react-router-dom'
-const Prompt = (props) => {
+const PromptLogout = (props) => {
     // const navigate = useNavigate()
-    if(!props.show){
+    if(!props.showLogout){
         return null
     }
   return (
@@ -11,7 +11,7 @@ const Prompt = (props) => {
     <div className="prompt">
         <div className="promptContent">
             <div className="promptHeader"></div>
-            <div className="promptMessage">Do you want to save changes?</div>
+            <div className="promptMessage">Do you want to Logout?</div>
             <div className="promptButton">
                 <div className="no" onClick={props.onClose}>NO</div>
                 <div className="yes" onClick={props.yes}>YES</div>
@@ -22,4 +22,4 @@ const Prompt = (props) => {
   )
 }
 
-export default Prompt
+export default PromptLogout

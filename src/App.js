@@ -18,9 +18,10 @@ import { Provider } from "react-redux";
 import {store} from "./redux/store";
 import {persistStore} from 'redux-persist'
 import { PersistGate } from "redux-persist/integration/react";
-import BarChart from "./components/chart/BarChart";
 import Orders from "./pages/orders/Orders";
 import Prompt from "./components/prompt/Prompt";
+import HeaderFunction from "./components/header/HeaderFunction";
+import PrivateAdmin from "./components/private/PrivateAdmin";
 
 let persistor = persistStore(store)
 
@@ -64,10 +65,17 @@ function App() {
             </PrivateElement>
           }/>
           <Route path="/modal" element={<Modal />} />
-          <Route path="/dashboard" element={<Dashboard/>} />
-          <Route path="/barchart" element={<BarChart/>}/>
-          <Route path="/orders" element={<Orders/>}/>
+          <Route path="/dashboard" element={
+            <PrivateAdmin>
+                <Dashboard/>
+            </PrivateAdmin>
+          } />
+          <Route path="/orders" element={
+          <PrivateAdmin>
+            <Orders/>
+          </PrivateAdmin>}/>
           <Route path="/prompt" element={<Prompt/>}/>
+          <Route path="/headerfunction" element={<HeaderFunction/>}/>
         </Routes>
       </BrowserRouter>
       </PersistGate>

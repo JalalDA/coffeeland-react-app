@@ -5,23 +5,29 @@ export const loginSlice = createSlice({
     name : 'login',
     initialState : {
         value : [],
-        photo : false,
+        photo : '',
         msg : '',
         isSucces : false,
     },
     reducers : {
         pushUserInfo : (state, action)=>{
             return {...state.value, 
-                    value : action.payload.data, 
+                    value : action.payload.data,
+                    photo : action.payload.data.photo, 
                     msg : action.payload.msg,
                     isSucces : action.payload.data
                 }
         },
         getProfileImg : (state, action)=>{
-            return {...state.photo, photo : action.payload}
+            return {...state, photo : action.payload}
         },
-        deleteUserInfo : (state, action)=>{
-            return {...state.value, value : action.payload}
+        deleteUserInfo : ()=>{
+            return {
+                value : [],
+                msg : '',
+                isSucces : false,
+                photo : false
+            }
 
         }
     }

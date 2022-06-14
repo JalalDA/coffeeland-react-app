@@ -99,3 +99,21 @@
 .paginasiProduct > img {
     cursor: pointer;
 }
+.addProduct{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #6a4029;
+    border-radius: 20px;
+    width: 80%;
+    padding: 30px;
+    color: #FFFFFF;
+    margin-left: 100px;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+    cursor: pointer;
+}
+.addProduct:hover{
+    background-color: #774d37;
+}

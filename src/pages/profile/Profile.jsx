@@ -1,50 +1,62 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Footer from '../../components/footer/Footer'
 import Header from '../../components/header/Header'
 import axios from 'axios'
 import './profile.css'
 import photoprofile from '../../assets/img/nullProfile.png' 
-import { Navigate } from 'react-router-dom'
-import {connect} from 'react-redux'
-import {deleteUserInfo} from '../../redux/loginSlice'
+// import { Navigate } from 'react-router-dom'
+// import {connect} from 'react-redux'
+import {deleteUserInfo, getProfileImg} from '../../redux/loginSlice'
 import Prompt from '../../components/prompt/Prompt'
-import navigate from '../../helpers/Navigate'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import {  useNavigate} from "react-router-dom";
+import PromptLogout from '../../components/prompt/PromptLogout'
 
 
-class Profile extends Component {
-    constructor(props) {
-        super()
-        this.state = {
-            profile: [],
-            isLoggedOut : false,
-            token : '',
-            email : '',
-            delivery_adress: '', 
-            phone : '',
-            display_name : '',
-            firstname : '',
-            lastname : '',
-            gender : '',
-            selectedFile : '',
-            show : false
+const Profile = () => {
+    const [profile, setProfile] = useState({})
+    const [selectedFile, setSelectedFile] = useState('')
+    const [email, setEmail] = useState('')
+    const [delivery_adress, setDelivery_adress] = useState('')
+    const [phone, setPhone] = useState('')
+    const [display_name, setDisplay_name] = useState('')
+    const [firstname, setFirstName] = useState('')
+    const [lastname, setLastName] = useState('')
+    const [gender, setGender] = useState('')
+    const [show, setShow] = useState(false)
+    const [showLogout, setShowLogout] = useState(false) 
+    const dispatch = useDispatch()
+    const token = useSelector(state=>state.login.value.token)
+    const photo = useSelector(state=>state.login.photo)
+    const navigate = useNavigate()
+
+    const logout = async()=>{
+        try {
+            const config = {
+                headers : {
+                    Authorization : `Bearer ${token}` 
+                }
+            }
+            const result = await axios.delete('http://localhost:8000/auth/logout', config)
+            console.log(result);
+            localStorage.removeItem('persist:persist')
+            localStorage.removeItem('photo')
+            dispatch(deleteUserInfo([]))
+            navigate('/', {replace:true})
+        } catch (error) {
+            console.log(error);
         }
     }
-    editProfile = async ()=>{
-        try { 
-        const persist = JSON.parse(localStorage.getItem('persist:persist'))
-        const login = JSON.parse(persist.login)
-        const token = login.value.token
-        const {
-            email ,
-            delivery_adress,
-            phone,
-            display_name ,
-            firstname,
-            lastname,
-            gender,
-            selectedFile,
-        } = this.state
-        const body = {
+    const editProfile = async()=>{
+        try {
+            const config = {
+                headers : {
+                    'Content-type' : 'multipart/form-data',
+                    Authorization : `Bearer ${token}` 
+                }
+            }
+            const body = {
             email,
             phone,
             delivery_adress,
@@ -53,128 +65,67 @@ class Profile extends Component {
             lastname,
             gender,
             photo : selectedFile
-        }
-
-        const config = {
-            headers : {
-                'Content-type' : 'multipart/form-data',
-                Authorization : `Bearer ${token}` 
             }
-        }
-        const result = await axios.patch('http://localhost:8000/user', body, config)
-        console.log(result);
-        console.log(result.data.data.photo);
-        alert(result.data.msg)
-        localStorage.setItem('photo', result.data.data.photo)
-        } catch (error) {
-            console.log(error);
-        }
-    }
-    logout = async(props)=>{
-        try {
-            const {doDeleteUser} = this.props
-            const persist = JSON.parse(localStorage.getItem('persist:persist'))
-            if(persist){
-            const login = JSON.parse(persist.login)
-            const token = login.value.token
-            const config = {
-                headers : {
-                    Authorization : `Bearer ${token}` 
-                }
-            }
-            const result = await axios.delete('http://localhost:8000/auth/logout', config)
+            const result = await axios.patch('http://localhost:8000/user', body, config)
             console.log(result);
-            doDeleteUser(null)
-            console.log(doDeleteUser);
-            localStorage.removeItem('persist:persist')
-            localStorage.removeItem('photo')
-            this.setState({
-                isLoggedOut : true
-            })
-            }
-            
+            dispatch(getProfileImg(result.data.data.photo)) 
+            setShow(false)
         } catch (error) {
             console.log(error);
         }
     }
-    async componentDidMount() {
-        try {
-            const persist = JSON.parse(localStorage.getItem('persist:persist'))
-            const login = JSON.parse(persist.login)
-            const token = login.value.token
-            const photo = login.value.photo
-            if(photo === "null"){
-                this.setState({
-                    statephoto : false
-                })
-            }
-            if(!token){
-                this.setState({
-                    isLoggedOut : true
-                })
-            }
+
+    useEffect(()=>{
+        const getProfile = async()=>{
+            // const persist = JSON.parse(localStorage.getItem('persist:persist'))
+            // const login = JSON.parse(persist.login)
+            // const token = login.value.token
+
             const config = {
                 headers : {Authorization : `Bearer ${token}`}
             }
-            const result = await axios.get(
-                'http://localhost:8000/user',
-                config
-            )
+            const result = await axios.get(`${process.env.REACT_APP_SERVER}/user/`, config)
             console.log(result);
-            this.setState({
-                profile : result.data.data[0]
-            })
-        } catch (error) {
-            console.log(error);
+            setProfile(result.data.data[0])
         }
-    }
-    render() {
-        if(this.state.isLoggedOut){
-            return <Navigate to={'/'} replace={true}/>
-        }
-        return (
-            <div >
-                <Header />
-                <Prompt show={this.state.show} onClose={()=>{
-                    this.setState({
-                        show : false
-                    })
-                }} yes={this.logout} logout={this.state.isLoggedOut}/>
-                {/* <Logout isLoggedOut={()}/>
-                 */}
-                <div  className="row mainContent">
-                    <h2 className="user-profile">User Profile</h2>
-                    <div className="d-flex profileContainer">
-                        <div className="row profileInfo">
-                            <div className="profile">
-                                {/* <img src={`http://localhost:8000${this.state.profile.photo}`} alt="" /> */}
-                                {this.state.profile.photo ? <img src={`http://localhost:8000${this.state.profile.photo}`} alt="" /> : <img src={photoprofile} alt="" />}
-                                <div className="userName">
-                                    <h3>{this.state.profile.display_name}</h3>
-                                    <p>{this.state.profile.email}</p>
-                                </div>
+        getProfile()
+    }, [token])
+  return (
+    <>
+    <Header/>
+        <Prompt show={show} onClose={()=>{
+            setShow(false)
+        }} yes={editProfile}/>
+        <PromptLogout showLogout={showLogout} onClose={()=>setShowLogout(false)} yes={logout}/>
+        <div  className="row mainContent">
+            <h2 className="user-profile">User Profile</h2>
+                <div className="d-flex profileContainer">
+                    <div className="row profileInfo">
+                        <div className="profile">
+                            {photo ? <img src={`http://localhost:8000${photo}`} alt="" /> : <img src={photoprofile} alt="" />}
+                            <div className="userName">
+                                <h3>{profile.name}</h3>
+                                <p>{profile.email}</p>
+                        </div>
+                    </div>
+                    <form>
+                        <div className="profileButton">
+                            <div className="choosePhoto">
+                                <input type="file" value='' className='inputFile' 
+                                onChange={e=>setSelectedFile(e.target.files[0])}
+                                />
+                                Choose photo
                             </div>
-                            <form>
-                                <div className="profileButton">
-                                    <div className="choosePhoto">
-                                        <input type="file" value='' className='inputFile' onChange={e=>{
-                                            this.setState({
-                                                selectedFile : e.target.files[0]
-                                            })
-                                        }}/>
-                                        Choose photo
-                                    </div>
-                                    <div className="removePhoto" type="submit">Remove photo</div>
-                                    <div className="editPassword" type="submit">Edit Password</div>
-                                    <p>Do you want to save the change?</p>
-                                    <div className="saveChange" type="submit" 
-                                    onClick={this.editProfile}>Save Change</div>
-                                    <div className="cancel" type="submit">Cencel</div>
-                                    <div className="logout" onClick={()=>{
-                                        this.setState({
-                                            show : true
-                                        })
-                                    }}>Logout</div>
+                            <div className="removePhoto" type="submit">Remove photo</div>
+                            <div className="editPassword" type="submit">Edit Password</div>
+                            <p>Do you want to save the change?</p>
+                            <div className="saveChange" type="submit" 
+                            onClick={()=>setShow(true)}
+                            >Save Change</div>
+                            <div className="cancel" type="submit">Cencel</div>
+                                <div className="logout"
+                                onClick={()=>setShowLogout(true)}
+                                >Logout</div>
                                 </div>    
                             </form>
                         </div>
@@ -184,27 +135,27 @@ class Profile extends Component {
                                 <form className="row form-contacts">
                                     <div className="col-sm-8 formEmail">
                                         <label htmlFor="email">Email adress :</label>
-                                        <input className='inputProfile' type="email" id="email" defaultValue={this.state.profile.email} 
+                                        <input className='inputProfile' type="email" id="email" 
+                                        defaultValue={profile.email} 
                                         onChannge={(e)=>{
-                                            this.setState({
-                                            email : e.target.value
-                                            })
-                                            console.log(this.state.email);
-                                        }}/>
+                                            setEmail(e.target.value)
+                                        }}
+                                        />
                                         <label htmlFor="adres">Delivery adress :</label>
-                                        <input className='inputProfile' type="text" id="adress" defaultValue={this.state.profile.delivery_adress} onChange={e=>{
-                                            this.setState({
-                                                delivery_adress : e.target.value
-                                            })
-                                        }}/>
+                                        <input className='inputProfile' type="text" id="adress" 
+                                        defaultValue={profile.delivery_adress} 
+                                        onChange={e=>{
+                                        setDelivery_adress(e.target.value)
+                                        }}
+                                        />
                                     </div>
                                     <div className="col-lg-4 col-sm-8 form-phone">
                                         <label htmlFor="phone">Mobile number :</label>
-                                        <input className='inputProfile' type="text" id="phone" value={this.state.profile.phone} onChange={e=>{
-                                            this.setState({
-                                                phone : e.target.value
-                                            })
-                                        }} />
+                                        <input className='inputProfile' type="text" id="phone" 
+                                        defaultValue={profile.phone} onChange={e=>{
+                                            setPhone(e.target.value)
+                                        }} 
+                                        />
                                     </div>
                                 </form>
                             </div>
@@ -213,66 +164,61 @@ class Profile extends Component {
                                 <form className="row form-details">
                                     <div className="col-sm-8 form-display-first-last">
                                         <label htmlFor="name">Display name :</label>
-                                        <input className='inputProfile' type="text" id="name" defaultValue={this.state.profile.display_name} onChange={e=>{
-                                            this.setState({
-                                                display_name : e.target.value
-                                            })
-                                        }} />
+                                        <input className='inputProfile' type="text" id="name" 
+                                        defaultValue={profile.display_name} 
+                                        onChange={e=>{
+                                            setDisplay_name(e.target.value)
+                                        }} 
+                                        />
                                         <label htmlFor="first">First name :</label>
-                                        <input className='inputProfile' type="text" id="first" defaultValue={this.state.profile.firstname} onChange={e=>{
-                                            this.setState({
-                                                firstname : e.target.value
-                                            })
-                                        }}/>
+                                        <input className='inputProfile' type="text" id="first" 
+                                        defaultValue={profile.firstname} 
+                                        onChange={e=>{
+                                            setFirstName(e.target.value)
+                                        }}
+                                        />
                                         <label htmlFor="last">Last name :</label>
-                                        <input className='inputProfile' type="text" id="last" defaultValue={this.state.profile.lastname} onChange={e=>{
-                                            this.setState({
-                                                lastname : e.target.value
-                                            })
-                                        }} />
+                                        <input className='inputProfile' type="text" id="last" 
+                                        defaultValue={profile.lastname} 
+                                        onChange={e=>{
+                                            setLastName(e.target.value)
+                                        }} 
+                                        />
                                     </div>
                                     <div className="col-lg-4 col-sm-8 form-date">
                                         <label htmlFor="date">Birthday</label>
-                                        <input className='inputProfile'type="date" id="" defaultValue={this.state.profile.birthday} />
+                                        <input className='inputProfile'type="date" id="" 
+                                        defaultValue={profile.birthday} 
+                                        />
                                     </div>
                                 </form>
                             </div>
                             <div className="gender">
                                 <label className="radio-container"
                                 >Male
-                                    <input type="radio" defaultValue='Male'  name="radio" onChange={e=>{
-                                        this.setState({
-                                            gender : e.target.value
-                                        })
-                                    }}/>
+                                    <input type="radio" defaultValue='Male'  name="radio" 
+                                    onChange={e=>{
+                                        setGender('Male')
+                                    }}
+                                    />
                                     <span className="checkmark"></span>
                                 </label>
                                 <label className="radio-container"
                                 >Female
-                                    <input type="radio" defaultValue='Female'  name="radio" onChange={e=>{
-                                        this.setState({
-                                            gender : e.target.value
-                                        })
-                                    }} />
+                                    <input type="radio" 
+                                    defaultValue='Female'  name="radio" onChange={e=>{
+                                        setGender(e.target.value)
+                                    }} 
+                                    />
                                     <span className="checkmark"></span>
                                 </label>
                             </div>
                         </div>
                     </div>
-                </div>
-                <Footer />
-            </div>
-        )
-    }
+        </div>
+    <Footer/>
+    </>
+  )
 }
 
-const mapDispatchToProps=(dispatch)=>{
-
-    return {
-        doDeleteUser : (params)=>{
-            dispatch(deleteUserInfo(params))
-        }
-    }
-}
-
-export default connect(mapDispatchToProps)(navigate(Profile))
+export default Profile

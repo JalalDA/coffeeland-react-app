@@ -152,6 +152,7 @@ return (
 
                 </>}
             </div>
+            {role === 'admin' ? <div className="addProduct">ADD NEW PRODUCT</div> : ''}
             <div className="paginasiProduct">
                 <img src={left} alt="leftArrow" onClick={()=>{
                     setParams(params=> params=`?page=${meta.curentPage-1}`)

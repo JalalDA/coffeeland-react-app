@@ -37,13 +37,13 @@ class Header extends Component {
         //     })
         // }
         }
-        const photo = localStorage.getItem('photo')
-        if(photo === 'null'){
+        const {photo} = this.props
+        if(!photo){
             this.setState({
                 statePhoto : false,
             })
         }
-        if(photo !== 'null'){
+        if(photo){
             this.setState({
                 profileImg : photo
             })
@@ -65,20 +65,20 @@ class Header extends Component {
                 </div>
                 <div>Coffeeland</div>
             </div>
-            <ul className="col-sm-6 navigasi">
+            <ul className="col-sm-6 navigasi nav">
                 {role === 'admin' ? 
                 <>
-                <li className='listNavItem'>
+                <li className='listNavItem nav-item'>
                         <Link className='link' to='/'>Home</Link>
                     </li>
-                    <li className='listNavItem'>
+                    <li className='listNavItem nav-item'>
                         <Link className='link' to='/products'>Product</Link>
                     </li>
-                    <li className='listNavItem'>
+                    <li className='listNavItem nav-item'>
                         <Link className='link' to='/orders'>Orders</Link>
                     </li>
-                    <li className='listNavItem'>
-                        <Link className='link' to='/history'>Dashboard</Link>
+                    <li className='listNavItem nav-item'>
+                        <Link className='link' to='/dashboard'>Dashboard</Link>
                     </li>
                 </> 
                 :
@@ -143,9 +143,10 @@ class Header extends Component {
 
 const mapStateToProps = (reduxState)=>{
     const {login : {
-        value : {role}
-    }} = reduxState
-    return {role}
+        value : {role},
+        photo 
+    }} = reduxState 
+    return {role, photo}
 }
 
 

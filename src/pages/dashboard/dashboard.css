@@ -1,63 +1,489 @@
-.dashboardContainer{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
+.dashboardContainer {
     background-color: #F8F8F8;
+    padding: 20px 7.5%;
+    width: 100%;    
 }
-.dashboardTitle{
-    font-weight: 700;
+
+.dashBoardTitle {
     font-size: 30px;
+    font-weight: 700;
     line-height: 50px;
+    letter-spacing: 0em;
+    text-align: center;
     color: #6A4029;
-}
-.dashboardTop{
-    display: flex;
     align-items: center;
-    justify-content: flex-start;
-    width: 80%;
 }
-.dashboardContent{
-    width: 80%;
+
+.dashboardBulletTitleContainer {
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
-.leftContent{
-    background: #FFFFFF;
-    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.03);
-    border-radius: 20px;
+
+.dashboardInactiveBulletTitleContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 50px
+}
+
+.dashboardActiveBullet {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 10px solid #9F9F9F;
+}
+
+.activeBullet {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 10px solid #6A4029;
+    background-color: #FFBA33;
+}
+
+.dashboardActiveBullet {
+    font-family: Poppins;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-top: 10px;
+
+}
+
+.dashboardActiveTitle{
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 30px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.dashboardCardContainer {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    margin-top: 90px;
+}
+
+.dashboardCard {
     width: 65%;
-    height: 500px;
-    padding: 32px 46px;
+    background: #FFFFFF;
+    border-radius: 20px;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.34);
+    padding: 20px 5%;
 }
-.leftContenttop{
+
+.dashboardTitleCard {
     display: flex;
+    justify-content: space-between;
+    margin-bottom: 60px;
+    margin-top: 20px;
+}
+
+.dashboardMainTitle {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 45px;
+    letter-spacing: 0px;
+    text-align: left;
+
+}
+
+.dashboardMainOption {
+    display: flex;
+    justify-content: center;
     align-items: center;
+}
+
+
+.dashboardMainSubtitle {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: #7C828A;
+
+}
+
+.chartContainer {
+    height: 400px;
+    display: flex;
+}
+
+
+.chartLeftLabel {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.chartLeftItem {
+    flex: 1;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: #7C828A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.mainChart {
+    flex: 6;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.chartColumn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50px;
+}
+
+.chartColumnPositive {
+    width: 20px;
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.chartColumnPositiveBar{
+    height: 50%;
+    background-color: #FFBA33;
+    border-radius: 4px;
+
+}
+
+.chartColumnNegative{
+    width: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.chartColumnNegativeBar{
+    background-color: #6A4029;
+    height: 100%;
+    border-radius: 4px;
+
+}
+.lineChart{
+    border-bottom: 1px dashed#7C828A;
+    height: 10px;
+    width: 210%;
+    margin-bottom: 5px;
+}
+.chartColumnBottomLabel {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 0px;
+    text-align: center;
+    color: #7C828A;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboardNoteContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.dashboardNote {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 23px;
+    letter-spacing: 0px;
+    text-align: left;
+    margin: 0px 20px;
+
+}
+
+.dashboardNoteBullet {
+    width: 15px;
+    height: 15px;
+    background: #FFBA33;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.dashboardNoteBulletOut {
+    width: 15px;
+    height: 15px;
+    background-color: #6A4029;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.dashboardSideContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30%;
+
+}
+
+.dashboardSideTop,
+.dashboardSideBottom {
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding: 15px 5%;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.34);
+}
+
+.dashboardSideTop {
+    height: 47.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 35px;
+
+}
+
+.dashboardSideBottom{
+    height: 47.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboardAdminProfile {
+    display: flex;
+
+}
+
+.dashboardAdminName {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: left;
+    padding: 0px 15px;
+
+}
+
+.dashboardAdminName span {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0px;
+    text-align: left;
+
+}
+
+.dashboardAdminPict {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+
+}
+
+.dashboardStaffPerform {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dashboardStaffTitle {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: left;
+}
+
+.dashboardStaffDonut {
+    font-family: Poppins;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 26px;
+    letter-spacing: 0px;
+    text-align: center;
+    width: 75px;
+    height: 75px;
+    background: #FFFFFF;
+    border: 5px solid #4A8E07;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 0;
+
+}
+
+.dashboardStaffNote {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0px;
+    text-align: center;
+    color: #7C828A;
+
+}
+
+.dashboardGoalsTitle {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: center;
+}
+
+.dashboardGoalsSubtitle {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0px;
+    text-align: center;
+    color: #7C828A;
+}
+
+.dashboardGoalsDonut{
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 26px;
+    letter-spacing: 0px;
+    text-align: center;
+    width: 120px;
+    height: 120px;
+    background: #FFFFFF;
+    border: 12px solid #FFBA33;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 0;
+
+}
+
+.dashboardGoalseMore {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.goalsDotActive {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #147AD6;
+    margin: 5px;
+}
+
+.goalsDotInactive {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #7388A9;
+    opacity: 35%;
+    margin: 5px;
+}
+
+.dashboardButtonContainer{
+    display: flex;
     justify-content: space-between;
 }
-.rightContent{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: column;
-    height: 500px;
+
+.dashboardDownloadbutton {
+    width: 67.5%;
+}
+
+.dashboardSharebutton {
     width: 30%;
-    row-gap: 30px;
-    margin-left: 44px;
 }
-.achieve{
-    background: #FFFFFF;
-    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.03);
+
+.dashboardDownloadbutton,
+.dashboardSharebutton {
+    height: 75px;
+    background: #6A4029;
+    box-shadow: 0px 6px 20px rgba(106, 64, 41, 0.6);
     border-radius: 20px;
-    height: 200px;
-    width: 100%;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 25px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #FFFFFF;
+    cursor: pointer;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -o-user-select: none;
+
 }
-.target{
-    background: #FFFFFF;
-    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.03);
-    border-radius: 20px;
-    height: 200px;
-    width: 100%;
+
+.db-download-button:hover,
+.db-share-button:hover {
+    background-color: #552d17;
+}
+
+.db-download-button:active,
+.db-share-button:active {
+    background-color: #6A4029;
+}
+
+@media (max-width:900px) {
+    .db-main-card-container{
+        flex-direction: column-reverse;
+        
+    }
+
+    .db-main-card{
+        width: 100%;
+    }
+    .db-aside-card-container{
+        width: 100%;
+        flex-direction: row;
+        padding: 20px 0;
+    }
+    .db-aside-card-top,
+    .db-aside-card-bottom{
+        height: auto;
+        width: 48%;
+    }
+    .db-button-container{
+        flex-direction: column-reverse;
+    }
+    .db-download-button, .db-share-button{
+        width: 100%;
+    }
+}
+
+@media (max-width: 630px) {
+    .db-aside-card-container{
+        flex-direction: column;
+        padding: 0;
+    }
+    .db-aside-card-top,
+    .db-aside-card-bottom{
+        width: 100%;
+        margin-bottom: 30px
+    }
 }
