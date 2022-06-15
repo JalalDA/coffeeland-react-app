@@ -80,26 +80,26 @@ const AddProduct = () => {
                     onChange={e=> setDescription(e.target.value)}/>
                     <label htmlFor="">Input Product Size : </label>
                     <div className="sizeProductAdd">
-                        <div className="R" onClick={()=>{
+                        <div className={sizes === 'Regular' ? 'sizeActive' : 'R' } onClick={()=>{
                             setSize('Regular')
                         }}>R</div>
-                        <div className="L" onClick={()=>{
+                        <div className={sizes === 'Large' ? 'sizeActive' : 'L' } onClick={()=>{
                             setSize('Large')
                         }}>L</div>
-                        <div className="XL" onClick={()=>{
+                        <div className={sizes === 'Extra Large' ? 'sizeActive' : 'XL' } onClick={()=>{
                             setSize('Extra Large')
                         }}>XL</div>
                     </div>
                     <label htmlFor="">Input Delivery Method : </label>
                     <div className="deliveryMethodAdd">
-                        <div className="selectMethodAdd" onClick={()=>{
+                        <div className={deliveryMethod==='Home Delivery' ? 'selectMethodActive' : "selectMethodAdd"} onClick={()=>{
                             setDeliveryMethod('Home Delivery')
                         }}
                         >Home Delivery</div>
-                        <div className="selectMethodAdd" onClick={()=>{
+                        <div className={deliveryMethod==='Dine In' ? 'selectMethodActive' : "selectMethodAdd"} onClick={()=>{
                             setDeliveryMethod('Dine In')
                         }}>Dine In</div>
-                        <div className="selectMethodAdd" onClick={()=>{
+                        <div className={deliveryMethod==='Take Away' ? 'selectMethodActive' : "selectMethodAdd"} onClick={()=>{
                             setDeliveryMethod('Take Away')
                         }}>Take Away</div>
                     </div>

@@ -322,7 +322,6 @@
 }
 
 .dashboardStaffDonut {
-    font-family: Poppins;
     font-size: 22px;
     font-weight: 700;
     line-height: 26px;
@@ -439,11 +438,6 @@
     text-align: left;
     color: #FFFFFF;
     cursor: pointer;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -o-user-select: none;
 
 }
 

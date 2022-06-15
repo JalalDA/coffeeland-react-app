@@ -7,6 +7,7 @@ import chat from '../../assets/img/chat.png'
 import { Link } from 'react-router-dom'
 import navigate from '../../helpers/Navigate'
 import {connect} from 'react-redux'
+import Modal from '../Modal/Modal'
 
 class Header extends Component {
     constructor(props){
@@ -17,7 +18,8 @@ class Header extends Component {
             user : false,
             statePhoto : true,
             setSearchName : props,
-            profileImg : ''
+            profileImg : '',
+            show : false
         }
     }
     componentDidMount(){
@@ -50,7 +52,7 @@ class Header extends Component {
         }
     }
     render() {
-        const {navigate, role} = this.props
+        const {navigate, role, token} = this.props
         const searchButton = ()=>{
             this.setState({
                 isSearch : false
@@ -58,6 +60,11 @@ class Header extends Component {
         }
         return (
         <>
+        <Modal show={this.state.show} onClose={()=>{
+            this.setState({
+                show : false
+            })
+        }} response='Please Login First'/>
             <div className="row header sticky-top">
             <div className="col-sm-3 logoHeader">
                 <div className="logoImgHeader">
@@ -90,7 +97,13 @@ class Header extends Component {
                         <Link className='link' to='/products'>Product</Link>
                     </li>
                     <li className='listNavItem'>
-                        <Link className='link' to='/your-cart'>Your Chart</Link>
+                        <Link className='link' to='/your-cart' onClick={()=>{
+                            if(!token){
+                                this.setState({
+                                    show : true
+                                })
+                            }
+                        }}>Your Chart</Link>
                     </li>
                     <li className='listNavItem'>
                         <Link className='link' to='/history'>History</Link>
@@ -143,10 +156,10 @@ class Header extends Component {
 
 const mapStateToProps = (reduxState)=>{
     const {login : {
-        value : {role},
+        value : {role, token},
         photo 
     }} = reduxState 
-    return {role, photo}
+    return {role, photo, token}
 }
 
 

@@ -29,7 +29,7 @@ import axios from 'axios'
         }
         // if(dailyReport !== []){
         // }
-        const dataHeight = dailyReport.map(e=>e.revenue * 100 / 500000)
+        const dataHeight = dailyReport.map(e=>e.revenue * 100 / 2000000)
         console.log(dataHeight);
         return (
             <>
@@ -61,17 +61,17 @@ import axios from 'axios'
                     <div className="dashboardCardContainer">
                         <div className="dashboardCard">
                             <div className="dashboardTitleCard">
-                                <div className="dashboardMainTitle">{}</div>
+                                <div className="dashboardMainTitle">{activeBullet === 'first'? 'Daily Report' : ''}</div>
                                 <div className="dashboardMainOption"><img src={more} alt="option" /></div>
                             </div>
                             <div className="dashboardMainSubtitle">Last 7 Days</div>
                             <div className="chartContainer">
                                 <div className="chartLeftLabel">
-                                    <div className="chartLeftItem">500K</div>
-                                    <div className="chartLeftItem">250K</div>
+                                    <div className="chartLeftItem">1500K</div>
+                                    <div className="chartLeftItem">750K</div>
                                     <div className="chartLeftItem">0</div>
                                     <div className="chartLeftItem">-250K</div>
-                                    <div className="chartLeftItem">-500K</div>
+                                    <div className="chartLeftItem"></div>
                                 </div>
                                 <div className="mainChart">
                                     <div className="chartColumn">
@@ -80,7 +80,7 @@ import axios from 'axios'
                                         </div>
                                         <div className="lineChart"></div>
                                         <div className="chartColumnNegative">
-                                            <div className="chartColumnNegativeBar" style={{height:"80%"}}></div>
+                                            <div className="chartColumnNegativeBar" style={{height:"0%"}}></div>
                                         </div>
                                         <div className="chartColumnBottomLabel">Sunday</div>
                                     </div>
@@ -90,7 +90,7 @@ import axios from 'axios'
                                         </div>
                                         <div className="lineChart"></div>
                                         <div className="chartColumnNegative">
-                                            <div className="chartColumnNegativeBar" style={{height:"80%"}}></div>
+                                            <div className="chartColumnNegativeBar" style={{height:"0%"}}></div>
                                         </div>
                                         <div className="chartColumnBottomLabel">Monday</div>
                                     </div>
@@ -100,7 +100,7 @@ import axios from 'axios'
                                         </div>
                                         <div className="lineChart"></div>
                                         <div className="chartColumnNegative">
-                                            <div className="chartColumnNegativeBar" style={{height:"80%"}}></div>
+                                            <div className="chartColumnNegativeBar" style={{height:"0%"}}></div>
                                         </div>
                                         <div className="chartColumnBottomLabel">Tuesday</div>
                                     </div>
@@ -110,27 +110,27 @@ import axios from 'axios'
                                         </div>
                                         <div className="lineChart"></div>
                                         <div className="chartColumnNegative">
-                                            <div className="chartColumnNegativeBar" style={{height:"80%"}}></div>
+                                            <div className="chartColumnNegativeBar" style={{height:"0%"}}></div>
                                         </div>
                                         <div className="chartColumnBottomLabel">Wednesday</div>
                                     </div>
                                     <div className="chartColumn">
                                         <div className="chartColumnPositive">
-                                            <div className="chartColumnPositiveBar" style={{height:"20%"}}></div>
+                                            <div className="chartColumnPositiveBar" style={{height:`${dataHeight[4] || 0}%`}}></div>
                                         </div>
                                         <div className="lineChart"></div>
                                         <div className="chartColumnNegative">
-                                            <div className="chartColumnNegativeBar" style={{height:"80%"}}></div>
+                                            <div className="chartColumnNegativeBar" style={{height:"0%"}}></div>
                                         </div>
                                         <div className="chartColumnBottomLabel">Thursday</div>
                                     </div>
                                     <div className="chartColumn">
                                         <div className="chartColumnPositive">
-                                            <div className="chartColumnPositiveBar" style={{height:"20%"}}></div>
+                                            <div className="chartColumnPositiveBar" style={{height:`${dataHeight[5] || 0}%`}}></div>
                                         </div>
                                         <div className="lineChart"></div>
                                         <div className="chartColumnNegative">
-                                            <div className="chartColumnNegativeBar" style={{height:"80%"}}></div>
+                                            <div className="chartColumnNegativeBar" style={{height:"0%"}}></div>
                                         </div>
                                         <div className="chartColumnBottomLabel">Friday</div>
                                     </div>
@@ -142,7 +142,7 @@ import axios from 'axios'
                             </div>
                             <div className="dataReport">
                                 <p>Date : {dailyReport.map(data => 
-                                <>{`${data.date}       `}</>)} 
+                                <>{ data.date ? `${data.date.split('T17:00:00.000Z')}     ` : 'Waiting ...'}</>)} 
                                 </p>
                                 <p>Revenue : {dailyReport.map(data => 
                                 <>{`Rp.${data.revenue},       `}</>)} 
@@ -154,7 +154,7 @@ import axios from 'axios'
                                 <div className="dashboardAdminProfile">
                                     <div className="dashboardAdminPictContainer"><img className='dashboardAdminPict' src={`http://localhost:8000${photo}`} alt="admin" /></div>
                                     <div className="dashnoardAdminNameContainer">
-                                        <div className="dashboardAdminName">Cheryn Laurent<br />
+                                        <div className="dashboardAdminName"><br />
                                             <span> Keep up the good work and spread love!</span></div>
                                     </div>
                                 </div>
