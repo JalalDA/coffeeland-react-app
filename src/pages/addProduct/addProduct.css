@@ -1,0 +1,212 @@
+.addProductContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 120px 196px;
+    width: 100%;
+}
+
+.addProductTitle{
+    font-weight: 700;
+    font-size: 20px;
+    color: #6A4029;
+    padding-left: 196px;
+    padding-top: 20px;
+}
+.leftAddProduct{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 50px;
+    width: 40%;
+}
+
+.imgProductAdd{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px;
+    border-radius: 50%;
+    background-color:rgba(186, 186, 186, 0.35);;
+}
+
+.topLeftAdd{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 30px;
+    width: 100%;
+}
+
+.takePictureAdd{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 29px;
+    background: #0B132A;
+    border-radius: 20px;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+}
+.choosePictureAdd{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 29px 70px;
+    background:#FFBA33;;
+    border-radius: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #6A4029;
+    width: 100%;
+    position: relative;
+}
+.choosePictureAdd > input{
+    position: absolute;
+    opacity: 0;
+}
+
+.deliveryHourAdd{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+    row-gap: 20px;
+}
+
+.deliveryHourAdd > p{
+    color : #6a4029;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.deliveryHourAdd > input {
+    width: 100%;
+    border: 0.5px solid #666;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.rightAddProduct{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    row-gap: 50px;
+    width: 40%;
+}
+.addProductForm{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    row-gap: 20px;
+    width: 100%;
+}
+.addProductForm > label{
+    color : #6a4029;
+    font-weight: 700;
+    font-size: 20px;
+    text-align: left;
+    width: 100%;
+    margin-top: 20px;
+}
+.addProductForm > input{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    outline: none;
+
+}
+.sizeProductAdd{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.L, .R{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFBA33;
+    padding: 10px 18px;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.XL{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFBA33;
+    padding: 12px 18px;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.deliveryMethodAdd{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.selectMethodAdd{
+    display: flex;
+    align-items: center;justify-content: center;
+    background-color: #FFBA33;
+    padding: 24px 18px;
+    border-radius: 20px;
+    color: #6a4029;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.saveProduct{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+    background-color: #6A4029;
+    color: white;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 20px;
+    cursor: pointer;
+}
+.saveProduct:hover{
+    background-color: #8f5d43;
+}
+.cancelAddProduct{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+    background-color: rgba(186, 186, 186, 0.35);;
+    color:#4F5665;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 20px;
+    cursor: pointer;
+}
+.cancelAddProduct:hover{
+    background-color: #b2b8c7;
+}
+.selectMethodAdd:hover,.L:hover,.XL:hover,.R:hover{
+    background-color:#6A4029;
+    color: white;
+}

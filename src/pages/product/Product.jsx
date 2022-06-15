@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react'
 import Header from '../../components/header/Header'
 import Footer from '../../components/footer/Footer'
 import arrow from '../../assets/img/ArrowRight.png'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {addtocart} from '../../redux/reducers/cartSlice'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import Modal from '../../components/Modal/Modal'
 import { useNavigate } from 'react-router-dom'
+import trash from '../../assets/img/trashBox.png'
+import PromptAll from '../../components/prompt/PromptAll'
 
 const Product = (props) => {
     const dispatch = useDispatch()
@@ -18,9 +20,11 @@ const Product = (props) => {
     const [pick, setPick] = useState('')
     const [size, setSize] = useState('')
     const [time, setTime] = useState('')
+    const [showPrompt, setShowPrompt] = useState(false)
     const persist = JSON.parse(localStorage.getItem('persist:persist'))
     const login = JSON.parse(persist.login)
     const token = login.value.token
+    const role = useSelector(state=>state.login.value.role)
     // const [response, setResponse] = useState('')
     const {id} = useParams()
     const detail = {
@@ -30,10 +34,24 @@ const Product = (props) => {
         count,
         time
     }
+    const deleteProduct = async ()=>{
+        try {
+            const config = {
+                headers : {
+                    Authorization : `Bearer ${token}`
+                }
+            }
+            const result = await axios.delete(`${process.env.REACT_APP_SERVER}/product/${id}`, config)
+            console.log(result.data.msg);
+            navigate('/products')
+        } catch (error) {
+            console.log(error);
+        }
+    }
     useEffect(()=>{
         const getDetailProduct = async ()=>{
             try {
-                const result = await axios.get(`http://localhost:8000/product/${id}`)
+                const result = await axios.get(`${process.env.REACT_APP_SERVER}/product/${id}`)
                 console.log(result);
                 setDetailProduct(result.data.data)
             } catch (error) {
@@ -49,10 +67,21 @@ return (
                 setShow(false)
                 navigate('/your-cart')
             }}/>
+            <PromptAll showPrompt={showPrompt} onClose={()=>{
+                setShowPrompt(false) 
+            }} sure={<>Do you want to delete product?</>} yes={deleteProduct}/>
             <div className='detailProductTittle'>Favorit and Promo {'>'} <b>{detailProduct.name}</b></div> 
             <div className="row containerDetailProduct">
                 <div className="col-lg-6 leftProduct">
-                    <img className='imgDetailProduct' src={`http://localhost:8000${detailProduct.pictures}`} alt="" />
+                    <div className="imgDetailProductContainer">
+                    <img className='imgDetailProduct' src={`http://localhost:8000${detailProduct.pictures}`} alt=""/>
+                    {role === 'admin' ? 
+                    <div className='trashBox' onClick={()=>{
+                        setShowPrompt(true)
+                    }}>
+                    <img src={trash} alt="" />
+                    </div> : ''}
+                    </div>
                     <div className="delivery">
                         <div className="delivTitle">Delivery and Time</div>
                         <div className="deliveryMethod">
@@ -114,7 +143,12 @@ return (
                         }}>
                         Add to Cart
                     </div>
-                    <div className="askToStaff">Ask to Staff</div>
+                    {role === 'admin' ?
+                    <div className="askToStaff" onClick={()=>{
+                        navigate('/editproduct')
+                    }}>Edit Product</div> : 
+                    <div className="askToStaff">Ask to Staff</div>}
+
                 </div>
                 <div className="col-lg-12 choose">
                     <div className="size">

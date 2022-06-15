@@ -13,6 +13,24 @@
     margin-left: 150px;
     margin-top: 52px;
 }
+.imgDetailProductContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+}
+.trashBox{
+    position: absolute;
+    bottom: 0px;
+    right: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    background-color: #6A4029;
+    border-radius: 20px;
+}
 .imgDetailProduct{
     border-radius: 50%;
     height: 250px;
@@ -138,7 +156,6 @@ text-align: left;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-
 }
 .countButton{
     display: flex;
@@ -302,6 +319,7 @@ text-align: left;
     font-size: 25px;
     font-weight: 700;
 }
+
 .detailOrder >p{
     font-size: 20px;
     font-weight: 400;

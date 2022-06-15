@@ -202,12 +202,6 @@
     line-height: 38px;
     color: #4f5665;
 }
-::placeholder{
-    color: #000000;
-    font-size: 20px;
-    font-weight: 400;
-}
-
 .form-contacts {
     display: flex;
 }

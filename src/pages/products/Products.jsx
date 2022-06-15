@@ -131,7 +131,9 @@ return (
                             <Link className='productName' to={`/product/${product.id}`}>{product.name}</Link></div>
                             <div className="priceProducts" key={product.id}>{product.price}</div>
                             <div className="pencil">
+                            <Link to={`/editproduct/${product.id}`}>
                                 <img src={pen} alt="pen" />
+                            </Link>
                             </div>
                         </div>
                     </div>
@@ -156,10 +158,12 @@ return (
             <div className="paginasiProduct">
                 <img src={left} alt="leftArrow" onClick={()=>{
                     setParams(params=> params=`?page=${meta.curentPage-1}`)
+                    window.scroll(0,0)
                     navigate('?page=1')
                 }}/>
                 <img src={right} alt="rightArrow" onClick={()=>{
                     setParams(params=> params=`?page=${meta.curentPage + 1}`)
+                    window.scroll(0,0)
                     navigate('?page=2')
                 }}/>
             </div>

@@ -22,6 +22,8 @@ import Orders from "./pages/orders/Orders";
 import Prompt from "./components/prompt/Prompt";
 import HeaderFunction from "./components/header/HeaderFunction";
 import PrivateAdmin from "./components/private/PrivateAdmin";
+import AddProduct from "./pages/addProduct/AddProduct";
+import EditProduct from "./pages/editProduct/EditProduct";
 
 let persistor = persistStore(store)
 
@@ -76,6 +78,16 @@ function App() {
           </PrivateAdmin>}/>
           <Route path="/prompt" element={<Prompt/>}/>
           <Route path="/headerfunction" element={<HeaderFunction/>}/>
+          <Route path="/addproduct" element={
+            <PrivateAdmin>
+              <AddProduct/>
+            </PrivateAdmin>
+          }/>
+          <Route path="/editproduct/:id" element={
+            <PrivateAdmin>
+              <EditProduct/>
+            </PrivateAdmin>
+          }/>
         </Routes>
       </BrowserRouter>
       </PersistGate>

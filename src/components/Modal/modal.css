@@ -26,7 +26,7 @@
     padding : 16px 29px;
     border-radius: 20px;
     width: 500px;
-    height: 300px;
+    height: auto;
     transform: translateY(-200px);
     transition: all 0.3s ease-in-out;
 }

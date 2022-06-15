@@ -258,6 +258,14 @@
     margin-bottom: 35px;
 
 }
+.dataReport{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    row-gap: 10px;
+    margin-top: 20px;
+}
 
 .dashboardSideBottom{
     height: 47.5%;

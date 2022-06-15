@@ -5,11 +5,32 @@ import "./dashboard.css"
 import more from "../../assets/img/more.png"
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
+import axios from 'axios'
 
     const Dashboard =()=>{
         const [activeBullet, setActiveBullet] = useState('first')
+        const [dailyReport, setDailyReport] = useState([])
         const photo = useSelector(state=>state.login.photo)
-        console.log(photo);
+        // const token = useSelector(state=>state.login.value.token)
+        const getDailyReport = async ()=>{
+            try {
+                // const config = {
+                //     headers : {
+                //         Authorization : `Bearer ${token}`
+                //     }
+                // }
+                const result = await axios.get(`${process.env.REACT_APP_SERVER}/transaction/dailyreport`)
+                console.log(result);
+                setDailyReport(result.data.data)
+                setActiveBullet('first')
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        // if(dailyReport !== []){
+        // }
+        const dataHeight = dailyReport.map(e=>e.revenue * 100 / 500000)
+        console.log(dataHeight);
         return (
             <>
             <Header/>
@@ -18,9 +39,7 @@ import { useSelector } from 'react-redux'
                     <div className="dashboardBulletTitleContainer">
                         <div className="dashboardInactiveBulletTitleContainer">
                             <div className={activeBullet === 'first' ? 'activeBullet' : 'dashboardActiveBullet'}
-                            onClick={()=>{
-                                setActiveBullet('first')
-                            }}
+                            onClick={getDailyReport}
                             ></div>
                             <div className='dashboardActiveTitle'>Daily</div>
                         </div>
@@ -42,22 +61,22 @@ import { useSelector } from 'react-redux'
                     <div className="dashboardCardContainer">
                         <div className="dashboardCard">
                             <div className="dashboardTitleCard">
-                                <div className="dashboardMainTitle">Monthly Report</div>
+                                <div className="dashboardMainTitle">{}</div>
                                 <div className="dashboardMainOption"><img src={more} alt="option" /></div>
                             </div>
                             <div className="dashboardMainSubtitle">Last 7 Days</div>
                             <div className="chartContainer">
                                 <div className="chartLeftLabel">
-                                    <div className="chartLeftItem">IDR 5M</div>
-                                    <div className="chartLeftItem">IDR 3M</div>
-                                    <div className="chartLeftItem">IDR 0K</div>
-                                    <div className="chartLeftItem">IDR 2M</div>
-                                    <div className="chartLeftItem"></div>
+                                    <div className="chartLeftItem">500K</div>
+                                    <div className="chartLeftItem">250K</div>
+                                    <div className="chartLeftItem">0</div>
+                                    <div className="chartLeftItem">-250K</div>
+                                    <div className="chartLeftItem">-500K</div>
                                 </div>
                                 <div className="mainChart">
                                     <div className="chartColumn">
                                         <div className="chartColumnPositive">
-                                            <div className="chartColumnPositiveBar" style={{height:"20%"}}></div>
+                                            <div className="chartColumnPositiveBar" style={{height:`${dataHeight[0]}%`}}></div>
                                         </div>
                                         <div className="lineChart"></div>
                                         <div className="chartColumnNegative">
@@ -67,7 +86,7 @@ import { useSelector } from 'react-redux'
                                     </div>
                                     <div className="chartColumn">
                                         <div className="chartColumnPositive">
-                                            <div className="chartColumnPositiveBar" style={{height:"20%"}}></div>
+                                            <div className="chartColumnPositiveBar" style={{height:`${dataHeight[1]}%`}}></div>
                                         </div>
                                         <div className="lineChart"></div>
                                         <div className="chartColumnNegative">
@@ -77,7 +96,7 @@ import { useSelector } from 'react-redux'
                                     </div>
                                     <div className="chartColumn">
                                         <div className="chartColumnPositive">
-                                            <div className="chartColumnPositiveBar" style={{height:"20%"}}></div>
+                                            <div className="chartColumnPositiveBar" style={{height:`${dataHeight[2]}%`}}></div>
                                         </div>
                                         <div className="lineChart"></div>
                                         <div className="chartColumnNegative">
@@ -87,7 +106,7 @@ import { useSelector } from 'react-redux'
                                     </div>
                                     <div className="chartColumn">
                                         <div className="chartColumnPositive">
-                                            <div className="chartColumnPositiveBar" style={{height:"20%"}}></div>
+                                            <div className="chartColumnPositiveBar" style={{height:`${dataHeight[3]}%`}}></div>
                                         </div>
                                         <div className="lineChart"></div>
                                         <div className="chartColumnNegative">
@@ -120,6 +139,14 @@ import { useSelector } from 'react-redux'
                             <div className="dashboardNoteContainer">
                                 <div className="dashboardNote"><div className="dashboardNoteBullet"></div> Income</div>
                                 <div className="dashboardNote"><div className="dashboardNoteBulletOut"></div> Outcome</div>
+                            </div>
+                            <div className="dataReport">
+                                <p>Date : {dailyReport.map(data => 
+                                <>{`${data.date}       `}</>)} 
+                                </p>
+                                <p>Revenue : {dailyReport.map(data => 
+                                <>{`Rp.${data.revenue},       `}</>)} 
+                                </p>
                             </div>
                         </div>
                         <aside className="dashBoardSideContainer">

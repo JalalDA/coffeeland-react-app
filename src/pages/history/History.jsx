@@ -78,7 +78,6 @@ return (
                 <div className="historyDetail">
                     <h4>{product.product_name}</h4>
                     <p>{product.total_payment}</p>
-                    <p>{product.id}</p>
                     <p>Delivered</p>
                 </div>
                 

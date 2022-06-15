@@ -19,6 +19,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    row-gap: 50px;
     background-color: white;
     padding : 10px 29px;
     padding-bottom: 45px;
