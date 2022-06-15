@@ -20,7 +20,6 @@ import {persistStore} from 'redux-persist'
 import { PersistGate } from "redux-persist/integration/react";
 import Orders from "./pages/orders/Orders";
 import Prompt from "./components/prompt/Prompt";
-import HeaderFunction from "./components/header/HeaderFunction";
 import PrivateAdmin from "./components/private/PrivateAdmin";
 import AddProduct from "./pages/addProduct/AddProduct";
 import EditProduct from "./pages/editProduct/EditProduct";
@@ -77,7 +76,6 @@ function App() {
             <Orders/>
           </PrivateAdmin>}/>
           <Route path="/prompt" element={<Prompt/>}/>
-          <Route path="/headerfunction" element={<HeaderFunction/>}/>
           <Route path="/addproduct" element={
             <PrivateAdmin>
               <AddProduct/>
