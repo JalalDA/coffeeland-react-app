@@ -144,7 +144,7 @@ return (
                     <div className="col-md-6 col-lg-3 d-flex flex-column productContainerProducts">
                         <div className="d-flex flex-column align-items-center justify-content-center cardProduct">
                             <img className="imgProductProducts" key={product.pictures} 
-                            src={`http://localhost:8000${product.pictures}`} alt=""/>
+                            src={`${process.env.REACT_APP_SERVER}${product.pictures}`} alt=""/>
                             <div className="productName" key={product.name}>
                             <Link className='productName' to={`/product/${product.id}`}>{product.name}</Link></div>
                             <div className="priceProducts" key={product.id}>{product.price}</div>
