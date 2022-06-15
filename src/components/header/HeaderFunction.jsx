@@ -13,9 +13,12 @@ const HeaderFunction = () => {
     return (
     <>
         <nav className="navbar navbar-expand-lg navbar-light bg-white px-5 py-4 header">
-            <div className="container-fluid d-flex">
+            <div className="container-fluid d-flex" onClick={()=>{
+                setUser(false)
+            }}>
                 <img src={logo} alt="img-icon" width="30" height="30" />
                 <Link className="navbar-brand fw-bold px-3" to="/">
+
                     Coffeeland
                 </Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
