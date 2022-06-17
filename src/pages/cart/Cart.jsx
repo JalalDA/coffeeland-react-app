@@ -34,7 +34,7 @@ const Cart = (props) => {
                     Authorization : `Bearer ${token}`
                 }
             }
-            const result = await axios.get('http://localhost:8000/user', config)
+            const result = await axios.get(`${process.env.REACT_APP_SERVER}/user`, config)
             setUser_id(result.data.data[0].id)
             setDisplayName(result.data[0].data.display_name)
             setAdress(result.data.data[0].delivery_adress)
@@ -66,7 +66,7 @@ const Cart = (props) => {
             user_id : user_id,
             product_image : cart.detailProduct.pictures
         }
-        const result = await axios.post('http://localhost:8000/transaction', body, config)
+        const result = await axios.post(`${process.env.REACT_APP_SERVER}/transaction`, body, config)
         console.log(result);
         setShow(true)
         } catch (error) {
@@ -95,7 +95,7 @@ return (
                 <h3>Order Summary</h3>
                 <div className="productListCart">
                     <div className="firstProduct">
-                        <img src={`http://localhost:8000${cart.detailProduct.pictures}`} alt="" />
+                        <img src={`${process.env.REACT_APP_SERVER}${cart.detailProduct.pictures}`} alt="" />
                         <div className='productCartDetail'>
                             <p>{cart.detailProduct.name}</p>
                             <p>X {cart.count}</p>

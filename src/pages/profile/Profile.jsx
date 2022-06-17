@@ -66,7 +66,7 @@ const Profile = () => {
             gender,
             photo : selectedFile
             }
-            const result = await axios.patch('http://localhost:8000/user', body, config)
+            const result = await axios.patch(`${process.env.REACT_APP_SERVER}/user`, body, config)
             console.log(result);
             dispatch(getProfileImg(result.data.data.photo)) 
             setShow(false)
@@ -102,7 +102,7 @@ const Profile = () => {
                 <div className="d-flex profileContainer">
                     <div className="row profileInfo">
                         <div className="profile">
-                            {photo ? <img src={`http://localhost:8000${photo}`} alt="" /> : <img src={photoprofile} alt="" />}
+                            {photo ? <img src={`${process.env.REACT_APP_SERVER}${photo}`} alt="" /> : <img src={photoprofile} alt="" />}
                             <div className="userName">
                                 <h3>{profile.name}</h3>
                                 <p>{profile.email}</p>

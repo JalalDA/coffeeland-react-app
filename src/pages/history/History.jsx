@@ -26,7 +26,7 @@ const History = () => {
             const body = {
                 idProduct : idProduct
             }
-            const result = await axios.patch('http://localhost:8000/history/delete', body)
+            const result = await axios.patch(`${process.env.REACT_APP_SERVER}/history/delete`, body)
             console.log(result);
             setMsg(result.data.msg)
             setShow(true)
@@ -45,7 +45,7 @@ const History = () => {
         }
         const getHistory = async ()=>{
             try {
-            const result = await axios.get('http://localhost:8000/history/:id', config)
+            const result = await axios.get(`${process.env.REACT_APP_SERVER}/history/:id`, config)
             console.log(result);
             setHistory(result.data.data)
             } catch (error) {
@@ -74,7 +74,7 @@ return (
         {history.map(product => 
         <div className="col-lg-4">
             <div className="cardHistory">
-                <img className='productImageHistory' src={`http://localhost:8000${product.product_image}`} alt="" />
+                <img className='productImageHistory' src={`${process.env.REACT_APP_SERVER}${product.product_image}`} alt="" />
                 <div className="historyDetail">
                     <h4>{product.product_name}</h4>
                     <p>{product.total_payment}</p>

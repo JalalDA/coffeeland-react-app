@@ -88,7 +88,7 @@ export default class Register extends Component{
                         password,
                         phone
                       }
-                      axios.post('http://localhost:8000/auth/register', body)
+                      axios.post(`${process.env.REACT_APP_SERVER}/auth/register`, body)
                       .then(result=>{
                         console.log(result.data);
                         this.setState({

@@ -38,7 +38,7 @@ const EditProduct = () => {
           Authorization : `Bearer ${token}`
         }
       }
-      const result = await axios.patch(`http://localhost:8000/product/${id}`, body, config)
+      const result = await axios.patch(`${process.env.REACT_APP_SERVER}/product/${id}`, body, config)
       console.log(result);
       setShow(true)
     } catch (error) {

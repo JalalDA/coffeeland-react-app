@@ -74,7 +74,7 @@ return (
             <div className="row containerDetailProduct">
                 <div className="col-lg-6 leftProduct">
                     <div className="imgDetailProductContainer">
-                    <img className='imgDetailProduct' src={`http://localhost:8000${detailProduct.pictures}`} alt=""/>
+                    <img className='imgDetailProduct' src={`${process.env.REACT_APP_SERVER}${detailProduct.pictures}`} alt=""/>
                     {role === 'admin' ? 
                     <div className='trashBox' onClick={()=>{
                         setShowPrompt(true)
@@ -169,7 +169,7 @@ return (
                     </div>
                     <div className="checkOut">
                         <div className="checkOutLeft">
-                            <img src={`http://localhost:8000${detailProduct.pictures}`} alt="" />
+                            <img src={`${process.env.REACT_APP_SERVER}${detailProduct.pictures}`} alt="" />
                             <div className="detailOrder">
                                 <h3>{}</h3>
                                 <p>x {count} ({size})</p>
