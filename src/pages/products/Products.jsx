@@ -39,6 +39,7 @@ const Products = () => {
         if(searchName !== ''){
             setParams(`/?name=${searchName}`)
         }
+        console.log(searchName);
     }, [params, discpatch, searchName])
 
     const getSearchName = (props)=>{

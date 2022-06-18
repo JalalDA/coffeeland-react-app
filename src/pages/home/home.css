@@ -428,15 +428,29 @@
 }
 
 @media screen and (max-width :768px) {
+    body{
+        overflow-x: hidden;
+        width: fixed;
+    }
     .teamWork{
         padding: 0px;
         margin: 0px;
         flex-direction: column-reverse;
+        width: 90%;
     }
     .hero{
         padding: 0px;
         margin: 0px;
         height: 300px;
+        width: 100%;
+    }
+    .textHero{
+        font-size: 20px;
+    }
+    .hero >p{
+        font-size: 20px;
+        top: 220px;
+        left: 20px;
     }
     .teamWorkImg{
         margin: 0;
@@ -445,7 +459,8 @@
     .infoStore{
         margin: 0;
         padding: 0;
-        width: 80%;
+        width: 75%;
+        top: 800px;
     }
     .textLogo{
         font-size: 18px;
@@ -460,10 +475,8 @@
         width: auto;
     }
     .textHero{
+        left: 20px;
         top: 140px;
-    }
-    .hero>p{
-        top: 300px;
     }
     .getStarted{
         top: 400px;
@@ -504,6 +517,7 @@
     .maps{
         margin: 0;
         padding: 0;
+        width: 100%;
     }
     .maps>h3{
         font-size: 25px;
