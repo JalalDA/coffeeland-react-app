@@ -437,6 +437,7 @@
         margin: 0px;
         flex-direction: column-reverse;
         width: 90%;
+        display: none;
     }
     .hero{
         padding: 0px;
@@ -581,7 +582,7 @@ display: none;
         display: none;
     }
     .auth{
-        display: none;
+        display: flex;
     }
     .hero{
         height: 450px;
@@ -613,6 +614,7 @@ display: none;
     .teamWork{
         width: 100%;
         margin-left: 20px;
+        display: none;
     }
     .teamWork>img{
         width: 100%;
