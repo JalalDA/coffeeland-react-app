@@ -38,7 +38,7 @@ const Profile = () => {
                     Authorization : `Bearer ${token}` 
                 }
             }
-            const result = await axios.delete('http://localhost:8000/auth/logout', config)
+            const result = await axios.delete(`${process.env.REACT_APP_SERVER}/auth/logout`, config)
             console.log(result);
             localStorage.removeItem('persist:persist')
             localStorage.removeItem('photo')
