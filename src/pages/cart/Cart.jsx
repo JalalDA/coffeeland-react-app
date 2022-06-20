@@ -95,7 +95,7 @@ return (
                 <h3>Order Summary</h3>
                 <div className="productListCart">
                     <div className="firstProduct">
-                        <img src={`${process.env.REACT_APP_SERVER}${cart.detailProduct.pictures}`} alt="" />
+                        <img src={`${cart.detailProduct.pictures}`} alt="" />
                         <div className='productCartDetail'>
                             <p>{cart.detailProduct.name}</p>
                             <p>X {cart.count}</p>
