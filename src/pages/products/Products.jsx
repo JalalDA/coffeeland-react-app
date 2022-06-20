@@ -96,7 +96,6 @@ return (
             </div>
             <div className="row favoriteProductProducts">
             <div className="productFilter col-lg-12">
-                <img src={filter} alt="" />
                 <select onChange={(e)=>{
                     if(e.target.value === 'price' && (params === '/')) {
                         setParams(params=>params+='?&sort=price')
@@ -113,7 +112,7 @@ return (
                         setSearchParams(`category=${params+='?&sort=price'}`)
                     }
                 }}
-                > <option value="">Filter</option>
+                > <option value="">Order</option>
                     <option value='price'
                     >Price</option>
                 </select>
@@ -127,6 +126,7 @@ return (
                 }}> <option >Sort</option>
                     <option value="asc">Cheapest</option>
                 </select>
+                <img src={filter} alt="" />
             </div>
                 {role === 'admin'?
                 <>
@@ -152,7 +152,7 @@ return (
                     <div className="col-md-6 col-lg-3 d-flex flex-column productContainerProducts">
                         <div className="d-flex flex-column align-items-center justify-content-center cardProduct">
                             <img className="imgProductProducts" key={product.pictures} 
-                            src={`${process.env.REACT_APP_SERVER}${product.pictures}`} alt=""/>
+                            src={`${product.pictures}`} alt=""/>
                             <div className="productName" key={product.name}>
                             <Link className='productName' to={`/product/${product.id}`}>{product.name}</Link></div>
                             <div className="priceProducts" key={product.id}>{product.price}</div>
