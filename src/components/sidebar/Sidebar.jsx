@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import './sidebar.css'
 import spagheti from '../../assets/img/spagheti.png'
-
-export default class Sidebar extends Component {
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+ class Sidebar extends Component {
   render() {
+    const {role} = this.props
     return (
         <div className="col-lg-4 row sideBar">
                 <div className="promoTitle">
@@ -34,7 +36,19 @@ export default class Sidebar extends Component {
                         <p>3. Buy 1 get 1 only for new user</p>
                         <p>4. Should make member card to apply coupon</p>
                 </div>
+                {role === 'admin'? <div className="addPromo">
+                  <Link className='addpromo' to={'/addpromo'}>Add new Promo</Link>
+                </div> : null}
         </div>
     )
   }
 }
+
+const mapStateToProps = (reduxState)=>{
+  const {login : {
+      value : {role, token},
+  }} = reduxState 
+  return {role, token}
+}
+
+export default connect(mapStateToProps)(Sidebar) 

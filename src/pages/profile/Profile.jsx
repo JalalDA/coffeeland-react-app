@@ -26,6 +26,7 @@ const Profile = () => {
     const [gender, setGender] = useState('')
     const [show, setShow] = useState(false)
     const [showLogout, setShowLogout] = useState(false) 
+    const [prevImage, setPrevImage] = useState(false)
     const dispatch = useDispatch()
     const token = useSelector(state=>state.login.value.token)
     const photo = useSelector(state=>state.login.photo)
@@ -85,11 +86,24 @@ const Profile = () => {
                 headers : {Authorization : `Bearer ${token}`}
             }
             const result = await axios.get(`${process.env.REACT_APP_SERVER}/user/`, config)
-            console.log(result);
-            setProfile(result.data.data[0])
+            setProfile(result.data.data)
         }
         getProfile()
     }, [token])
+    const handlePictures = (e)=>{
+        let reader = false
+        const files = e.target.files[0]
+        console.log(files);
+        if(files){
+        reader = new FileReader()
+        reader.onload = (e)=>{
+            const result = e.target.result
+            setPrevImage(result)
+        }
+        }        
+        reader.readAsDataURL(e.target.files[0])
+        setSelectedFile(e.target.files[0])
+    }
   return (
     <>
     <Header/>
@@ -102,9 +116,9 @@ const Profile = () => {
                 <div className="d-flex profileContainer">
                     <div className="row profileInfo">
                         <div className="profile">
-                            {photo ? <img src={`${process.env.REACT_APP_SERVER}${photo}`} alt="" /> : <img src={photoprofile} alt="" />}
+                            {prevImage ? <img src={prevImage} alt="profile" /> : <img src={photo ?photo :photoprofile} alt="profile" /> }
                             <div className="userName">
-                                <h3>{profile.name}</h3>
+                                <h3>{profile.display_name}</h3>
                                 <p>{profile.email}</p>
                         </div>
                     </div>
@@ -112,7 +126,7 @@ const Profile = () => {
                         <div className="profileButton">
                             <div className="choosePhoto">
                                 <input type="file" value='' className='inputFile' 
-                                onChange={e=>setSelectedFile(e.target.files[0])}
+                                onChange={handlePictures}
                                 />
                                 Choose photo
                             </div>
@@ -136,7 +150,7 @@ const Profile = () => {
                                     <div className="col-sm-8 formEmail">
                                         <label htmlFor="email">Email adress :</label>
                                         <input className='inputProfile' type="email" id="email" 
-                                        defaultValue={profile.email} 
+                                        defaultValue={'email'} 
                                         onChannge={(e)=>{
                                             setEmail(e.target.value)
                                         }}
@@ -179,7 +193,7 @@ const Profile = () => {
                                         />
                                         <label htmlFor="last">Last name :</label>
                                         <input className='inputProfile' type="text" id="last" 
-                                        defaultValue={profile.lastname} 
+                                        defaultValue={'profile.lastname'} 
                                         onChange={e=>{
                                             setLastName(e.target.value)
                                         }} 

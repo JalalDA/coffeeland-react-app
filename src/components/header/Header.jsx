@@ -14,7 +14,7 @@ const Header = (props) => {
     const [showToggle, setShowToggle] = useState(false)
     const [isSearch, setIsSearch] = useState(false)
     const token = useSelector(state=> state.login.value.token)
-    const photo = useSelector(state=> state.login.value.photo)
+    const photo = useSelector(state=> state.login.photo)
     const role = useSelector(state=>state.login.value.role)
     const navigate = useNavigate()
   return (
@@ -60,7 +60,7 @@ const Header = (props) => {
                         setIsSearch(true)
                     }}/> }
                     <img src={messageIcon} alt="" />
-                    <img className='nullProfile' src={photo ? `${process.env.REACT_APP_SERVER}${photo}` : nullProfile} alt="profile" onClick={()=>{
+                    <img className='nullProfile' src={photo ? `${photo}` : nullProfile} alt="profile" onClick={()=>{
                         navigate('/profile')
                     }}/>
                 </div>

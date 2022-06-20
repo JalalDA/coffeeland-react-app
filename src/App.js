@@ -23,13 +23,13 @@ import Prompt from "./components/prompt/Prompt";
 import PrivateAdmin from "./components/private/PrivateAdmin";
 import AddProduct from "./pages/addProduct/AddProduct";
 import EditProduct from "./pages/editProduct/EditProduct";
+import AddPromo from "./pages/promo/AddPromo";
 
 let persistor = persistStore(store)
 
 function App() {
   return (
     <div className="App">
-      
       <Provider store={store}>
         <PersistGate persistor={persistor}>
       <BrowserRouter>
@@ -85,6 +85,11 @@ function App() {
             <PrivateAdmin>
               <EditProduct/>
             </PrivateAdmin>
+          }/>
+          <Route path="/addpromo" element={
+            <PrivateElement>
+              <AddPromo/>
+            </PrivateElement>
           }/>
         </Routes>
       </BrowserRouter>

@@ -6,6 +6,7 @@ import axios from 'axios'
 import './addProduct.css'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
+import Modal from '../../components/Modal/Modal'
 
 const AddProduct = () => {
     const [name, setName] = useState('')
@@ -15,7 +16,23 @@ const AddProduct = () => {
     const [deliveryMethod, setDeliveryMethod] = useState('')
     const [pictures, setPictures] = useState('')
     const token = useSelector(state=>state.login.value.token)
+    const [show, setShow] = useState()
+    const [prevImage, setPrevImage] = useState(false)
 
+    const handlePictures = (e)=>{
+        let reader = false
+        const files = e.target.files[0]
+        console.log(files);
+        if(files){
+        reader = new FileReader()
+        reader.onload = (e)=>{
+            const result = e.target.result
+            setPrevImage(result)
+        }
+        }        
+        reader.readAsDataURL(e.target.files[0])
+        setPictures(e.target.files[0])
+    }
     const addProduct = async ()=>{
         try {
             const body = {
@@ -34,7 +51,7 @@ const AddProduct = () => {
             }
             const result = await axios.post(`${process.env.REACT_APP_SERVER}/product/`, body, config)
             console.log(result);
-            alert('Succes Add Product')
+            setShow(true)
         } catch (error) {
             console.log(error);
         }
@@ -42,18 +59,20 @@ const AddProduct = () => {
   return (
     <>
     <Header/>
+    <Modal show={show} onClose={()=>{
+        setShow(false)
+    }}  response = {"Succes create Product"}/>
         <div className="addProductTitle">Add New Product</div>
         <div className="addProductContainer">
             <div className="leftAddProduct">
                 <div className="topLeftAdd">
                 <div className="imgProductAdd">
-                    <img src={cameraBlank} alt="" />
+                    {prevImage ? <img className='prevImage' src={prevImage} alt="" />:
+                    <img className='cameraBlank' src={cameraBlank} alt="" /> }
                 </div>
                 <div className="takePictureAdd">Take A Picture</div>
                 <div className="choosePictureAdd"
-                ><input type="file" onChange={(e)=>{
-                    setPictures(e.target.files[0])
-                }}/>
+                ><input type="file" onChange={handlePictures}/>
                     Choose From Galery</div>
                 </div>
                 <div className="deliveryHourAdd">

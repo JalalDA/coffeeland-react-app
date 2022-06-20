@@ -23,14 +23,25 @@
 }
 
 .imgProductAdd{
+    height: 300px;
+    width: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 100px;
+    /* padding: 100px; */
     border-radius: 50%;
     background-color:rgba(186, 186, 186, 0.35);;
 }
-
+.prevImage{
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+.cameraBlank{
+ height: 100px;
+ width: 100px;
+}
 .topLeftAdd{
     display: flex;
     align-items: center;

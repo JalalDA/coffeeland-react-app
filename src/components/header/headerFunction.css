@@ -35,9 +35,13 @@ li{
 li:hover{
     color: #6A4029;
     font-weight: 700;
+    text-decoration: none;
 }
 .linkHeader{
     color: inherit;
+}
+.linkHeader:hover{
+    text-decoration: none;
 }
 .showLogin > input{
     width: 50%;
@@ -106,6 +110,10 @@ li:hover{
     height: 40px;
     width: 40px;
     border-radius: 50%;
+    cursor: pointer;
+}
+.showLogin > img{
+    cursor: pointer;
 }
 
 @media screen and (max-width:768px){

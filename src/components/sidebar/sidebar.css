@@ -95,7 +95,7 @@
     color: white;
     font-size: 17px;
     font-weight: 700;
-    margin-bottom: 112px;
+    margin-bottom: 50px;
     cursor: pointer;
 }
 .applyCoupon:active{
@@ -112,4 +112,33 @@
 .terms>p{
     font-size: 12px;
     font-weight: 400;
+}
+.addPromo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 40px;
+    background-color: #FFBA33;
+    color: #fff;
+    font-weight: 700;
+    font-size: 20px;
+    border-radius: 20px;
+    width: 70%;
+    margin-top: 20px;
+    cursor: pointer;
+
+}
+.addpromo{
+    color: #fff;
+    font-weight: 700;
+    font-size: 20px;
+}
+.addpromo:hover{
+    color: #fff;
+    font-weight: 700;
+    font-size: 20px;
+    text-decoration: none;
+}
+.addPromo:hover{
+    background-color: #FFCB65;
 }

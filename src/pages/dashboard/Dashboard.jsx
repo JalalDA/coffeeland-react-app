@@ -30,7 +30,7 @@ import axios from 'axios'
         // if(dailyReport !== []){
         // }
         const dataHeight = dailyReport.map(e=>e.revenue * 100 / 2000000)
-        console.log(dataHeight);
+       
         return (
             <>
             <Header/>
@@ -106,7 +106,7 @@ import axios from 'axios'
                                     </div>
                                     <div className="chartColumn">
                                         <div className="chartColumnPositive">
-                                            <div className="chartColumnPositiveBar" style={{height:`${dataHeight[3]}%`}}></div>
+                                            <div className="chartColumnPositiveBar" style={{height:`${dataHeight[3] || 0}%`}}></div>
                                         </div>
                                         <div className="lineChart"></div>
                                         <div className="chartColumnNegative">
