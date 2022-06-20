@@ -47,6 +47,7 @@ li:hover{
     font-weight: 400;
     font-size: 16px;
     color: #0B132A;
+    cursor: pointer;
 }
 .btn-signUp-header{
     display: flex;
@@ -58,6 +59,7 @@ li:hover{
     border-radius: 10px;
     font-weight: 400;
     font-size: 16px;
+    cursor: pointer;
 }
 .menu-toggle{
     display: none;

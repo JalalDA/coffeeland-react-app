@@ -11,6 +11,7 @@ import {getAllProduct} from '../../redux/reducers/productSlice'
 import pen from '../../assets/img/pencil.png'
 import './products.css'
 import { useNavigate } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 
 const Products = () => {
     // this.state = {
@@ -34,6 +35,7 @@ const Products = () => {
     const [categoryActive, setCategoryActive] = useState(false)
     const [params, setParams] = useState('/')
     const [searchName, setSearchName] = useState('')
+    let [searchParams, setSearchParams] = useSearchParams()
     useEffect(()=>{
         discpatch(getAllProduct(params))
         if(searchName !== ''){
@@ -98,12 +100,17 @@ return (
                 <select onChange={(e)=>{
                     if(e.target.value === 'price' && (params === '/')) {
                         setParams(params=>params+='?&sort=price')
+                        setSearchParams(`?all&sort=price`)
                     }
                     if(e.target.value === 'price' && params==='/favorit'){
                         setParams(params=>params+='?&sort=price')
+                        setSearchParams(`?category=favorit&sort=price`)
                     }
                     if(e.target.value === 'price'){
                         setParams(params=>params+='&sort=price')
+                        let params = searchParams.get('category')
+                        console.log(params);
+                        setSearchParams(`category=${params+='?&sort=price'}`)
                     }
                 }}
                 > <option value="">Filter</option>
