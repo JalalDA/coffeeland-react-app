@@ -74,7 +74,7 @@ return (
         {history.map(product => 
         <div className="col-lg-4">
             <div className="cardHistory">
-                <img className='productImageHistory' src={`${process.env.REACT_APP_SERVER}${product.product_image}`} alt="" />
+                <img className='productImageHistory' src={`${product.product_image}`} alt="" />
                 <div className="historyDetail">
                     <h4>{product.product_name}</h4>
                     <p>{product.total_payment}</p>

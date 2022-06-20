@@ -74,7 +74,7 @@ return (
             <div className="row containerDetailProduct">
                 <div className="col-lg-6 leftProduct">
                     <div className="imgDetailProductContainer">
-                    <img className='imgDetailProduct' src={`${process.env.REACT_APP_SERVER}${detailProduct.pictures}`} alt=""/>
+                    <img className='imgDetailProduct' src={`${detailProduct.pictures}`} alt=""/>
                     {role === 'admin' ? 
                     <div className='trashBox' onClick={()=>{
                         setShowPrompt(true)
