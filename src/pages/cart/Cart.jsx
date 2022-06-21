@@ -132,9 +132,9 @@ return (
                     <p>Edit</p>
                     </div>
                     <div className="deliveryCardCart">
-                    <p> <b>Delivery to </b> {adress}</p>
+                    <p> <b>Delivery to </b> {display_name}</p>
                     <div className="lineDeliveryCart"></div>
-                    <p>Km 5 refinery road oppsite republic road, effurun, Jakarta</p>
+                    <input type="text" defaultValue={adress} />
                     <div className="lineDeliveryCart"></div>
                     <p>{phone}</p>
                     </div>

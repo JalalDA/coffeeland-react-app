@@ -64,7 +64,7 @@ const EditProduct = () => {
     const getDetailProduct = async ()=>{
         try {
             const result = await axios.get(`${process.env.REACT_APP_SERVER}/product/${id}`)
-            console.log(result);
+            // console.log(result);
             setDetailProduct(result.data.data)
         } catch (error) {
             console.log(error);

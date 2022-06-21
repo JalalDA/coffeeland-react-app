@@ -141,6 +141,11 @@
     justify-content: center;
     row-gap: 8px;
 }
+.deliveryCardCart > input{
+    outline: none;
+    padding : 10px;
+    border: none;
+}
 .lineDeliveryCart{
     border-bottom: 1px solid #666;
     width: 100%;

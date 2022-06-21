@@ -40,7 +40,7 @@ export const getAllProduct = (params)=> async (dispatch)=> {
             type : 'PRODUCT_SUCCES',
         },)
         dispatch(pushProduct(result.data))
-        console.log(result);
+        // console.log(result);
     } catch (error) {
         console.log(error);
         dispatch({

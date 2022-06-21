@@ -61,8 +61,8 @@ function App() {
             </PrivateElement>
           }/>
           <Route path="/history"  element={
-            <PrivateElement redirectTo="/login">
-              <History extraData='please login first'/>
+            <PrivateElement redirectTo="/login" extraData={{isAuthenticated : false}}>
+              <History/>
             </PrivateElement>
           }/>
           <Route path="/modal" element={<Modal />} />

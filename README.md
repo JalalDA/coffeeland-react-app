@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+## BUILT WITH
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![html](https://img.shields.io/badge/html-5-orange)
+![css](https://img.shields.io/badge/css-3-blue)
+![bootstrap](https://img.shields.io/badge/bootstrap-5-lightgrey)
+![reactjs](https://img.shields.io/badge/reactjs-18-blue)
 
-## Available Scripts
+<br>
 
-In the project directory, you can run:
+![nodejs](https://img.shields.io/badge/nodejs-18-brightgreen)
+![expressjs](https://img.shields.io/badge/expressjs-4-lightgrey)
+![postgreSQL](https://img.shields.io/badge/postgreSQL-14-blue)
 
-### `npm start`
+## HOW TO USE
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone this 2 repository.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+   ```
+   $ git clone https://github.com/JalalDA/coffeeland-react-app.git
 
-### `npm test`
+   $ git clone https://github.com/JalalDA/coffeeland.git
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Open VS Code or you can download and install it [here](https://code.visualstudio.com/).
 
-### `npm run build`
+3. Open menu **Terminal > New Terminal** or press **ctrl+shift+`**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. On terminal, change directory to **coffeeland-react-app** then run
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```
+   npm start
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+5. Open another terminal, change directory to **coffeeland** then run
 
-### `npm run eject`
+   ```
+   npm start
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+6. Enjoy the app!
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## PREVIEW
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<div style="display:flex, flex-direction: column" >
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+</div>
 
-## Learn More
+## BACKEND
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[coffeeland-backend](https://github.com/JalalDA/coffeeland.git)

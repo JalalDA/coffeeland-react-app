@@ -27,7 +27,7 @@ const History = () => {
                 idProduct : idProduct
             }
             const result = await axios.patch(`${process.env.REACT_APP_SERVER}/history/delete`, body)
-            console.log(result);
+            // console.log(result);
             setMsg(result.data.msg)
             setShow(true)
         } catch (error) {

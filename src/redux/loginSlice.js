@@ -36,7 +36,7 @@ export const loginSlice = createSlice({
 export const getUserInfo = (body)=> async (dispacth)=>{
     try {
         const result = await axios.post(`${process.env.REACT_APP_SERVER}/auth/login`, body)
-        console.log(result);
+        // console.log(result);
         dispacth(pushUserInfo(result.data))
     } catch (error) {
         console.log(error);
