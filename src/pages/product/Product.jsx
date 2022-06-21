@@ -34,6 +34,11 @@ const Product = (props) => {
         count,
         time
     }
+    const currencyFormatter =  new Intl.NumberFormat("IDR", {
+        style: "currency",
+        currency: "IDR",
+        minimumFractionDigits: 0
+    })
     const deleteProduct = async ()=>{
         try {
             const config = {
@@ -134,7 +139,7 @@ return (
                                 setCount(count + 1)
                             }}> + </div>
                         </div>
-                        <div className="priceDetail"> IDR {detailProduct.price}</div>
+                        <div className="priceDetail"> {currencyFormatter.format(detailProduct.price)}</div>
                     </div>
                     <div className="addtoCart"
                         onClick={()=>{

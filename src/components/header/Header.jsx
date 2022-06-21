@@ -39,7 +39,7 @@ const Header = (props) => {
             <Link className='linkHeader' to='/products'><li>Product</li></Link>
             {role !== 'admin'? 
             <>
-                <Link className='linkHeader' to='/your-chart'><li>Your Cart</li></Link>
+                <Link className='linkHeader' to='/your-cart'><li>Your Cart</li></Link>
                 <Link className='linkHeader' to='/history'><li onClick={()=>{
                     if(!token){
                         setShow(true)

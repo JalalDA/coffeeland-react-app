@@ -16,7 +16,7 @@ const Cart = (props) => {
     const taxAndFee = 20000
     const shipping = 10000
     const cart = useSelector(state=> state.cart.value)
-    console.log(cart);
+    
     const subTotal = cart.count * cart.detailProduct.price
     const delivery_method = cart.deliveryMethod
     const [adress, setAdress] = useState('')
@@ -26,6 +26,11 @@ const Cart = (props) => {
     const [user_id, setUser_id] = useState('')
     const [show, setShow] = useState(false)
     const navigate = useNavigate()
+    const currencyFormatter =  new Intl.NumberFormat("IDR", {
+        style: "currency",
+        currency: "IDR",
+        minimumFractionDigits: 0
+    })
     useEffect(()=>{
         const getDataProfile = async()=>{
             const persist = JSON.parse(localStorage.getItem('persist:persist'))
@@ -84,7 +89,7 @@ return (
     <p>Product Name : {cart.detailProduct.name}</p>
     <p>Payment Methode : {payment_method}</p>
     <p>Delivery Method : {delivery_method} </p>
-    <p>Total Payment : IDR {subTotal + taxAndFee + shipping}</p>
+    <p>Total Payment : {currencyFormatter.format(subTotal + taxAndFee + shipping)}</p>
     </div>
 } onClose={()=>{
         setShow(false)
@@ -104,25 +109,25 @@ return (
                             <p>X {cart.count}</p>
                             <p>{cart.size}</p>
                         </div>
-                        <span>IDR {cart.detailProduct.price}</span>
+                        <span>{currencyFormatter.format(cart.detailProduct.price)}</span>
                     </div>
                 </div>
                 <div className="lineCart"></div>
                 <div className="subTotal">
                     <p>SUBTOTAL</p>
-                    <p>{cart.count * cart.detailProduct.price}</p>
+                    <p>{currencyFormatter.format(cart.count * cart.detailProduct.price)}</p>
                 </div>
                 <div className="subTotal">
                     <p>TAX & FEES</p>
-                    <p>{taxAndFee}</p>
+                    <p>{currencyFormatter.format(taxAndFee)}</p>
                 </div>
                 <div className="subTotal">
                     <p>SHIPPING</p>
-                    <p>{shipping}</p>
+                    <p>{currencyFormatter.format(shipping)}</p>
                 </div>
                 <div className="totalPaymentCart">
                     <p>TOTAL</p>
-                    <p>{subTotal+taxAndFee+shipping}</p>
+                    <p>{currencyFormatter.format(subTotal+taxAndFee+shipping)}</p>
                 </div>
             </div>
             <div className="rightCart">

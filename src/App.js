@@ -91,6 +91,12 @@ function App() {
               <AddPromo/>
             </PrivateElement>
           }/>
+          <Route path="*" element={
+            <main className="d-flex justify-content-center flex-column align-items-center p-4 fw-bold">
+              <b>Page not found</b>
+              <b className="404" style={{fontSize : '350px'}}>404</b>
+            </main>
+          }/>
         </Routes>
       </BrowserRouter>
       </PersistGate>

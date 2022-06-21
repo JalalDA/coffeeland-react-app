@@ -36,6 +36,12 @@ const Products = () => {
     const [params, setParams] = useState('/')
     const [searchName, setSearchName] = useState('')
     let [searchParams, setSearchParams] = useSearchParams()
+    const currencyFormatter =  new Intl.NumberFormat("IDR", {
+        style: "currency",
+        currency: "IDR",
+        minimumFractionDigits: 0
+    })
+
     useEffect(()=>{
         discpatch(getAllProduct(params))
         if(searchName !== ''){
@@ -141,7 +147,7 @@ return (
                             src={`${product.pictures}`} alt=""/>
                             <div className="productName" key={product.name}>
                             <Link className='productName' to={`/product/${product.id}`}>{product.name}</Link></div>
-                            <div className="priceProducts" key={product.id}>{product.price}</div>
+                            <div className="priceProducts" key={product.id}>{currencyFormatter.format(product.price)}</div>
                             <div className="pencil">
                             <Link to={`/editproduct/${product.id}`}>
                                 <img src={pen} alt="pen" />
@@ -159,7 +165,7 @@ return (
                             src={`${product.pictures}`} alt=""/>
                             <div className="productName" key={product.name}>
                             <Link className='productName' to={`/product/${product.id}`}>{product.name}</Link></div>
-                            <div className="priceProducts" key={product.id}>{product.price}</div>
+                            <div className="priceProducts" key={product.id}>{currencyFormatter.format(product.price)}</div>
                         </div>
                     </div>
                 )}
