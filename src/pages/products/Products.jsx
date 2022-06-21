@@ -70,13 +70,18 @@ return (
             </Link> 
             </div>
             <div className="headerItem">
-            <Link to='?category=noncoffee' className={categoryActive === 'nonCoffee'?'linkCategoryActive' :'linkCategory'}
+            <div className={categoryActive === 'nonCoffee'?'linkCategoryActive' :'linkCategory'}
             onClick={()=>{
+                if(searchName !== ''){
+                    setSearchParams(`?name=${searchName}&category=noncoffee`)
+                    setParams(`?name=${searchName}&category_id=3`)
+                }
+                setSearchParams('?category=noncoffee')
                 setParams('/?category_id=3')
                 setCategoryActive('nonCoffee')
             }}
             >Non Coffee
-            </Link>
+            </div>
             </div>
             <div className="headerItem"><Link to='?category=foods' className={categoryActive === 'foods'?'linkCategoryActive' :'linkCategory'}
             onClick={()=>{

@@ -10,8 +10,10 @@ import nullProfile from '../../assets/img/nullProfile.png'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router'
 import { useSearchParams } from 'react-router-dom'
+import Modal from '../Modal/Modal'
 
 const Header = (props) => {
+    const [show, setShow] = useState(false)
     const [showToggle, setShowToggle] = useState(false)
     const [isSearch, setIsSearch] = useState(false)
     const [searchParams, setSearchParams] = useSearchParams()
@@ -21,6 +23,9 @@ const Header = (props) => {
     const navigate = useNavigate()
   return (
     <>
+    <Modal show={show} onClose={()=>{
+        setShow(false)
+    }} response={'Please login first'}/>
     <div className="headerContainer">
         <div className="logoHeaderF">
             <img src={logo} alt="" />
@@ -35,7 +40,11 @@ const Header = (props) => {
             {role !== 'admin'? 
             <>
                 <Link className='linkHeader' to='/your-chart'><li>Your Cart</li></Link>
-                <Link className='linkHeader' to='/history'><li>History</li></Link>
+                <Link className='linkHeader' to='/history'><li onClick={()=>{
+                    if(!token){
+                        setShow(true)
+                    }
+                }}>History</li></Link>
             </>
             :
             <>
