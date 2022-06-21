@@ -56,7 +56,7 @@ function App() {
           <Route path="/forgot-password" element={ <Forgot/>}/>
           <Route path="/product/favorit" element={<FavProduct/>}/>
           <Route path="/your-cart" element={
-            <PrivateElement redirectTo="/login">
+            <PrivateElement redirectTo="/login" extraData={{isAuthenticated : false}}>
               <Cart/>
             </PrivateElement>
           }/>

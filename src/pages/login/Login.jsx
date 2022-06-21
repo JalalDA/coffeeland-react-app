@@ -23,7 +23,6 @@ const Login = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const userInfo = useSelector((state)=>state.login.value)
-  const message = useSelector((state)=>state.login.msg)
   const photo = useSelector((state)=>state.login.photo)
   const isSucces = useSelector((state)=>state.login.isSucces)
   // const login = async ()=>{
@@ -55,11 +54,10 @@ const Login = () => {
     password
   }
   console.log(userInfo);
-  console.log(message);
   return (
     <>
-    <div className="headerContainer">
-      <Modal show={show} response={message} onClose={()=>{
+    <div className="headerContainerLogin">
+      <Modal show={show} response={isSucces ? 'RegisterSucces' : 'Email or Password is wrong'} onClose={()=>{
         localStorage.setItem('photo', photo)
         setShow(false)
         if(isSucces){
