@@ -57,7 +57,7 @@ const Login = () => {
   return (
     <>
     <div className="headerContainerLogin">
-      <Modal show={show} response={isSucces ? 'RegisterSucces' : 'Email or Password is wrong'} onClose={()=>{
+      <Modal show={show} response={isSucces ? 'Register Succes' : 'Email or Password is wrong'} onClose={()=>{
         localStorage.setItem('photo', photo)
         setShow(false)
         if(isSucces){
