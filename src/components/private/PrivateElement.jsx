@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 // import { useState } from 'react'
 import { Navigate } from 'react-router-dom'
 
@@ -10,10 +11,12 @@ const PrivateElement = ({
     allowedRole,
     redirectTo ='/',
     isRouteReplaced = true,
-    extraData = null
+    extraData = 'Please login first',
+    show = false
 }) => {
     // // const navigate = useNavigate()
     // const [showLogin, setShowLogin] = useState('')
+    const token = useSelector(state=>state.login.value.token)
     const persist = JSON.parse(localStorage.getItem('persist:persist'))
     if(!persist){
         // setShowLogin(true)
@@ -21,13 +24,11 @@ const PrivateElement = ({
             <Navigate  to={redirectTo} replace={isRouteReplaced} state={extraData} />
         )
     }
-    const login = JSON.parse(persist.login)
-    const token = login.value.token
     if(!token) {
         // setShowLogin(true)
         return(
             <Navigate 
-            to={redirectTo} replace={isRouteReplaced} state={extraData} 
+            to={redirectTo} replace={isRouteReplaced} state={extraData} show={show}
             />
         )
     }

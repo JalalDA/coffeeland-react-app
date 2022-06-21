@@ -62,7 +62,7 @@ function App() {
           }/>
           <Route path="/history"  element={
             <PrivateElement redirectTo="/login">
-              <History/>
+              <History extraData='please login first'/>
             </PrivateElement>
           }/>
           <Route path="/modal" element={<Modal />} />
