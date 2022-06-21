@@ -42,7 +42,11 @@
 ## PREVIEW
 
 <div style="display:flex, flex-direction: column" >
-
+<img src="src/assets/img/preview_home.jpeg" style="width: 600px">
+<img src="src/assets/img/preview_login.jpeg" style="width: 600px">
+<img src="src/assets/img/preview_profile.jpeg" style="width: 600px">
+<img src="src/assets/img/preview_product.jpeg" style="width: 600px">
+<img src="src/assets/img/preview_detail_product.jpeg" style="width: 600px">
 </div>
 
 ## BACKEND

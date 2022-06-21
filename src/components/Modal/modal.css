@@ -59,3 +59,16 @@
     border-radius: 20px;
     cursor: pointer;
 }
+
+@media screen and(max-width : 768px) {
+    .modal{
+        width: 40%;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+    .modalContent{
+        width: auto;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+}
