@@ -80,7 +80,6 @@ return (
             onClick={()=>{
                 if(searchName !== ''){
                     setSearchParams(`?name=${searchName}&category=noncoffee`)
-                    setParams(`?name=${searchName}&category_id=3`)
                 }
                 setSearchParams('?category=noncoffee')
                 setParams('/?category_id=3')
