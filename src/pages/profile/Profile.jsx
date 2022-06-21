@@ -193,7 +193,7 @@ const Profile = () => {
                                         />
                                         <label htmlFor="last">Last name :</label>
                                         <input className='inputProfile' type="text" id="last" 
-                                        defaultValue={'profile.lastname'} 
+                                        defaultValue={profile.lastname} 
                                         onChange={e=>{
                                             setLastName(e.target.value)
                                         }} 
