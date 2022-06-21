@@ -8,6 +8,7 @@ import cod from '../../assets/img/cod.png'
 import './cart.css'
 import axios from 'axios'
 import { useSelector} from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import Modal from '../../components/Modal/Modal'
 
 const Cart = (props) => {
@@ -24,6 +25,7 @@ const Cart = (props) => {
     const [payment_method, setPaymentMethod] = useState('')
     const [user_id, setUser_id] = useState('')
     const [show, setShow] = useState(false)
+    const navigate = useNavigate()
     useEffect(()=>{
         const getDataProfile = async()=>{
             const persist = JSON.parse(localStorage.getItem('persist:persist'))
@@ -86,6 +88,7 @@ return (
     </div>
 } onClose={()=>{
         setShow(false)
+        navigate('/product')        
     }}/>
     <div className="cartContainer">
         <img src={bgCart} alt="backgroundCart" />
