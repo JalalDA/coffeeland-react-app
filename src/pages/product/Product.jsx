@@ -169,15 +169,18 @@ return (
                     </div>
                     <div className="checkOut">
                         <div className="checkOutLeft">
-                            <img src={`${process.env.REACT_APP_SERVER}${detailProduct.pictures}`} alt="" />
+                            <img src={`${detailProduct.pictures}`} alt="" />
                             <div className="detailOrder">
                                 <h3>{}</h3>
                                 <p>x {count} ({size})</p>
                             </div>
                         </div>
-                        <div className="checkoutRight">
+                        <div className="checkoutRight" onClick={()=>{
+                            dispatch(addtocart(detail))
+                            setShow(true)
+                        }}>
                             <span>Checkout</span>
-                            <img src={arrow} alt="arrow"/>
+                            <img src={arrow} alt="arrow" />
                         </div>
                     </div>
                 </div>
