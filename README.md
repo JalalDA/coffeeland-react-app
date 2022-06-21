@@ -37,27 +37,29 @@
 4. On terminal, change directory to **coffeeland-react-app** then run
 
    ```
-   npm start
+   $ npm start
    ```
 
 5. Open another terminal, change directory to **coffeeland** then run
 
    ```
-   npm start
+   $ npm start
    ```
 
 6. Enjoy the app!
 
 ## PREVIEW
 
-<div style="display:flex, flex-direction: column" >
-<img src="src/assets/img/preview_home.jpeg" style="width: 600px">
-<img src="src/assets/img/preview_login.jpeg" style="width: 600px">
-<img src="src/assets/img/preview_profile.jpeg" style="width: 600px">
-<img src="src/assets/img/preview_product.jpeg" style="width: 600px">
-<img src="src/assets/img/preview_detail_product.jpeg" style="width: 600px">
+<div style="display:flex" >
+<img src="src/assets/img/preview_home.jpeg" style="width: 250px">
+<img src="src/assets/img/preview_login.jpeg" style="width: 250px">
+<img src="src/assets/img/preview_profile.jpeg" style="width: 250px">
+</div>
+<div style="display:flex">
+<img src="src/assets/img/preview_product.jpeg" style="width: 300px">
+<img src="src/assets/img/preview_detail_product.jpeg" style="width: 300px">
 </div>
 
-## BACKEND
+## Related Project
 
 [coffeeland-backend](https://github.com/JalalDA/coffeeland.git)
