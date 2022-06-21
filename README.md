@@ -1,3 +1,12 @@
+<p align="center">
+  <img src="src/assets/img/logo.png" alt="coffeeland" width='70'>
+</p>
+<div align="center">
+<h1>Coffeeland</h1>
+<p>Coffeeland is a some place that you can get new idea with a cup of coffee</p>
+<br>
+</div>
+
 ## BUILT WITH
 
 ![html](https://img.shields.io/badge/html-5-orange)
