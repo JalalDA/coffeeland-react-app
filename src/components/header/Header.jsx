@@ -9,10 +9,12 @@ import messageIcon from '../../assets/img/chat.png'
 import nullProfile from '../../assets/img/nullProfile.png'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router'
+import { useSearchParams } from 'react-router-dom'
 
 const Header = (props) => {
     const [showToggle, setShowToggle] = useState(false)
     const [isSearch, setIsSearch] = useState(false)
+    const [searchParams, setSearchParams] = useSearchParams()
     const token = useSelector(state=> state.login.value.token)
     const photo = useSelector(state=> state.login.photo)
     const role = useSelector(state=>state.login.value.role)
@@ -48,11 +50,14 @@ const Header = (props) => {
                     type='text' 
                     onKeyUp={(e)=>{
                         if(e.key === 'Enter'){
-                            navigate('/products')
                             props.setSearchName(e.target.value)
+                            searchParams.get('name')
+                            const url = new URL(window.location.href)
+                            const params = new URLSearchParams(url.search)
+                            let newParams = params.toString()
+                            setSearchParams(newParams+=`&name=${e.target.value}`)
                         }
                     }}
-                    onChange
                     /> <div className='closeX' onClick={()=>{
                         setIsSearch(false)
                     }}>X</div></>:

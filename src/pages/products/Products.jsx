@@ -41,7 +41,6 @@ const Products = () => {
         if(searchName !== ''){
             setParams(`/?name=${searchName}`)
         }
-        console.log(searchName);
     }, [params, discpatch, searchName])
 
     const getSearchName = (props)=>{
@@ -172,6 +171,10 @@ return (
                     window.scroll(0,0)
                     navigate('?page=1')
                 }}/>
+                <div className="pageNumber">
+                    <div className={searchParams.get('page')=== '1' ? 'numberPageActive' : 'numberPage'}>1</div>
+                    <div className={searchParams.get('page')=== '2' ? 'numberPageActive' : 'numberPage'}>2</div>
+                </div>
                 <img src={right} alt="rightArrow" onClick={()=>{
                     setParams(params=> params=`?page=${meta.curentPage + 1}`)
                     window.scroll(0,0)

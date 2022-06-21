@@ -58,7 +58,32 @@
     align-items: flex-start;
     justify-content: flex-end;
 }
-
+.pageNumber{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100px;
+}
+.numberPage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #9F9F9F;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    color: #FFFFFF;
+}
+.numberPageActive{
+    background-color: #6a4029;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .productFilter>img{
     margin: 0px 30px;
 }
